@@ -25,15 +25,15 @@ namespace WindowsFormsApp1
             string password = logPassword.Text;
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                string passwordHash = GetHash(sha256Hash, password);
+                string passwordHash = HashPasswords.GetHash(sha256Hash, password);
                 Reader reader = GetReader(username, passwordHash);
 
                 if (reader != null)
                 {
                     MessageBox.Show("Zalogowano pomyślnie.");
-                    /*ReaderMenu readerMenu = new ReaderMenu(reader);
+                    this.Hide();
+                    ReaderMenu readerMenu = new ReaderMenu(reader.Id);
                     readerMenu.Show();
-                    this.Hide();*/
                 }
                 else
                 {
@@ -73,17 +73,9 @@ namespace WindowsFormsApp1
             return foundReader;
         }
 
-        static string GetHash(HashAlgorithm hashAlgorithm, string input)
+        private void Logowanie_Load(object sender, EventArgs e)
         {
-            byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-            StringBuilder sBuilder = new StringBuilder();
-
-            foreach (byte b in data)
-            {
-                sBuilder.Append(b.ToString("x2"));
-            }
-            return sBuilder.ToString();
         }
     }
 }

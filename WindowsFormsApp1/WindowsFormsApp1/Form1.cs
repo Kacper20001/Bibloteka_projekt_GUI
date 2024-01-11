@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
-                    string passwordHash = GetHash(sha256Hash, password);
+                    string passwordHash = HashPasswords.GetHash(sha256Hash, password);
                     
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, passwordHash, username);
@@ -87,20 +87,6 @@ namespace WindowsFormsApp1
             regCountry.Text = "";
         }
 
-
-        static string GetHash(HashAlgorithm hashAlgorithm, string input)
-        {
-            byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            StringBuilder sBuilder = new StringBuilder();
-
-            foreach (byte b in data)
-            {
-                sBuilder.Append(b.ToString("x2"));
-            }
-            return sBuilder.ToString();
-        }
-
         string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
         private void SaveReaderInDatabese(Reader reader)
         {
@@ -117,8 +103,8 @@ namespace WindowsFormsApp1
                         MessageBox.Show("Dodano osobę");
                         regClear_Click(this, EventArgs.Empty);
                         this.Hide();
-                        /*LoginForm loginForm = new LoginForm();
-                        loginForm.Show();*/
+                        Logowanie logowanie = new Logowanie();
+                        logowanie.Show();
 
                     }
                     catch (Exception ex)
@@ -128,6 +114,18 @@ namespace WindowsFormsApp1
                 }
 
             }
+        }
+
+        private void AlreadyHaveAccountBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Logowanie logowanie = new Logowanie();
+            logowanie.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

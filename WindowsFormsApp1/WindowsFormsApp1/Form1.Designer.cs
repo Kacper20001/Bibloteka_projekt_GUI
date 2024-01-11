@@ -57,7 +57,7 @@
             this.regDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.regSubmit = new System.Windows.Forms.Button();
             this.regClear = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
+            this.AlreadyHaveAccountBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -280,7 +280,7 @@
             // 
             // regSubmit
             // 
-            this.regSubmit.Location = new System.Drawing.Point(42, 462);
+            this.regSubmit.Location = new System.Drawing.Point(89, 462);
             this.regSubmit.Name = "regSubmit";
             this.regSubmit.Size = new System.Drawing.Size(75, 23);
             this.regSubmit.TabIndex = 28;
@@ -298,21 +298,22 @@
             this.regClear.UseVisualStyleBackColor = true;
             this.regClear.Click += new System.EventHandler(this.regClear_Click);
             // 
-            // label15
+            // AlreadyHaveAccountBtn
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(72, 503);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(126, 13);
-            this.label15.TabIndex = 30;
-            this.label15.Text = "Already have an account";
+            this.AlreadyHaveAccountBtn.Location = new System.Drawing.Point(80, 491);
+            this.AlreadyHaveAccountBtn.Name = "AlreadyHaveAccountBtn";
+            this.AlreadyHaveAccountBtn.Size = new System.Drawing.Size(184, 23);
+            this.AlreadyHaveAccountBtn.TabIndex = 30;
+            this.AlreadyHaveAccountBtn.Text = "Already have an Account";
+            this.AlreadyHaveAccountBtn.UseVisualStyleBackColor = true;
+            this.AlreadyHaveAccountBtn.Click += new System.EventHandler(this.AlreadyHaveAccountBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 542);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.AlreadyHaveAccountBtn);
             this.Controls.Add(this.regClear);
             this.Controls.Add(this.regSubmit);
             this.Controls.Add(this.regDateOfBirth);
@@ -344,6 +345,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,7 +382,7 @@
         private System.Windows.Forms.DateTimePicker regDateOfBirth;
         private System.Windows.Forms.Button regSubmit;
         private System.Windows.Forms.Button regClear;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button AlreadyHaveAccountBtn;
     }
 }
 
