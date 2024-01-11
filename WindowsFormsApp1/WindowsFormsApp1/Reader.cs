@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -19,6 +20,36 @@ namespace WindowsFormsApp1
             Id = nextId++;
             Username = username;
             Password = password;
+        }
+        public static Reader GetReader(string username, string passwordHash)
+        {
+            Reader foundReader = null;
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = "SELECT * FROM Readers WHERE Username = @Username AND Password = @Password";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", passwordHash);
+
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            foundReader = new Reader(
+                                reader["FirstName"].ToString(), reader["LastName"].ToString(),
+                                Convert.ToDateTime(reader["DateOfBirth"]), reader["PhoneNumber"].ToString(),
+                                reader["Email"].ToString(),
+                                new Address(reader["Street"].ToString(), reader["HouseNumber"].ToString(),
+                                reader["PostalCode"].ToString(), reader["City"].ToString(),
+                                reader["Country"].ToString()),
+                                reader["Password"].ToString(), reader["Username"].ToString());
+                        }
+                    }
+                }
+            }
+            return foundReader;
         }
     }
 }

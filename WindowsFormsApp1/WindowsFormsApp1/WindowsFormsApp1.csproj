@@ -167,6 +167,12 @@
     </Compile>
     <Compile Include="HashPasswords.cs" />
     <Compile Include="Librarian.cs" />
+    <Compile Include="LibrarianLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianLoginForm.Designer.cs">
+      <DependentUpon>LibrarianLoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logowanie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianLoginForm.resx">
+      <DependentUpon>LibrarianLoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logowanie.resx">
       <DependentUpon>Logowanie.cs</DependentUpon>
