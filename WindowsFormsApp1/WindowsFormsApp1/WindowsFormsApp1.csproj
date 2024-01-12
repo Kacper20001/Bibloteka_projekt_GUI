@@ -172,6 +172,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bibliotekarz\BookManagement\AddBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\BookManagement\AddBookForm.Designer.cs">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bibliotekarz\BookManagement\EditBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     </Compile>
     <EmbeddedResource Include="Bibliotekarz\BookManagementView.resx">
       <DependentUpon>BookManagementView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\BookManagement\AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\BookManagement\EditBookForm.resx">
       <DependentUpon>EditBookForm.cs</DependentUpon>

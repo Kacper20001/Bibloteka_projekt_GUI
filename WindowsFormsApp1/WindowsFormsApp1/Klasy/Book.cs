@@ -134,5 +134,24 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        public static void AddBook(int id, string title, string author, int year, string description) // ogarnąć, żeby id automatycznie nowe się pojawiało ?
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = "INSERT INTO Books(id, title, author, year, description)" +
+                               "VALUES(@id, @title, @author, @year, @description)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id );
+                    command.Parameters.AddWithValue("@title", title );
+                    command.Parameters.AddWithValue("@author", author );
+                    command.Parameters.AddWithValue("@year", year );
+                    command.Parameters.AddWithValue("@description", description );
+                    connection.Open();    
+                    command.ExecuteNonQuery();
+                }
+
+            }
+        }
     }
 }

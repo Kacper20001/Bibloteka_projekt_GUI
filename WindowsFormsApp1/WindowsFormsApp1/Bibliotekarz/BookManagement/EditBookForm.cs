@@ -17,7 +17,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
         public EditBookForm(int currentLibrarianId)
         {
             InitializeComponent();
-            this.currentLibrarianId = currentLibrarianId;
+            this.currentLibrarianId = id;
         }
 
 
@@ -54,7 +54,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
             librarianBooks.Show();
         }
 
-        private void backToMenuBtn_Click(object sender, EventArgs e)
+        private void BackToMenuBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
             LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
