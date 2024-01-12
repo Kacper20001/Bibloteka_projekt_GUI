@@ -25,5 +25,17 @@ namespace WindowsFormsApp1
             LibrarianBooks librarianBooks = new LibrarianBooks(currentLibrarianId);
             librarianBooks.Show();
         }
+
+        private void BookManagementBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BookManagementView bookManagementView = new BookManagementView(currentLibrarianId);
+            bookManagementView.Show();
+        }
+
+        private void LibrarianMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

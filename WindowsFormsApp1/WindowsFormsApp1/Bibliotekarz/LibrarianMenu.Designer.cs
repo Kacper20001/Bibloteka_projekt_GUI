@@ -66,6 +66,7 @@
             this.BookManagementBtn.TabIndex = 2;
             this.BookManagementBtn.Text = "Book Management";
             this.BookManagementBtn.UseVisualStyleBackColor = true;
+            this.BookManagementBtn.Click += new System.EventHandler(this.BookManagementBtn_Click);
             // 
             // borrowedBooksBtn
             // 
@@ -137,6 +138,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LibrarianMenu";
             this.Text = "LibrarianMenu";
+            this.Load += new System.EventHandler(this.LibrarianMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -14,6 +14,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publikuj\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -157,66 +172,78 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Book.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Bibliotekarz\BookManagement\EditBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Bibliotekarz\BookManagement\EditBookForm.Designer.cs">
+      <DependentUpon>EditBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Klasy\Address.cs" />
+    <Compile Include="Klasy\Book.cs" />
+    <Compile Include="Bibliotekarz\BookManagementView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\BookManagementView.Designer.cs">
+      <DependentUpon>BookManagementView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Użytkownik\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Użytkownik\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HashPasswords.cs" />
-    <Compile Include="Librarian.cs" />
-    <Compile Include="LibrarianBooks.cs">
+    <Compile Include="Klasy\HashPasswords.cs" />
+    <Compile Include="Klasy\Librarian.cs" />
+    <Compile Include="Bibliotekarz\LibrarianBooks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LibrarianBooks.Designer.cs">
+    <Compile Include="Bibliotekarz\LibrarianBooks.Designer.cs">
       <DependentUpon>LibrarianBooks.cs</DependentUpon>
     </Compile>
-    <Compile Include="LibrarianLoginForm.cs">
+    <Compile Include="Bibliotekarz\LibrarianLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LibrarianLoginForm.Designer.cs">
+    <Compile Include="Bibliotekarz\LibrarianLoginForm.Designer.cs">
       <DependentUpon>LibrarianLoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LibrarianMenu.cs">
+    <Compile Include="Bibliotekarz\LibrarianMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LibrarianMenu.Designer.cs">
+    <Compile Include="Bibliotekarz\LibrarianMenu.Designer.cs">
       <DependentUpon>LibrarianMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logowanie.cs">
+    <Compile Include="Użytkownik\Logowanie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Logowanie.Designer.cs">
+    <Compile Include="Użytkownik\Logowanie.Designer.cs">
       <DependentUpon>Logowanie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Klasy\Person.cs" />
+    <Compile Include="Klasy\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reader.cs" />
-    <Compile Include="ReaderAccountForms.cs">
+    <Compile Include="Klasy\Reader.cs" />
+    <Compile Include="Użytkownik\ReaderAccountForms.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReaderAccountForms.Designer.cs">
+    <Compile Include="Użytkownik\ReaderAccountForms.Designer.cs">
       <DependentUpon>ReaderAccountForms.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReaderBorrowedBooksForm.cs">
+    <Compile Include="Użytkownik\ReaderBorrowedBooksForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReaderBorrowedBooksForm.Designer.cs">
+    <Compile Include="Użytkownik\ReaderBorrowedBooksForm.Designer.cs">
       <DependentUpon>ReaderBorrowedBooksForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReaderMenu.cs">
+    <Compile Include="Użytkownik\ReaderMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReaderMenu.Designer.cs">
+    <Compile Include="Użytkownik\ReaderMenu.Designer.cs">
       <DependentUpon>ReaderMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchBooksForm.cs">
+    <Compile Include="Użytkownik\SearchBooksForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchBooksForm.Designer.cs">
+    <Compile Include="Użytkownik\SearchBooksForm.Designer.cs">
       <DependentUpon>SearchBooksForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StartForm.cs">
@@ -225,19 +252,25 @@
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Bibliotekarz\BookManagementView.resx">
+      <DependentUpon>BookManagementView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\BookManagement\EditBookForm.resx">
+      <DependentUpon>EditBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Użytkownik\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LibrarianBooks.resx">
+    <EmbeddedResource Include="Bibliotekarz\LibrarianBooks.resx">
       <DependentUpon>LibrarianBooks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LibrarianLoginForm.resx">
+    <EmbeddedResource Include="Bibliotekarz\LibrarianLoginForm.resx">
       <DependentUpon>LibrarianLoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LibrarianMenu.resx">
+    <EmbeddedResource Include="Bibliotekarz\LibrarianMenu.resx">
       <DependentUpon>LibrarianMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Logowanie.resx">
+    <EmbeddedResource Include="Użytkownik\Logowanie.resx">
       <DependentUpon>Logowanie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -249,16 +282,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReaderAccountForms.resx">
+    <EmbeddedResource Include="Użytkownik\ReaderAccountForms.resx">
       <DependentUpon>ReaderAccountForms.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReaderBorrowedBooksForm.resx">
+    <EmbeddedResource Include="Użytkownik\ReaderBorrowedBooksForm.resx">
       <DependentUpon>ReaderBorrowedBooksForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReaderMenu.resx">
+    <EmbeddedResource Include="Użytkownik\ReaderMenu.resx">
       <DependentUpon>ReaderMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchBooksForm.resx">
+    <EmbeddedResource Include="Użytkownik\SearchBooksForm.resx">
       <DependentUpon>SearchBooksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
@@ -278,6 +311,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 i x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.1.1\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

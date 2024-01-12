@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using System.Web;
 
 namespace WindowsFormsApp1
 {
@@ -112,6 +113,24 @@ namespace WindowsFormsApp1
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     return dataTable;
+                }
+            }
+        }
+
+        public static void EditBook(int id, string newTitle, string newAuthor, string newDescription, int newYear)  
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = "Update @Title, @Author, @Year, @Description FROM Books Where Id = @BookId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@BookId", id);
+                    command.Parameters.AddWithValue("@Title", newTitle);
+                    command.Parameters.AddWithValue("@Author", newAuthor);
+                    command.Parameters.AddWithValue("@Year", Convert.ToInt32(newYear));
+                    command.Parameters.AddWithValue("@Description", newDescription);
+                    connection.Open();
+                    command.ExecuteNonQuery();
                 }
             }
         }
