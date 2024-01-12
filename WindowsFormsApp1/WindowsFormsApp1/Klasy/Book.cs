@@ -153,5 +153,27 @@ namespace WindowsFormsApp1
 
             }
         }
+
+        public static void DeleteBook(int id)
+        {
+            using (SqlConnection  connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = "DELETE FROM Books WHERE id = @id";
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    int affectedRows = command.ExecuteNonQuery();
+                    if (affectedRows == 0)
+                    {
+                        MessageBox.Show("No book found with the given ID.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Book deleted successfully.");
+                    }
+                }
+            }
+        }
     }
 }

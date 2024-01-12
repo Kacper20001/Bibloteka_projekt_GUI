@@ -178,6 +178,12 @@
     <Compile Include="Bibliotekarz\BookManagement\AddBookForm.Designer.cs">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bibliotekarz\BookManagement\DeleteBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\BookManagement\DeleteBookForm.Designer.cs">
+      <DependentUpon>DeleteBookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bibliotekarz\BookManagement\EditBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\BookManagement\AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\BookManagement\DeleteBookForm.resx">
+      <DependentUpon>DeleteBookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\BookManagement\EditBookForm.resx">
       <DependentUpon>EditBookForm.cs</DependentUpon>

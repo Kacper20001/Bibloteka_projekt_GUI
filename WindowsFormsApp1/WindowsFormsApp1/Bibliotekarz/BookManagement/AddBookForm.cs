@@ -42,7 +42,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
         private void backToMenuBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LibrarianMenu librarianMenu = new LibrarianMenu();
+            LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
             librarianMenu.Show();
         }
     }

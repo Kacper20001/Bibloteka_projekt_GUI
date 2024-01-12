@@ -62,6 +62,7 @@
             this.EditBookBtn.TabIndex = 2;
             this.EditBookBtn.Text = "Edit Book";
             this.EditBookBtn.UseVisualStyleBackColor = true;
+            this.EditBookBtn.Click += new System.EventHandler(this.EditBookBtn_Click);
             // 
             // DeleteBookBtn
             // 
@@ -71,6 +72,7 @@
             this.DeleteBookBtn.TabIndex = 3;
             this.DeleteBookBtn.Text = "Delete Book";
             this.DeleteBookBtn.UseVisualStyleBackColor = true;
+            this.DeleteBookBtn.Click += new System.EventHandler(this.DeleteBookBtn_Click);
             // 
             // BackMenuBtn
             // 

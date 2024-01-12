@@ -163,7 +163,7 @@
             this.backToMenuBtn.TabIndex = 13;
             this.backToMenuBtn.Text = "Back to Menu";
             this.backToMenuBtn.UseVisualStyleBackColor = true;
-            this.backToMenuBtn.Click += new System.EventHandler(this.backToMenuBtn_Click);
+            this.backToMenuBtn.Click += new System.EventHandler(this.BackToMenuBtn_Click);
             // 
             // BookListBtn
             // 
