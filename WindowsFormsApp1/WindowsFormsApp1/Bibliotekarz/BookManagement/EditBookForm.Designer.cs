@@ -157,7 +157,7 @@
             // 
             // backToMenuBtn
             // 
-            this.backToMenuBtn.Location = new System.Drawing.Point(587, 12);
+            this.backToMenuBtn.Location = new System.Drawing.Point(393, 7);
             this.backToMenuBtn.Name = "backToMenuBtn";
             this.backToMenuBtn.Size = new System.Drawing.Size(138, 23);
             this.backToMenuBtn.TabIndex = 13;
@@ -167,7 +167,7 @@
             // 
             // BookListBtn
             // 
-            this.BookListBtn.Location = new System.Drawing.Point(149, 7);
+            this.BookListBtn.Location = new System.Drawing.Point(132, 12);
             this.BookListBtn.Name = "BookListBtn";
             this.BookListBtn.Size = new System.Drawing.Size(75, 23);
             this.BookListBtn.TabIndex = 14;
@@ -179,7 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(543, 349);
             this.Controls.Add(this.BookListBtn);
             this.Controls.Add(this.backToMenuBtn);
             this.Controls.Add(this.UpdateBtn);
