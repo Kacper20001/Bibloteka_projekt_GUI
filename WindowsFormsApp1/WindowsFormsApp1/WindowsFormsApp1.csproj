@@ -190,6 +190,12 @@
     <Compile Include="Bibliotekarz\BookManagement\EditBookForm.Designer.cs">
       <DependentUpon>EditBookForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bibliotekarz\BorrowedBooksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\BorrowedBooksForm.Designer.cs">
+      <DependentUpon>BorrowedBooksForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Klasy\Address.cs" />
     <Compile Include="Klasy\Book.cs" />
     <Compile Include="Bibliotekarz\BookManagementView.cs">
@@ -275,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\BookManagement\EditBookForm.resx">
       <DependentUpon>EditBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\BorrowedBooksForm.resx">
+      <DependentUpon>BorrowedBooksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Użytkownik\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

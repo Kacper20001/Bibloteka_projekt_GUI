@@ -175,5 +175,77 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        public static void ReturnBook(int bookId)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                connection.Open();
+
+                string updateQuery = @"
+            DELETE Borrows 
+            WHERE BookId = @BookId";
+
+                using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.ExecuteNonQuery();
+                }
+                string updateBookQuery = "UPDATE Books SET IsAvailable = 1 WHERE Id = @BookId";
+                using (SqlCommand command = new SqlCommand(updateBookQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        public static DataTable LoadBorrowedBooks(int readerId)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = @"
+            SELECT b.BookId, bk.Title, bk.Author, b.BorrowDate, 
+                   CASE 
+                       WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
+                       ELSE 0
+                   END AS OverdueFee
+            FROM Borrows b
+            INNER JOIN Books bk ON b.BookId = bk.Id
+            WHERE b.ReaderId = @ReaderId AND b.ReturnDate IS NULL";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ReaderId", readerId);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+
+            }
+        }
+        public static DataTable LoadBorrowedBooks()
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = @"
+            SELECT b.BookId,b.ReaderId, b.BorrowDate, DATEADD(day,30, b.BorrowDate) as [Data zwrotu]
+                   CASE 
+                       WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
+                       ELSE 0
+                   END AS OverdueFee
+            FROM Borrows b
+            INNER JOIN Books bk ON b.BookId = bk.Id
+            WHERE b.ReaderId = @ReaderId AND b.ReturnDate IS NULL";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+
+            }
+        }
     }
 }

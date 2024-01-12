@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Bibliotekarz.BookManagement;
 
 namespace WindowsFormsApp1
 {
@@ -41,6 +42,27 @@ namespace WindowsFormsApp1
             this.Hide();
             LibrarianMenu librarianMenu = new LibrarianMenu(currentReaderId);
             librarianMenu.Show();
+        }
+
+        private void AddBookBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AddBookForm addBookForm = new AddBookForm(currentReaderId); 
+            addBookForm.Show();
+        }
+
+        private void EditBookBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EditBookForm editBookForm = new EditBookForm(currentReaderId); 
+            editBookForm.Show(); 
+        }
+
+        private void DeleteBookBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteBookForm deleteBookForm = new DeleteBookForm(currentReaderId); 
+            deleteBookForm.Show();
         }
     }
 }

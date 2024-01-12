@@ -38,6 +38,9 @@
             this.SrcBooksBtn = new System.Windows.Forms.Button();
             this.BackMenuBtn = new System.Windows.Forms.Button();
             this.txtSrcBooks = new System.Windows.Forms.TextBox();
+            this.AddBookBtn = new System.Windows.Forms.Button();
+            this.EditBookBtn = new System.Windows.Forms.Button();
+            this.DeleteBookBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BooksDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,9 +54,9 @@
             this.Year,
             this.Description,
             this.Availability});
-            this.BooksDataGrid.Location = new System.Drawing.Point(50, 88);
+            this.BooksDataGrid.Location = new System.Drawing.Point(52, 188);
             this.BooksDataGrid.Name = "BooksDataGrid";
-            this.BooksDataGrid.Size = new System.Drawing.Size(651, 150);
+            this.BooksDataGrid.Size = new System.Drawing.Size(643, 150);
             this.BooksDataGrid.TabIndex = 0;
             this.BooksDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BooksDataGrid_CellContentClick);
             // 
@@ -99,7 +102,7 @@
             // 
             // BackMenuBtn
             // 
-            this.BackMenuBtn.Location = new System.Drawing.Point(634, 33);
+            this.BackMenuBtn.Location = new System.Drawing.Point(639, 12);
             this.BackMenuBtn.Name = "BackMenuBtn";
             this.BackMenuBtn.Size = new System.Drawing.Size(164, 23);
             this.BackMenuBtn.TabIndex = 2;
@@ -114,11 +117,44 @@
             this.txtSrcBooks.Size = new System.Drawing.Size(100, 20);
             this.txtSrcBooks.TabIndex = 3;
             // 
+            // AddBookBtn
+            // 
+            this.AddBookBtn.Location = new System.Drawing.Point(639, 41);
+            this.AddBookBtn.Name = "AddBookBtn";
+            this.AddBookBtn.Size = new System.Drawing.Size(122, 26);
+            this.AddBookBtn.TabIndex = 4;
+            this.AddBookBtn.Text = "Add New Book";
+            this.AddBookBtn.UseVisualStyleBackColor = true;
+            this.AddBookBtn.Click += new System.EventHandler(this.AddBookBtn_Click);
+            // 
+            // EditBookBtn
+            // 
+            this.EditBookBtn.Location = new System.Drawing.Point(639, 73);
+            this.EditBookBtn.Name = "EditBookBtn";
+            this.EditBookBtn.Size = new System.Drawing.Size(122, 26);
+            this.EditBookBtn.TabIndex = 5;
+            this.EditBookBtn.Text = "Edit Book";
+            this.EditBookBtn.UseVisualStyleBackColor = true;
+            this.EditBookBtn.Click += new System.EventHandler(this.EditBookBtn_Click);
+            // 
+            // DeleteBookBtn
+            // 
+            this.DeleteBookBtn.Location = new System.Drawing.Point(639, 105);
+            this.DeleteBookBtn.Name = "DeleteBookBtn";
+            this.DeleteBookBtn.Size = new System.Drawing.Size(122, 26);
+            this.DeleteBookBtn.TabIndex = 6;
+            this.DeleteBookBtn.Text = "Delete Book";
+            this.DeleteBookBtn.UseVisualStyleBackColor = true;
+            this.DeleteBookBtn.Click += new System.EventHandler(this.DeleteBookBtn_Click);
+            // 
             // LibrarianBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteBookBtn);
+            this.Controls.Add(this.EditBookBtn);
+            this.Controls.Add(this.AddBookBtn);
             this.Controls.Add(this.txtSrcBooks);
             this.Controls.Add(this.BackMenuBtn);
             this.Controls.Add(this.SrcBooksBtn);
@@ -143,5 +179,8 @@
         private System.Windows.Forms.Button SrcBooksBtn;
         private System.Windows.Forms.Button BackMenuBtn;
         private System.Windows.Forms.TextBox txtSrcBooks;
+        private System.Windows.Forms.Button AddBookBtn;
+        private System.Windows.Forms.Button EditBookBtn;
+        private System.Windows.Forms.Button DeleteBookBtn;
     }
 }
