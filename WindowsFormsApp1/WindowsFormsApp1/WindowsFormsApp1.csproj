@@ -167,11 +167,23 @@
     </Compile>
     <Compile Include="HashPasswords.cs" />
     <Compile Include="Librarian.cs" />
+    <Compile Include="LibrarianBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianBooks.Designer.cs">
+      <DependentUpon>LibrarianBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="LibrarianLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LibrarianLoginForm.Designer.cs">
       <DependentUpon>LibrarianLoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibrarianMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianMenu.Designer.cs">
+      <DependentUpon>LibrarianMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Logowanie.cs">
       <SubType>Form</SubType>
@@ -216,8 +228,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianBooks.resx">
+      <DependentUpon>LibrarianBooks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibrarianLoginForm.resx">
       <DependentUpon>LibrarianLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianMenu.resx">
+      <DependentUpon>LibrarianMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Logowanie.resx">
       <DependentUpon>Logowanie.cs</DependentUpon>

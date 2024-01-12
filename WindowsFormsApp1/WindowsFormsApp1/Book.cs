@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                // Aktualizacja statusu książki
+                // Aktualizacja statusu książki na niedostępną
                 string updateQuery = "UPDATE Books SET IsAvailable = 0 WHERE Id = @BookId";
                 using (SqlCommand command = new SqlCommand(updateQuery, connection))
                 {
@@ -61,6 +61,57 @@ namespace WindowsFormsApp1
                     command.Parameters.AddWithValue("@ReaderId", readerId);
                     command.Parameters.AddWithValue("@BorrowDate", DateTime.Now);
                     command.ExecuteNonQuery();
+                }
+            }
+        }
+        public static Book GetBookById(int bookId)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query = "SELECT Id, Title, Author, Year, Description FROM Books WHERE Id = @BookId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@BookId", bookId);
+                    connection.Open();
+                    using (SqlDataReader book = command.ExecuteReader())
+                    {
+                        if (book.Read())
+                        {
+                            return new Book(
+                                Convert.ToInt32(book["Id"]),
+                                book["Title"].ToString(),
+                                book["Author"].ToString(),
+                                Convert.ToInt32(book["Year"]),
+                                book["Description"].ToString()
+                            );
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        public static DataTable LoadBooks(string searchTerm = "")
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                string query;
+                if (string.IsNullOrEmpty(searchTerm)){
+                    query = "SELECT Id, Title, Author, Year, Description, Availability FROM Books";
+                }
+                else
+                {
+                    query = "SELECT Id, Title, Author, Year, Description, Availability FROM Books WHERE Title LIKE @SearchTerm OR Author LIKE @SearchTerm";
+                }
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                    }
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
                 }
             }
         }

@@ -30,9 +30,9 @@ namespace WindowsFormsApp1
                 if(librarian != null)
                 {
                     MessageBox.Show("Zalogowano pomyślnie");
-                   /* this.Hide();
+                    this.Hide();
                     LibrarianMenu librarianMenu = new LibrarianMenu(librarian.Id);
-                    librarianMenu.Show();*/
+                    librarianMenu.Show();
                 } 
                 else
                 {

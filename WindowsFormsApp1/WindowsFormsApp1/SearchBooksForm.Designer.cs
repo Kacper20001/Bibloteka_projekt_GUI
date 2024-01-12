@@ -146,6 +146,7 @@
             this.Controls.Add(this.txtSrcBooks);
             this.Name = "SearchBooksForm";
             this.Text = "SearchBooksForm";
+            this.Load += new System.EventHandler(this.SearchBooksForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
