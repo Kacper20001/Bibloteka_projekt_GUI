@@ -45,14 +45,14 @@
             // 
             // txtSrcBooks
             // 
-            this.txtSrcBooks.Location = new System.Drawing.Point(51, 27);
+            this.txtSrcBooks.Location = new System.Drawing.Point(61, 33);
             this.txtSrcBooks.Name = "txtSrcBooks";
             this.txtSrcBooks.Size = new System.Drawing.Size(100, 20);
             this.txtSrcBooks.TabIndex = 0;
             // 
             // SrcBooksBtn
             // 
-            this.SrcBooksBtn.Location = new System.Drawing.Point(170, 24);
+            this.SrcBooksBtn.Location = new System.Drawing.Point(180, 30);
             this.SrcBooksBtn.Name = "SrcBooksBtn";
             this.SrcBooksBtn.Size = new System.Drawing.Size(75, 23);
             this.SrcBooksBtn.TabIndex = 1;
@@ -116,7 +116,7 @@
             // 
             // SrcReturnBtn
             // 
-            this.SrcReturnBtn.Location = new System.Drawing.Point(816, 24);
+            this.SrcReturnBtn.Location = new System.Drawing.Point(826, 30);
             this.SrcReturnBtn.Name = "SrcReturnBtn";
             this.SrcReturnBtn.Size = new System.Drawing.Size(75, 23);
             this.SrcReturnBtn.TabIndex = 3;
@@ -126,7 +126,7 @@
             // 
             // Borrowbtn
             // 
-            this.Borrowbtn.Location = new System.Drawing.Point(707, 27);
+            this.Borrowbtn.Location = new System.Drawing.Point(717, 33);
             this.Borrowbtn.Name = "Borrowbtn";
             this.Borrowbtn.Size = new System.Drawing.Size(75, 23);
             this.Borrowbtn.TabIndex = 4;

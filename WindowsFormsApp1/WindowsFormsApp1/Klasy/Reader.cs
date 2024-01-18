@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -90,6 +91,55 @@ namespace WindowsFormsApp1
                 }
             }
             return null;
+        }
+        public static DataTable LoadReaders(string connectionString, string searchTerm = "")
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query;
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                               "FROM Readers";
+                }
+                else
+                {
+                    query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                               "FROM Readers WHERE FirstName LIKE @SearchTerm OR @LastName LIKE @SearchTerm OR @Id LIKE @SearchTerm";
+                }
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                    }
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
+        public static void DeleteReader(int id, string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Readers WHERE id = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    int affectedRows = command.ExecuteNonQuery();
+                    if (affectedRows == 0)
+                    {
+                        MessageBox.Show("No Reader found with the given ID.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Reader deleted successfully.");
+                    }
+                }
+            }
         }
 
     }
