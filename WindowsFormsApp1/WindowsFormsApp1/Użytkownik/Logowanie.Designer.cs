@@ -91,7 +91,7 @@
             // 
             // backBtn
             // 
-            this.backBtn.Location = new System.Drawing.Point(22, 192);
+            this.backBtn.Location = new System.Drawing.Point(47, 192);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(99, 23);
             this.backBtn.TabIndex = 6;

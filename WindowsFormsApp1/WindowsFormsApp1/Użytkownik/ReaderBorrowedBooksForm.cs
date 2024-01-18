@@ -14,6 +14,8 @@ namespace WindowsFormsApp1
     public partial class ReaderBorrowedBooksForm : Form
     {
         private int currentReaderId;
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+
         public ReaderBorrowedBooksForm(int readerId)
         {
             InitializeComponent();
@@ -39,10 +41,10 @@ namespace WindowsFormsApp1
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookId"].Value);
-                    Book.ReturnBook(bookId);
+                    Book.ReturnBook(bookId, connectionString);
                 }
             }
-            Book.LoadBorrowedBooks();
+            Book.LoadBorrowedBooks(currentReaderId);
         }
 
         private void borrowedBooksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

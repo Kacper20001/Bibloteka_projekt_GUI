@@ -26,41 +26,24 @@ namespace WindowsFormsApp1
             Year = year;
             Description = description;
         }
-        public void BorrowBook(int readerId, string connectionString)
+        public static void BorrowBook(int readerId, int bookId, string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                // Sprawdzenie dostępności książki
 
-                string checkQuery = "SELECT IsAvailable FROM Books WHERE Id = @BookId";
-                using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+                // Sprawdzenie dostępności książki i jej wypożyczenie
+                string borrowQuery = @"
+            BEGIN TRANSACTION;
+            UPDATE Books SET IsAvailable = 0 WHERE Id = @BookId AND IsAvailable = 1;
+            INSERT INTO Borrows (BookId, ReaderId, BorrowDate, ExpectedReturnDate) 
+            VALUES (@BookId, @ReaderId, GETDATE(), DATEADD(day, 30, GETDATE()));
+            COMMIT;";
+
+                using (SqlCommand command = new SqlCommand(borrowQuery, connection))
                 {
-                    checkCommand.Parameters.AddWithValue("@BookId", this.Id);
-                    bool isAvailable = Convert.ToBoolean(checkCommand.ExecuteScalar());
-
-                    if (!isAvailable)
-                    {
-                        MessageBox.Show("This book is not available for borrowing.");
-                        return;
-                    }
-                }
-
-                // Aktualizacja statusu książki na niedostępną
-                string updateQuery = "UPDATE Books SET IsAvailable = 0 WHERE Id = @BookId";
-                using (SqlCommand command = new SqlCommand(updateQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@BookId", this.Id);
-                    command.ExecuteNonQuery();
-                }
-
-                // Dodanie wpisu do tabeli wypożyczeń
-                string insertQuery = "INSERT INTO Borrows (BookId, ReaderId, BorrowDate) VALUES (@BookId, @ReaderId, @BorrowDate)";
-                using (SqlCommand command = new SqlCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@BookId", this.Id);
+                    command.Parameters.AddWithValue("@BookId", bookId);
                     command.Parameters.AddWithValue("@ReaderId", readerId);
-                    command.Parameters.AddWithValue("@BorrowDate", DateTime.Now);
                     command.ExecuteNonQuery();
                 }
             }
@@ -175,29 +158,45 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        public static void ReturnBook(int bookId)
+        public static void ReturnBook(int bookId, string connectionString)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string updateQuery = @"
-            DELETE Borrows 
-            WHERE BookId = @BookId";
+                string checkOverdueQuery = @"
+            SELECT CASE 
+                WHEN DATEDIFF(day, BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, BorrowDate, GETDATE()) - 30
+                ELSE 0
+            END AS OverdueDays
+            FROM Borrows
+            WHERE BookId = @BookId AND ReturnDate IS NULL;";
 
-                using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                using (SqlCommand checkCommand = new SqlCommand(checkOverdueQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@BookId", bookId);
-                    command.ExecuteNonQuery();
+                    checkCommand.Parameters.AddWithValue("@BookId", bookId);
+                    int overdueDays = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                    if (overdueDays > 0)
+                    {
+                        MessageBox.Show("Cannot return the book. There is an overdue.");
+                        return;
+                    }
                 }
-                string updateBookQuery = "UPDATE Books SET IsAvailable = 1 WHERE Id = @BookId";
-                using (SqlCommand command = new SqlCommand(updateBookQuery, connection))
+
+                string returnQuery = @"
+            UPDATE Borrows SET ReturnDate = GETDATE() 
+            WHERE BookId = @BookId AND ReturnDate IS NULL;
+            UPDATE Books SET IsAvailable = 1 WHERE Id = @BookId;";
+
+                using (SqlCommand command = new SqlCommand(returnQuery, connection))
                 {
                     command.Parameters.AddWithValue("@BookId", bookId);
                     command.ExecuteNonQuery();
                 }
             }
         }
+
         public static DataTable LoadBorrowedBooks(int readerId)
         {
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
@@ -223,19 +222,25 @@ namespace WindowsFormsApp1
 
             }
         }
-        public static DataTable LoadBorrowedBooks()
+        public static DataTable LoadOverdueBooks()
         {
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
             {
                 string query = @"
-            SELECT b.BookId,b.ReaderId, b.BorrowDate, DATEADD(day,30, b.BorrowDate) as [Data zwrotu]
-                   CASE 
-                       WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
-                       ELSE 0
-                   END AS OverdueFee
-            FROM Borrows b
-            INNER JOIN Books bk ON b.BookId = bk.Id
-            WHERE b.ReaderId = @ReaderId AND b.ReturnDate IS NULL";
+                SELECT 
+                    b.BookId, 
+                    b.ReaderId, 
+                    bk.Title, 
+                    bk.Author, 
+                    b.BorrowDate, 
+                    DATEADD(day, 30, b.BorrowDate) AS ExpectedReturnDate, 
+                    CASE 
+                        WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30 
+                        ELSE 0 
+                    END AS OverdueFee
+                FROM Borrows b
+                INNER JOIN Books bk ON b.BookId = bk.Id
+                WHERE b.ReturnDate IS NULL AND DATEDIFF(day, b.BorrowDate, GETDATE()) > 30";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -244,7 +249,26 @@ namespace WindowsFormsApp1
                     adapter.Fill(dataTable);
                     return dataTable;
                 }
+            }
+        }
 
+        public static void ReturnOverdueBook(int bookId)
+        {
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            {
+                connection.Open();
+
+                // Aktualizacja rekordu wypożyczenia
+                string returnQuery = @"
+                UPDATE Borrows SET ReturnDate = GETDATE() 
+                WHERE BookId = @BookId AND ReturnDate IS NULL;
+                UPDATE Books SET IsAvailable = 1 WHERE Id = @BookId;";
+
+                using (SqlCommand command = new SqlCommand(returnQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.ExecuteNonQuery();
+                }
             }
         }
     }
