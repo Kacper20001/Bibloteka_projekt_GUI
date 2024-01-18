@@ -12,12 +12,12 @@ namespace WindowsFormsApp1.Bibliotekarz
 {
     public partial class ReadersManagementView : Form
     {
-        private int currentReaderId;
-        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
-        public ReadersManagementView(int readerId)
+        private int currentLibrarianId;
+        public string connectionString ="Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+        public ReadersManagementView(int librarianId)
         {
+            currentLibrarianId = librarianId;
             InitializeComponent();
-            currentReaderId = readerId;
             LoadReaders(connectionString);
         }
         public void LoadReaders(string connectionString, string searchTerm = "")
@@ -48,7 +48,7 @@ namespace WindowsFormsApp1.Bibliotekarz
         private void BackBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LibrarianMenu librarianMenu = new LibrarianMenu(currentReaderId);
+            LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
             librarianMenu.Show();
         }
     }

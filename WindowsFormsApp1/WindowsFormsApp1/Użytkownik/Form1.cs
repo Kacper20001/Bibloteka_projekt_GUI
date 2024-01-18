@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
                     try
                     {
                         insertDataCommand.ExecuteNonQuery();
-                        MessageBox.Show("Pomyślnie zalogowano");
+                        MessageBox.Show("Pomyślnie zarejestrowano");
                         regClear_Click(this, EventArgs.Empty);
                         this.Hide();
                         Logowanie logowanie = new Logowanie();

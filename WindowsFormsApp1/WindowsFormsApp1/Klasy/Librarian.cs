@@ -12,15 +12,14 @@ namespace WindowsFormsApp1
         public int Id { get; private set; }
         private static int nextId = 1;
 
-        public string EmployeeNumber { get; set; }
+        public string EmployeeLogin { get; set; }
         public DateTime EmploymentDate { get; set; }
         public string Password { get; set; }
 
-        public Librarian(string passoword, string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string employeeNumber, DateTime employmentDate)
+        public Librarian(string passoword, string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string employeeNumber)
             : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
         {
-            EmployeeNumber = employeeNumber;
-            EmploymentDate = employmentDate;
+            EmployeeLogin= employeeNumber;
             Id = nextId++; 
             Password = passoword;
         }
@@ -42,7 +41,7 @@ namespace WindowsFormsApp1
                         {
                             foundLibrarian = new Librarian(librarian["password"].ToString(), librarian["firstName"].ToString(), librarian["lastName"].ToString(), Convert.ToDateTime(librarian["dateOfBirth"]),
                                 librarian["phoneNumber"].ToString(), librarian["email"].ToString(), new Address(librarian["Street"].ToString(), librarian["HouseNumber"].ToString(), librarian["PostalCode"].ToString(),
-                                librarian["City"].ToString(), librarian["Country"].ToString()), librarian["EmployeeNumber"].ToString(), Convert.ToDateTime(librarian["employmentDate"]));
+                                librarian["City"].ToString(), librarian["Country"].ToString()), librarian["EmployeeLogin"].ToString());
                         }
                     }
                 }
