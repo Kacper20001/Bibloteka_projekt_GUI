@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
 
         private void regSubmit_Click(object sender, EventArgs e)
         {
@@ -65,29 +66,10 @@ namespace WindowsFormsApp1
                     
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, passwordHash, username);
+                    SaveReaderInDatabese(reader); 
                 }
-
             }
         }
-
-        private void regClear_Click(object sender, EventArgs e)
-        {
-            regUsername.Text = "";
-            regPassword.Text = "";
-            regConfPassword.Text = "";
-            regFirstName.Text = "";
-            regLastName.Text = "";
-            regDateOfBirth.Value = DateTime.Now;
-            regEmail.Text = "";
-            regPhoneNumber.Text = "";
-            regStreet.Text = "";
-            regCity.Text = "";
-            regHouseNumber.Text = "";
-            regPostalCode.Text = "";
-            regCountry.Text = "";
-        }
-
-        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
         private void SaveReaderInDatabese(Reader reader)
         {
             string insertDataQuery = "INSERT INTO Readers (Id, Username, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) " + $"VALUES ('{reader.Id}' ,'{reader.Username}', '{reader.Password}', '{reader.FirstName}', '{reader.LastName}', '{reader.DateOfBirth}', '{reader.Email}', '{reader.PhoneNumber}', '{reader.Address.Street}', '{reader.Address.City}', '{reader.Address.HouseNumber}', '{reader.Address.PostalCode}', '{reader.Address.Country}')";
@@ -115,6 +97,25 @@ namespace WindowsFormsApp1
 
             }
         }
+
+        private void regClear_Click(object sender, EventArgs e)
+        {
+            regUsername.Text = "";
+            regPassword.Text = "";
+            regConfPassword.Text = "";
+            regFirstName.Text = "";
+            regLastName.Text = "";
+            regDateOfBirth.Value = DateTime.Now;
+            regEmail.Text = "";
+            regPhoneNumber.Text = "";
+            regStreet.Text = "";
+            regCity.Text = "";
+            regHouseNumber.Text = "";
+            regPostalCode.Text = "";
+            regCountry.Text = "";
+        }
+
+       
 
         private void AlreadyHaveAccountBtn_Click(object sender, EventArgs e)
         {

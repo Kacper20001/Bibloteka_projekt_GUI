@@ -12,9 +12,11 @@ namespace WindowsFormsApp1.Bibliotekarz
 {
     public partial class DeleyedReturnsForm : Form
     {
+        private int currentLibrarianId;
         public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
-        public DeleyedReturnsForm()
+        public DeleyedReturnsForm(int librarianId)
         {
+            currentLibrarianId = librarianId;
             InitializeComponent();
             LoadOverdueBooksData();
         }
@@ -34,6 +36,13 @@ namespace WindowsFormsApp1.Bibliotekarz
                 }
             }
             Book.LoadOverdueBooks();
+        }
+
+        private void BackMenuBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
+            librarianMenu.Show();
         }
     }
 }

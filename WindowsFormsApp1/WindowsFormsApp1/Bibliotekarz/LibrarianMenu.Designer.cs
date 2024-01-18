@@ -85,6 +85,7 @@
             this.DeleyedReturnsBtn.TabIndex = 4;
             this.DeleyedReturnsBtn.Text = "Deleyed Returns";
             this.DeleyedReturnsBtn.UseVisualStyleBackColor = true;
+            this.DeleyedReturnsBtn.Click += new System.EventHandler(this.DeleyedReturnsBtn_Click);
             // 
             // LogOutBtn
             // 
@@ -94,6 +95,7 @@
             this.LogOutBtn.TabIndex = 5;
             this.LogOutBtn.Text = "Log out";
             this.LogOutBtn.UseVisualStyleBackColor = true;
+            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
             // 
             // ReadersManagementBtn
             // 

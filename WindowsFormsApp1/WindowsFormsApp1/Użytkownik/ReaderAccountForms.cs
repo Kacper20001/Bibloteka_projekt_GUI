@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             currentReaderId = readerId;
-            LoadReaderData();
+            Reader.GetReaderById(currentReaderId, connectionString);
         }
 
         private void ReaderAccountForms_Load(object sender, EventArgs e)
@@ -39,40 +39,6 @@ namespace WindowsFormsApp1
             ReaderMenu readerMenu = new ReaderMenu(currentReaderId);
             readerMenu.Show();
         }
-
-        private void LoadReaderData()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString)) 
-            {
-                string query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
-                    " FROM Readers " +
-                    "WHERE Id = @ReaderId";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ReaderId", currentReaderId);
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if(reader.Read())
-                        {
-                            UserInfoFirstName.Text = reader["FirstName"].ToString();
-                            UserInfoLastName.Text = reader["lastName"].ToString();
-                            DateTime dob = Convert.ToDateTime(reader["DateOfBirth"]);
-                            UserInfoDateofBirth.Text = dob.ToString("dd-MM-yyyy");
-                            UserInfoEmail.Text = reader["Email"].ToString();
-                            UserInfoPhoneNumber.Text = reader["PhoneNumber"].ToString();
-                            UserInfoStreet.Text = reader["Street"].ToString();
-                            UserInfoCity.Text = reader["City"].ToString();
-                            UserInfoHouseNumber.Text = reader["HouseNumber"].ToString();
-                            UserInfoPostalCode.Text = reader["PostalCode"].ToString();
-                            UserInfoCountry.Text = reader["Country"].ToString();
-                        }
-                    }
-                }
-            
-            }
-        }
-
         private void UserInfoChangePassword_Click(object sender, EventArgs e)
         {
             if (!ValidateNewPassword())

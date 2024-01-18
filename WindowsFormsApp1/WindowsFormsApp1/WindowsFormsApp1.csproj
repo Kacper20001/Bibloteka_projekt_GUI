@@ -202,6 +202,12 @@
     <Compile Include="Bibliotekarz\DeleyedReturnsForm.Designer.cs">
       <DependentUpon>DeleyedReturnsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bibliotekarz\ReadersManagementView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\ReadersManagementView.Designer.cs">
+      <DependentUpon>ReadersManagementView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Klasy\Address.cs" />
     <Compile Include="Klasy\Book.cs" />
     <Compile Include="Bibliotekarz\BookManagementView.cs">
@@ -293,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\DeleyedReturnsForm.resx">
       <DependentUpon>DeleyedReturnsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\ReadersManagementView.resx">
+      <DependentUpon>ReadersManagementView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Użytkownik\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -48,8 +48,7 @@ namespace WindowsFormsApp1
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["Id"].Value);
-                    Book bookToBorrow = Book.GetBookById(bookId);
-                    bookToBorrow.BorrowBook(currentReaderId, connectionString);
+                    Book.BorrowBook(currentReaderId, bookId, connectionString);
                 }
             }
             LoadBooks();

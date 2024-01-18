@@ -5,6 +5,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WindowsFormsApp1
 {
@@ -14,6 +15,8 @@ namespace WindowsFormsApp1
         private static int nextId = 1;
         public string Password {  get; set; }
         public string Username {  get; set; }
+        public Address Address { get; set; }
+
         public Reader(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string password, string username)
         : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
         {
@@ -51,5 +54,43 @@ namespace WindowsFormsApp1
             }
             return foundReader;
         }
+        public static Reader GetReaderById(int readerId, string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                               " FROM Readers WHERE Id = @ReaderId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ReaderId", readerId);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Address address = new Address(
+                                reader["Street"].ToString(),
+                                reader["HouseNumber"].ToString(),
+                                reader["PostalCode"].ToString(),
+                                reader["City"].ToString(),
+                                reader["Country"].ToString());
+
+                            return new Reader(
+                                reader["FirstName"].ToString(),
+                                reader["LastName"].ToString(),
+                                Convert.ToDateTime(reader["DateOfBirth"]),
+                                reader["PhoneNumber"].ToString(),
+                                reader["Email"].ToString(),
+                                address,
+                                "", // Password
+                                ""  // Username
+                            );
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
     }
 }

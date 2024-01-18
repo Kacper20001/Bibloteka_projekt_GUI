@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Bibliotekarz;
 
 namespace WindowsFormsApp1
 {
@@ -34,6 +35,18 @@ namespace WindowsFormsApp1
         }
 
         private void LibrarianMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleyedReturnsBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleyedReturnsForm deleyedReturnsForm = new DeleyedReturnsForm(currentLibrarianId);
+            deleyedReturnsForm.Show();
+        }
+
+        private void LogOutBtn_Click(object sender, EventArgs e)
         {
 
         }

@@ -38,6 +38,7 @@
             this.BorrowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OverdueFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelectBookCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridDeleyedBook)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +76,7 @@
             this.BackMenuBtn.TabIndex = 2;
             this.BackMenuBtn.Text = "Back to Menu";
             this.BackMenuBtn.UseVisualStyleBackColor = true;
+            this.BackMenuBtn.Click += new System.EventHandler(this.BackMenuBtn_Click);
             // 
             // BookId
             // 
@@ -113,11 +115,21 @@
             this.SelectBookCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SelectBookCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(108, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Deleyed Returns";
+            // 
             // DeleyedReturnsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BackMenuBtn);
             this.Controls.Add(this.ReturnBookBtn);
             this.Controls.Add(this.DataGridDeleyedBook);
@@ -125,6 +137,7 @@
             this.Text = "DeleyedReturnsForm";
             ((System.ComponentModel.ISupportInitialize)(this.DataGridDeleyedBook)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -140,5 +153,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BorrowDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn OverdueFee;
         private System.Windows.Forms.DataGridViewCheckBoxColumn SelectBookCheck;
+        private System.Windows.Forms.Label label1;
     }
 }
