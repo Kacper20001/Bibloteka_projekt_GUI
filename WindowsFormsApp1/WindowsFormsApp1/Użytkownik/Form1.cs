@@ -100,7 +100,7 @@ namespace WindowsFormsApp1
                     try
                     {
                         insertDataCommand.ExecuteNonQuery();
-                        MessageBox.Show("Dodano osobę");
+                        MessageBox.Show("Pomyślnie zalogowano");
                         regClear_Click(this, EventArgs.Empty);
                         this.Hide();
                         Logowanie logowanie = new Logowanie();

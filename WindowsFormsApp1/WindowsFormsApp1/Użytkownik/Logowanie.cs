@@ -47,5 +47,19 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartForm startForm = new StartForm();
+            startForm.Show();
+        }
+
+        private void RegisterBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
     }
 }

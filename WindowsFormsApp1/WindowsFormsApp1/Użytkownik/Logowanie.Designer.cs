@@ -34,6 +34,8 @@
             this.logSubmit = new System.Windows.Forms.Button();
             this.logLogin = new System.Windows.Forms.TextBox();
             this.logPassword = new System.Windows.Forms.TextBox();
+            this.backBtn = new System.Windows.Forms.Button();
+            this.RegisterBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +67,7 @@
             // 
             // logSubmit
             // 
-            this.logSubmit.Location = new System.Drawing.Point(114, 175);
+            this.logSubmit.Location = new System.Drawing.Point(47, 163);
             this.logSubmit.Name = "logSubmit";
             this.logSubmit.Size = new System.Drawing.Size(75, 23);
             this.logSubmit.TabIndex = 3;
@@ -87,11 +89,33 @@
             this.logPassword.Size = new System.Drawing.Size(100, 20);
             this.logPassword.TabIndex = 5;
             // 
+            // backBtn
+            // 
+            this.backBtn.Location = new System.Drawing.Point(22, 192);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(99, 23);
+            this.backBtn.TabIndex = 6;
+            this.backBtn.Text = "Back to Start";
+            this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // RegisterBtn
+            // 
+            this.RegisterBtn.Location = new System.Drawing.Point(128, 163);
+            this.RegisterBtn.Name = "RegisterBtn";
+            this.RegisterBtn.Size = new System.Drawing.Size(75, 23);
+            this.RegisterBtn.TabIndex = 7;
+            this.RegisterBtn.Text = "Register";
+            this.RegisterBtn.UseVisualStyleBackColor = true;
+            this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
+            // 
             // Logowanie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(250, 246);
+            this.Controls.Add(this.RegisterBtn);
+            this.Controls.Add(this.backBtn);
             this.Controls.Add(this.logPassword);
             this.Controls.Add(this.logLogin);
             this.Controls.Add(this.logSubmit);
@@ -114,5 +138,7 @@
         private System.Windows.Forms.Button logSubmit;
         private System.Windows.Forms.TextBox logLogin;
         private System.Windows.Forms.TextBox logPassword;
+        private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Button RegisterBtn;
     }
 }
