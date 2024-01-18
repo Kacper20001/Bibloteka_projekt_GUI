@@ -127,5 +127,12 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void StartBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartForm startForm = new StartForm();
+            startForm.Show();
+        }
     }
 }

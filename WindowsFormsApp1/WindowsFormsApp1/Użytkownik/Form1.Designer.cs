@@ -58,6 +58,7 @@
             this.regSubmit = new System.Windows.Forms.Button();
             this.regClear = new System.Windows.Forms.Button();
             this.AlreadyHaveAccountBtn = new System.Windows.Forms.Button();
+            this.StartBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -308,11 +309,22 @@
             this.AlreadyHaveAccountBtn.UseVisualStyleBackColor = true;
             this.AlreadyHaveAccountBtn.Click += new System.EventHandler(this.AlreadyHaveAccountBtn_Click);
             // 
+            // StartBtn
+            // 
+            this.StartBtn.Location = new System.Drawing.Point(283, 30);
+            this.StartBtn.Name = "StartBtn";
+            this.StartBtn.Size = new System.Drawing.Size(92, 25);
+            this.StartBtn.TabIndex = 31;
+            this.StartBtn.Text = "Back to Start";
+            this.StartBtn.UseVisualStyleBackColor = true;
+            this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 542);
+            this.ClientSize = new System.Drawing.Size(420, 531);
+            this.Controls.Add(this.StartBtn);
             this.Controls.Add(this.AlreadyHaveAccountBtn);
             this.Controls.Add(this.regClear);
             this.Controls.Add(this.regSubmit);
@@ -383,6 +395,7 @@
         private System.Windows.Forms.Button regSubmit;
         private System.Windows.Forms.Button regClear;
         private System.Windows.Forms.Button AlreadyHaveAccountBtn;
+        private System.Windows.Forms.Button StartBtn;
     }
 }
 
