@@ -202,6 +202,12 @@
     <Compile Include="Bibliotekarz\DeleyedReturnsForm.Designer.cs">
       <DependentUpon>DeleyedReturnsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bibliotekarz\LibrarianInfoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\LibrarianInfoView.Designer.cs">
+      <DependentUpon>LibrarianInfoView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bibliotekarz\ReadersManagementView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,7 @@
     <Compile Include="Bibliotekarz\BookManagementView.Designer.cs">
       <DependentUpon>BookManagementView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Klasy\HandlePassword.cs" />
     <Compile Include="Użytkownik\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\DeleyedReturnsForm.resx">
       <DependentUpon>DeleyedReturnsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\LibrarianInfoView.resx">
+      <DependentUpon>LibrarianInfoView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\ReadersManagementView.resx">
       <DependentUpon>ReadersManagementView.cs</DependentUpon>

@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
         private static int nextId = 1;
         public string Password {  get; set; }
         public string Username {  get; set; }
-        public Address Address { get; set; }
+        public new Address Address { get; set; }
 
         public Reader(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string password, string username)
         : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)

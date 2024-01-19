@@ -44,5 +44,10 @@ namespace WindowsFormsApp1.Bibliotekarz
             LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
             librarianMenu.Show();
         }
+
+        private void DeleyedReturnsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -64,5 +64,10 @@ namespace WindowsFormsApp1
             DeleteBookForm deleteBookForm = new DeleteBookForm(currentReaderId); 
             deleteBookForm.Show();
         }
+
+        private void LibrarianBooks_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

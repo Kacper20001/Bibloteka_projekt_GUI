@@ -23,15 +23,15 @@ namespace WindowsFormsApp1
             Id = nextId++; 
             Password = passoword;
         }
-        public static Librarian GetLibrarian(string employeeNumber,  string password)
+        public static Librarian GetLibrarian(int employeeLogin,  string password)
         {
             Librarian foundLibrarian = null;
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
             {
-                string query = "SELECT * FROM Librarians WHERE EmployeeNumber = @EmployeeNumber AND Password = @Password";
+                string query = "SELECT * FROM Librarians WHERE EmployeeLogin = @EmployeeLogin AND Password = @Password";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@EmployeeNumber", employeeNumber);
+                    command.Parameters.AddWithValue("@EmployeeLogin", employeeLogin);
                     command.Parameters.AddWithValue("@Password", password);
                     
                     connection.Open(); 
@@ -47,6 +47,41 @@ namespace WindowsFormsApp1
                 }
             }
             return foundLibrarian;
+        }
+        public static Librarian GetLibrarianById(int librarianId, string connectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                               " FROM Readers WHERE Id = @LibrarianId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LibrarianId", librarianId);
+                    connection.Open();
+                    using (SqlDataReader librarian = command.ExecuteReader())
+                    {
+                        if (librarian.Read())
+                        {
+                            Address address = new Address(
+                                librarian["Street"].ToString(),
+                                librarian["HouseNumber"].ToString(),
+                                librarian["PostalCode"].ToString(),
+                                librarian["City"].ToString(),
+                                librarian["Country"].ToString());
+
+                            return new Librarian("",
+                                librarian["FirstName"].ToString(),
+                                librarian["LastName"].ToString(),
+                                Convert.ToDateTime(librarian["DateOfBirth"]),
+                                librarian["PhoneNumber"].ToString(),
+                                librarian["Email"].ToString(),
+                                address, librarian["EmployeeNumber"].ToString()
+                            );
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

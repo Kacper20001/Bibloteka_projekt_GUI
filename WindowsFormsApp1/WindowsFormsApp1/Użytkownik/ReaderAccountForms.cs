@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1
 {
@@ -20,9 +21,10 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             currentReaderId = readerId;
-            Reader.GetReaderById(currentReaderId, connectionString);
+            LoadReaderData();
         }
 
+        
         private void ReaderAccountForms_Load(object sender, EventArgs e)
         {
 
@@ -103,6 +105,27 @@ namespace WindowsFormsApp1
                         command.ExecuteNonQuery();
                     }
                 }
+            }
+        }
+        private void LoadReaderData()
+        {
+            var reader = Reader.GetReaderById(currentReaderId, connectionString);
+            if (reader != null)
+            {
+                UserInfoFirstName.Text = reader.FirstName;
+                UserInfoLastName.Text = reader.LastName;
+                UserInfoDateofBirth.Text = reader.DateOfBirth.ToString("dd-MM-yyyy");
+                UserInfoEmail.Text = reader.Email;
+                UserInfoPhoneNumber.Text = reader.PhoneNumber;
+                UserInfoStreet.Text = reader.Address.Street;
+                UserInfoCity.Text = reader.Address.City;
+                UserInfoHouseNumber.Text = reader.Address.HouseNumber;
+                UserInfoPostalCode.Text = reader.Address.PostalCode;
+                UserInfoCountry.Text = reader.Address.Country;
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono czytelnika.");
             }
         }
 

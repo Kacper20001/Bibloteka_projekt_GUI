@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BackToStartBtn = new System.Windows.Forms.Button();
             this.ClearBtn = new System.Windows.Forms.Button();
             this.SubmitBtn = new System.Windows.Forms.Button();
             this.DateOdBirthTxt = new System.Windows.Forms.DateTimePicker();
@@ -58,16 +57,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.BackToStartBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // BackToStartBtn
-            // 
-            this.BackToStartBtn.Location = new System.Drawing.Point(475, 33);
-            this.BackToStartBtn.Name = "BackToStartBtn";
-            this.BackToStartBtn.Size = new System.Drawing.Size(92, 25);
-            this.BackToStartBtn.TabIndex = 61;
-            this.BackToStartBtn.Text = "Back to Start";
-            this.BackToStartBtn.UseVisualStyleBackColor = true;
             // 
             // ClearBtn
             // 
@@ -307,6 +298,15 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "New Librarian ";
             // 
+            // BackToStartBtn
+            // 
+            this.BackToStartBtn.Location = new System.Drawing.Point(680, 12);
+            this.BackToStartBtn.Name = "BackToStartBtn";
+            this.BackToStartBtn.Size = new System.Drawing.Size(92, 25);
+            this.BackToStartBtn.TabIndex = 61;
+            this.BackToStartBtn.Text = "Back to Start";
+            this.BackToStartBtn.UseVisualStyleBackColor = true;
+            // 
             // isterLibrarianForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,8 +350,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BackToStartBtn;
         private System.Windows.Forms.Button ClearBtn;
         private System.Windows.Forms.Button SubmitBtn;
         private System.Windows.Forms.DateTimePicker DateOdBirthTxt;
@@ -381,5 +379,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BackToStartBtn;
     }
 }

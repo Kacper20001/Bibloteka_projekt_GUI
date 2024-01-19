@@ -161,6 +161,7 @@
             this.Controls.Add(this.BooksDataGrid);
             this.Name = "LibrarianBooks";
             this.Text = "LibrarianBooks";
+            this.Load += new System.EventHandler(this.LibrarianBooks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BooksDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

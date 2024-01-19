@@ -123,6 +123,7 @@
             this.LibrarainInfoBtn.TabIndex = 8;
             this.LibrarainInfoBtn.Text = "Your Info";
             this.LibrarainInfoBtn.UseVisualStyleBackColor = true;
+            this.LibrarainInfoBtn.Click += new System.EventHandler(this.LibrarainInfoBtn_Click);
             // 
             // LibrarianMenu
             // 
