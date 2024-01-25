@@ -26,13 +26,14 @@ namespace WindowsFormsApp1
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 string passwordHash = HashPasswords.GetHash(sha256Hash, password);
-                Reader reader = Reader.GetReader(username, passwordHash);
+                //Reader reader = Reader.GetReader(username, passwordHash);
+                Reader reader = Reader.GetReader(username, password);
 
                 if (reader != null)
                 {
                     MessageBox.Show("Zalogowano pomyślnie.");
                     this.Hide();
-                    ReaderMenu readerMenu = new ReaderMenu(reader.Id);
+                    ReaderMenu readerMenu = new ReaderMenu(reader.ReaderId);
                     readerMenu.Show();
                 }
                 else

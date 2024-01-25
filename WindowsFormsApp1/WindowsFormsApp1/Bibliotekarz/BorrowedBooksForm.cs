@@ -12,13 +12,14 @@ namespace WindowsFormsApp1.Bibliotekarz
 {
     public partial class BorrowedBooksForm : Form
     {
-        private int currentReaderId;
+        private int currentLibrarianId;
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
 
-        public BorrowedBooksForm(int readerId)
+        public BorrowedBooksForm(int librarianId)
         {
             InitializeComponent();
-            currentReaderId = readerId;
-            Book.LoadBorrowedBooks();
+            currentLibrarianId = librarianId;
+            Book.LoadAllBorrowedBooks(connectionString);
         }
 
         private void BorrowedBooksForm_Load(object sender, EventArgs e)
@@ -29,7 +30,7 @@ namespace WindowsFormsApp1.Bibliotekarz
         private void BackToMenuBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LibrarianMenu librarianMenu = new LibrarianMenu(currentReaderId);
+            LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
             librarianMenu.Show();
         }
 
@@ -41,10 +42,10 @@ namespace WindowsFormsApp1.Bibliotekarz
                 if(isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["book_id"].Value);
-                    Book.ReturnBook(bookId);
+                    Book.ReturnBook(bookId, connectionString);
                 }
             }
-            Book.LoadBorrowedBooks();
+            Book.LoadAllBorrowedBooks(connectionString);
         }
     }
 }

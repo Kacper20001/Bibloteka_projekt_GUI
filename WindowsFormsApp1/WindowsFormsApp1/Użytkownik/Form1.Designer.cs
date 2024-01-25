@@ -59,6 +59,7 @@
             this.regClear = new System.Windows.Forms.Button();
             this.AlreadyHaveAccountBtn = new System.Windows.Forms.Button();
             this.StartBtn = new System.Windows.Forms.Button();
+            this.SprawdzPolaczenieButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -319,11 +320,22 @@
             this.StartBtn.UseVisualStyleBackColor = true;
             this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
             // 
+            // SprawdzPolaczenieButton
+            // 
+            this.SprawdzPolaczenieButton.Location = new System.Drawing.Point(326, 109);
+            this.SprawdzPolaczenieButton.Name = "SprawdzPolaczenieButton";
+            this.SprawdzPolaczenieButton.Size = new System.Drawing.Size(75, 23);
+            this.SprawdzPolaczenieButton.TabIndex = 32;
+            this.SprawdzPolaczenieButton.Text = "button1";
+            this.SprawdzPolaczenieButton.UseVisualStyleBackColor = true;
+            //this.SprawdzPolaczenieButton.Click += new System.EventHandler(this.SprawdzPolaczenieButton_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 531);
+            this.Controls.Add(this.SprawdzPolaczenieButton);
             this.Controls.Add(this.StartBtn);
             this.Controls.Add(this.AlreadyHaveAccountBtn);
             this.Controls.Add(this.regClear);
@@ -396,6 +408,7 @@
         private System.Windows.Forms.Button regClear;
         private System.Windows.Forms.Button AlreadyHaveAccountBtn;
         private System.Windows.Forms.Button StartBtn;
+        private System.Windows.Forms.Button SprawdzPolaczenieButton;
     }
 }
 

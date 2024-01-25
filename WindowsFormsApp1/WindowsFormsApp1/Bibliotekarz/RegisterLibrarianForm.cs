@@ -22,7 +22,7 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void SubmitBtn_Click(object sender, EventArgs e)
         {
-            string employeeNumber = LoginTxt.Text;
+            int employeeNumber = Convert.ToInt32(LoginTxt.Text);
             string password = PasswordTxt.Text;
             string confirmPassword = ConfirmPasswordTxt.Text;
             string firstName = FirstNameTxt.Text;
@@ -38,8 +38,6 @@ namespace WindowsFormsApp1.Bibliotekarz
 
 
             StringBuilder sb = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(employeeNumber))
-                sb.AppendLine("Nazwa pracownika jest wymagana.");
 
             if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
                 sb.AppendLine("Hasło jest wymagane i musi mieć co najmniej 6 znaków.");
@@ -62,14 +60,15 @@ namespace WindowsFormsApp1.Bibliotekarz
                     string passwordHash = HashPasswords.GetHash(sha256Hash, password);
 
                     Address address = new Address(street, houseNumber, postalCode, city, country);
-                    Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email,address, employeeNumber);
+                    Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);
                     SaveLibrarianInDatabese(librarian);
                 }
             }
         }
         private void SaveLibrarianInDatabese(Librarian librarian)
         {
-            string insertDataQuery = "INSERT INTO Librarian (Id, EmploeeLogin, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) " + $"VALUES ('{librarian.Id}' ,'{librarian.EmployeeLogin}', '{librarian.Password}', '{librarian.FirstName}', '{librarian.LastName}', '{librarian.DateOfBirth}', '{librarian.Email}', '{librarian.PhoneNumber}', '{librarian.Address.Street}', '{librarian.Address.City}', '{librarian.Address.HouseNumber}', '{librarian.Address.PostalCode}', '{librarian.Address.Country}')";
+            //string insertDataQuery = "INSERT INTO Librarian (Id, EmploeeLogin, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) " + $"VALUES ('{librarian.Id}' ,'{librarian.EmployeeLogin}', '{librarian.Password}', '{librarian.FirstName}', '{librarian.LastName}', '{librarian.DateOfBirth}', '{librarian.Email}', '{librarian.PhoneNumber}', '{librarian.Address.Street}', '{librarian.Address.City}', '{librarian.Address.HouseNumber}', '{librarian.Address.PostalCode}', '{librarian.Address.Country}')";
+            string insertDataQuery = "INSERT INTO Librarian (Id, EmploeeLogin, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber) " + $"VALUES ('{librarian.Id}' ,'{librarian.EmployeeLogin}', '{librarian.Password}', '{librarian.FirstName}', '{librarian.LastName}', '{librarian.DateOfBirth}', '{librarian.Email}', '{librarian.PhoneNumber}'";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

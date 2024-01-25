@@ -22,16 +22,14 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void AddNewBookBtn_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(IdTxt.Text);
             string title = TitleTxt.Text;
             string author = AuthorTxt.Text; 
             int year = Convert.ToInt32(YearTxt.Text);   
             string description = DescriptionTxt.Text;
-            
-            Book.AddBook(id, title, author, year, description);
+
+            Book.AddBook(title, author, year, description);
             MessageBox.Show("Dodano nową książkę");
 
-            IdTxt.Text = "";
             TitleTxt.Text = "";
             AuthorTxt.Text = "";
             YearTxt.Text = "";

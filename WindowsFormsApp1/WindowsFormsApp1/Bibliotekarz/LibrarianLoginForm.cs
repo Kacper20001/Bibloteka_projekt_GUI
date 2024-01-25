@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
 
         private void SubmitLogin_Click(object sender, EventArgs e)
         {
-            string employeeNumber = EmployeeNumberTxt.Text;
+            int employeeNumber = Convert.ToInt32(EmployeeNumberTxt.Text);
             string password = PasswordTxt.Text;
             using (SHA256 sha256Hash = SHA256.Create())
             {

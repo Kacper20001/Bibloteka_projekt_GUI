@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Net;
 
 namespace WindowsFormsApp1
 {
@@ -18,7 +20,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
 
         private void regSubmit_Click(object sender, EventArgs e)
         {
@@ -39,50 +41,83 @@ namespace WindowsFormsApp1
 
 
             StringBuilder sb = new StringBuilder();
-            if (dateOfBirth.Date > DateTime.Now.Date.AddYears(-age)) age--;
+            /*if (dateOfBirth.Date > DateTime.Now.Date.AddYears(-age)) age--;
+            if (age < 12)
+            {
+                sb.AppendLine("The minimum age is 12 years old.");
+            }
 
-            if (string.IsNullOrWhiteSpace(username))
-                sb.AppendLine("Nazwa użytkownika jest wymagana.");
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword) || string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(street) || string.IsNullOrWhiteSpace(city) || string.IsNullOrWhiteSpace(houseNumber) || string.IsNullOrWhiteSpace(postalCode) || string.IsNullOrWhiteSpace(country))
+            {
+                sb.AppendLine("All fields are required.");
+            }
 
             if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
-                sb.AppendLine("Hasło jest wymagane i musi mieć co najmniej 6 znaków.");
+                sb.AppendLine("A password is required and must have at least 6 characters.");
 
             if (password != confirmPassword)
-                sb.AppendLine("Hasła nie są zgodne.");
+                sb.AppendLine("The passwords are not similar");
 
             if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
-                sb.AppendLine("Adres email jest niepoprawny.");
+                sb.AppendLine("The email address is invalid.");*/
+
+            //zakomentowane w celu przyspieszenia testowania
 
             if (sb.Length > 0)
             {
-                MessageBox.Show(sb.ToString(), "Błędy walidacji", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(sb.ToString(),"Validation errors.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
             {
-                using (SHA256 sha256Hash = SHA256.Create())
+                try
                 {
-                    string passwordHash = HashPasswords.GetHash(sha256Hash, password);
-                    
+                    /*using (SHA256 sha256Hash = SHA256.Create())
+                    {
+                        string passwordHash = HashPasswords.GetHash(sha256Hash, password);*/
+
                     Address address = new Address(street, houseNumber, postalCode, city, country);
-                    Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, passwordHash, username);
-                    SaveReaderInDatabese(reader); 
+                    //Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, passwordHash, username);
+                    Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, password, username);
+                    SaveReaderInDatabese(reader);
+                    /* }*/
+                }
+                catch (SqlException sqlEx)
+                {
+                    MessageBox.Show($"SQL Error: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Aplication Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
         private void SaveReaderInDatabese(Reader reader)
         {
-            string insertDataQuery = "INSERT INTO Readers (Id, Username, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) " + $"VALUES ('{reader.Id}' ,'{reader.Username}', '{reader.Password}', '{reader.FirstName}', '{reader.LastName}', '{reader.DateOfBirth}', '{reader.Email}', '{reader.PhoneNumber}', '{reader.Address.Street}', '{reader.Address.City}', '{reader.Address.HouseNumber}', '{reader.Address.PostalCode}', '{reader.Address.Country}')";
+            string insertDataQuery = "INSERT INTO dbo.Readers (Username, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) VALUES (@Username, @Password, @FirstName, @LastName, @DateOfBirth, @Email, @PhoneNumber, @Street, @City, @HouseNumber, @PostalCode, @Country)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand insertDataCommand = new SqlCommand(insertDataQuery, connection))
                 {
+                    insertDataCommand.Parameters.AddWithValue("@Username", reader.Username);
+                    insertDataCommand.Parameters.AddWithValue("@Password", reader.Password);
+                    insertDataCommand.Parameters.AddWithValue("@FirstName", reader.FirstName);
+                    insertDataCommand.Parameters.AddWithValue("@LastName", reader.LastName);
+                    insertDataCommand.Parameters.AddWithValue("@DateOfBirth", reader.DateOfBirth.ToString("yyyy-MM-dd"));
+                    insertDataCommand.Parameters.AddWithValue("@Email", reader.Email);
+                    insertDataCommand.Parameters.AddWithValue("@PhoneNumber", reader.PhoneNumber);
+
+                    insertDataCommand.Parameters.AddWithValue("@Street", reader.Address.Street);
+                    insertDataCommand.Parameters.AddWithValue("@City", reader.Address.City);
+                    insertDataCommand.Parameters.AddWithValue("@HouseNumber", reader.Address.HouseNumber);
+                    insertDataCommand.Parameters.AddWithValue("@PostalCode", reader.Address.PostalCode);
+                    insertDataCommand.Parameters.AddWithValue("@Country", reader.Address.Country);
                     try
                     {
                         insertDataCommand.ExecuteNonQuery();
-                        MessageBox.Show("Pomyślnie zarejestrowano");
+                        MessageBox.Show("Successfully registered.");
                         regClear_Click(this, EventArgs.Empty);
                         this.Hide();
                         Logowanie logowanie = new Logowanie();
@@ -91,7 +126,7 @@ namespace WindowsFormsApp1
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Błąd przy dodawaniu danych: {ex.Message}");
+                        MessageBox.Show($"Error while adding data {ex.Message}");
                     }
                 }
 
@@ -115,7 +150,7 @@ namespace WindowsFormsApp1
             regCountry.Text = "";
         }
 
-       
+
 
         private void AlreadyHaveAccountBtn_Click(object sender, EventArgs e)
         {

@@ -12,18 +12,25 @@ namespace WindowsFormsApp1
         public int Id { get; private set; }
         private static int nextId = 1;
 
-        public string EmployeeLogin { get; set; }
+        public int EmployeeLogin { get; set; }
         public DateTime EmploymentDate { get; set; }
         public string Password { get; set; }
 
-        public Librarian(string passoword, string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string employeeNumber)
+        /*        public Librarian(string passoword, string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, int employeeNumber)
+                    : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
+                {
+                    EmployeeLogin= employeeNumber;
+                    Id = nextId++; 
+                    Password = passoword;
+                }*/
+        public Librarian(string passoword, string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, int employeeNumber)
             : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
         {
-            EmployeeLogin= employeeNumber;
-            Id = nextId++; 
+            EmployeeLogin = employeeNumber;
+            Id = nextId++;
             Password = passoword;
         }
-        public static Librarian GetLibrarian(int employeeLogin,  string password)
+        public static Librarian GetLibrarian(int employeeLogin, string password)
         {
             Librarian foundLibrarian = null;
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
@@ -33,15 +40,15 @@ namespace WindowsFormsApp1
                 {
                     command.Parameters.AddWithValue("@EmployeeLogin", employeeLogin);
                     command.Parameters.AddWithValue("@Password", password);
-                    
-                    connection.Open(); 
-                    using(SqlDataReader librarian = command.ExecuteReader())
+
+                    connection.Open();
+                    using (SqlDataReader librarian = command.ExecuteReader())
                     {
-                        if(librarian.Read())
+                        if (librarian.Read())
                         {
                             foundLibrarian = new Librarian(librarian["password"].ToString(), librarian["firstName"].ToString(), librarian["lastName"].ToString(), Convert.ToDateTime(librarian["dateOfBirth"]),
                                 librarian["phoneNumber"].ToString(), librarian["email"].ToString(), new Address(librarian["Street"].ToString(), librarian["HouseNumber"].ToString(), librarian["PostalCode"].ToString(),
-                                librarian["City"].ToString(), librarian["Country"].ToString()), librarian["EmployeeLogin"].ToString());
+                                librarian["City"].ToString(), librarian["Country"].ToString()), Convert.ToInt32(librarian["EmployeeLogin"].ToString()));
                         }
                     }
                 }
@@ -75,7 +82,7 @@ namespace WindowsFormsApp1
                                 Convert.ToDateTime(librarian["DateOfBirth"]),
                                 librarian["PhoneNumber"].ToString(),
                                 librarian["Email"].ToString(),
-                                address, librarian["EmployeeNumber"].ToString()
+                                address, Convert.ToInt32(librarian["EmployeeNumber"].ToString())
                             );
                         }
                     }

@@ -36,7 +36,7 @@
             // 
             // LibrarianBtn
             // 
-            this.LibrarianBtn.Location = new System.Drawing.Point(151, 294);
+            this.LibrarianBtn.Location = new System.Drawing.Point(180, 320);
             this.LibrarianBtn.Name = "LibrarianBtn";
             this.LibrarianBtn.Size = new System.Drawing.Size(64, 23);
             this.LibrarianBtn.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // LoginBtn
             // 
-            this.LoginBtn.Location = new System.Drawing.Point(40, 76);
+            this.LoginBtn.Location = new System.Drawing.Point(69, 102);
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(138, 50);
             this.LoginBtn.TabIndex = 1;
@@ -56,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 13);
+            this.label1.Location = new System.Drawing.Point(66, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 13);
             this.label1.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             // RegisterBtn
             // 
-            this.RegisterBtn.Location = new System.Drawing.Point(40, 132);
+            this.RegisterBtn.Location = new System.Drawing.Point(69, 158);
             this.RegisterBtn.Name = "RegisterBtn";
             this.RegisterBtn.Size = new System.Drawing.Size(138, 50);
             this.RegisterBtn.TabIndex = 3;
@@ -76,7 +76,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 323);
+            this.ClientSize = new System.Drawing.Size(324, 411);
             this.Controls.Add(this.RegisterBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginBtn);
@@ -90,10 +90,9 @@
         }
 
         #endregion
-
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button LibrarianBtn;
         private System.Windows.Forms.Button LoginBtn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RegisterBtn;
     }
 }

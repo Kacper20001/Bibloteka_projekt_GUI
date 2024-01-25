@@ -33,7 +33,7 @@ namespace WindowsFormsApp1.Bibliotekarz
             var librarian = Librarian.GetLibrarianById(currentLibrarianId, connectionString);
             if (librarian != null)
             {
-                EmployeeLoginTxt.Text = librarian.EmployeeLogin;
+                EmployeeLoginTxt.Text = librarian.EmployeeLogin.ToString();
                 FirstNameTxt.Text = librarian.FirstName;
                 LastNameTxt.Text = librarian.LastName;
                 DateOfBirthTxt.Text = librarian.DateOfBirth.ToString("dd-MM-yyyy");
@@ -41,7 +41,7 @@ namespace WindowsFormsApp1.Bibliotekarz
                 PhoneNumberTxt.Text = librarian.PhoneNumber;
                 StreetTxt.Text = librarian.Address.Street;
                 CityTxt.Text = librarian.Address.City;
-                HouseNumberTxt.Text = librarian .Address.HouseNumber;
+                HouseNumberTxt.Text = librarian.Address.HouseNumber;
                 PostalCodeTxt.Text = librarian.Address.PostalCode;
                 CountryTxt.Text = librarian.Address.Country;
             }

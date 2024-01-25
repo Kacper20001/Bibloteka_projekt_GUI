@@ -114,14 +114,15 @@ namespace WindowsFormsApp1
             {
                 UserInfoFirstName.Text = reader.FirstName;
                 UserInfoLastName.Text = reader.LastName;
+                UserInfoUsername.Text = reader.Username;
                 UserInfoDateofBirth.Text = reader.DateOfBirth.ToString("dd-MM-yyyy");
                 UserInfoEmail.Text = reader.Email;
                 UserInfoPhoneNumber.Text = reader.PhoneNumber;
-                UserInfoStreet.Text = reader.Address.Street;
+/*                UserInfoStreet.Text = reader.Address.Street;
                 UserInfoCity.Text = reader.Address.City;
                 UserInfoHouseNumber.Text = reader.Address.HouseNumber;
                 UserInfoPostalCode.Text = reader.Address.PostalCode;
-                UserInfoCountry.Text = reader.Address.Country;
+                UserInfoCountry.Text = reader.Address.Country;*/
             }
             else
             {

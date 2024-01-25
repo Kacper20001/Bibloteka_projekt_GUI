@@ -30,11 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.IdTxt = new System.Windows.Forms.TextBox();
             this.TitleTxt = new System.Windows.Forms.TextBox();
             this.AuthorTxt = new System.Windows.Forms.TextBox();
             this.YearTxt = new System.Windows.Forms.TextBox();
@@ -55,25 +53,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 101);
+            this.label2.Location = new System.Drawing.Point(61, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Title";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Id";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(64, 123);
+            this.label4.Location = new System.Drawing.Point(64, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 3;
@@ -82,7 +71,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(64, 151);
+            this.label5.Location = new System.Drawing.Point(64, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 13);
             this.label5.TabIndex = 4;
@@ -91,43 +80,36 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(42, 178);
+            this.label6.Location = new System.Drawing.Point(42, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "Description";
             // 
-            // IdTxt
-            // 
-            this.IdTxt.Location = new System.Drawing.Point(94, 76);
-            this.IdTxt.Name = "IdTxt";
-            this.IdTxt.Size = new System.Drawing.Size(100, 20);
-            this.IdTxt.TabIndex = 6;
-            // 
             // TitleTxt
             // 
-            this.TitleTxt.Location = new System.Drawing.Point(94, 100);
+            this.TitleTxt.Location = new System.Drawing.Point(99, 54);
             this.TitleTxt.Name = "TitleTxt";
             this.TitleTxt.Size = new System.Drawing.Size(100, 20);
             this.TitleTxt.TabIndex = 7;
             // 
             // AuthorTxt
             // 
-            this.AuthorTxt.Location = new System.Drawing.Point(108, 126);
+            this.AuthorTxt.Location = new System.Drawing.Point(108, 86);
             this.AuthorTxt.Name = "AuthorTxt";
             this.AuthorTxt.Size = new System.Drawing.Size(100, 20);
             this.AuthorTxt.TabIndex = 8;
             // 
             // YearTxt
             // 
-            this.YearTxt.Location = new System.Drawing.Point(99, 151);
+            this.YearTxt.Location = new System.Drawing.Point(99, 111);
             this.YearTxt.Name = "YearTxt";
             this.YearTxt.Size = new System.Drawing.Size(100, 20);
             this.YearTxt.TabIndex = 9;
             // 
             // DescriptionTxt
             // 
-            this.DescriptionTxt.Location = new System.Drawing.Point(130, 175);
+            this.DescriptionTxt.Location = new System.Drawing.Point(130, 135);
             this.DescriptionTxt.Name = "DescriptionTxt";
             this.DescriptionTxt.Size = new System.Drawing.Size(100, 20);
             this.DescriptionTxt.TabIndex = 10;
@@ -163,11 +145,9 @@
             this.Controls.Add(this.YearTxt);
             this.Controls.Add(this.AuthorTxt);
             this.Controls.Add(this.TitleTxt);
-            this.Controls.Add(this.IdTxt);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddBookForm";
@@ -181,11 +161,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox IdTxt;
         private System.Windows.Forms.TextBox TitleTxt;
         private System.Windows.Forms.TextBox AuthorTxt;
         private System.Windows.Forms.TextBox YearTxt;

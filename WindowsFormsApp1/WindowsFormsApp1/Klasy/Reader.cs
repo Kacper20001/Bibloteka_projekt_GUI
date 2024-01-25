@@ -12,16 +12,14 @@ namespace WindowsFormsApp1
 {
     internal class Reader : Person
     {
-        public int Id {  get; private set; }
-        private static int nextId = 1;
-        public string Password {  get; set; }
-        public string Username {  get; set; }
-        public new Address Address { get; set; }
+        public int ReaderId { get; private set; }
+        //private static int nextId = 1;
+        public string Password { get; set; }
+        public string Username { get; set; }
 
         public Reader(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string password, string username)
-        : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
+         : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
         {
-            Id = nextId++;
             Username = username;
             Password = password;
         }
@@ -48,7 +46,10 @@ namespace WindowsFormsApp1
                                 new Address(reader["Street"].ToString(), reader["HouseNumber"].ToString(),
                                 reader["PostalCode"].ToString(), reader["City"].ToString(),
                                 reader["Country"].ToString()),
-                                reader["Password"].ToString(), reader["Username"].ToString());
+                                reader["Password"].ToString(), reader["Username"].ToString())
+                            {
+                                ReaderId = Convert.ToInt32(reader["ReaderId"])
+                            };
                         }
                     }
                 }
@@ -99,13 +100,13 @@ namespace WindowsFormsApp1
                 string query;
                 if (string.IsNullOrEmpty(searchTerm))
                 {
-                    query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                    query = "SELECT ReaderId, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
                                "FROM Readers";
                 }
                 else
                 {
-                    query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
-                               "FROM Readers WHERE FirstName LIKE @SearchTerm OR @LastName LIKE @SearchTerm OR @Id LIKE @SearchTerm";
+                    query = "SELECT ReaderId, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                               "FROM Readers WHERE FirstName LIKE @SearchTerm OR @LastName LIKE @SearchTerm OR @ReaderId LIKE @SearchTerm";
                 }
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -124,7 +125,7 @@ namespace WindowsFormsApp1
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Readers WHERE id = @id";
+                string query = "DELETE FROM Readers WHERE Readerid = @id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id", id);

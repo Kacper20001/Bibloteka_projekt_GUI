@@ -76,6 +76,7 @@
             this.borrowedBooksBtn.TabIndex = 3;
             this.borrowedBooksBtn.Text = "Borrowed Books";
             this.borrowedBooksBtn.UseVisualStyleBackColor = true;
+            this.borrowedBooksBtn.Click += new System.EventHandler(this.borrowedBooksBtn_Click);
             // 
             // DeleyedReturnsBtn
             // 

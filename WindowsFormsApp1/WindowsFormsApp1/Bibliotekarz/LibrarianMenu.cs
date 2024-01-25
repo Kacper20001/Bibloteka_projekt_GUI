@@ -59,5 +59,12 @@ namespace WindowsFormsApp1
             LibrarianInfoView librarianInfoView = new LibrarianInfoView(currentLibrarianId);
             librarianInfoView.Show();
         }
+
+        private void borrowedBooksBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BorrowedBooksForm borrowedBooksForm = new BorrowedBooksForm(currentLibrarianId);
+            borrowedBooksForm.Show();
+        }
     }
 }
