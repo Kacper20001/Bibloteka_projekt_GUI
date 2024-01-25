@@ -30,14 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.borrowedBooksDataGridView = new System.Windows.Forms.DataGridView();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rentalDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.returnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selectBookDataGridCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.returnBookbtn = new System.Windows.Forms.Button();
             this.BackBtn = new System.Windows.Forms.Button();
+            this.selectBookCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.borrowedBooksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,47 +49,12 @@
             // 
             this.borrowedBooksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.borrowedBooksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Title,
-            this.Author,
-            this.rentalDate,
-            this.returnDate,
-            this.Fee,
-            this.selectBookDataGridCheckbox});
+            this.selectBookCheckbox});
             this.borrowedBooksDataGridView.Location = new System.Drawing.Point(38, 86);
             this.borrowedBooksDataGridView.Name = "borrowedBooksDataGridView";
             this.borrowedBooksDataGridView.Size = new System.Drawing.Size(643, 150);
             this.borrowedBooksDataGridView.TabIndex = 1;
             this.borrowedBooksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.borrowedBooksDataGridView_CellContentClick);
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            // 
-            // Author
-            // 
-            this.Author.HeaderText = "Author";
-            this.Author.Name = "Author";
-            // 
-            // rentalDate
-            // 
-            this.rentalDate.HeaderText = "Rental Date";
-            this.rentalDate.Name = "rentalDate";
-            // 
-            // returnDate
-            // 
-            this.returnDate.HeaderText = "Return Date";
-            this.returnDate.Name = "returnDate";
-            // 
-            // Fee
-            // 
-            this.Fee.HeaderText = "Fee";
-            this.Fee.Name = "Fee";
-            // 
-            // selectBookDataGridCheckbox
-            // 
-            this.selectBookDataGridCheckbox.HeaderText = "select";
-            this.selectBookDataGridCheckbox.Name = "selectBookDataGridCheckbox";
             // 
             // returnBookbtn
             // 
@@ -115,6 +75,11 @@
             this.BackBtn.Text = "Back";
             this.BackBtn.UseVisualStyleBackColor = true;
             this.BackBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // selectBookCheckbox
+            // 
+            this.selectBookCheckbox.HeaderText = "select";
+            this.selectBookCheckbox.Name = "selectBookCheckbox";
             // 
             // ReaderBorrowedBooksForm
             // 
@@ -139,11 +104,6 @@
         private System.Windows.Forms.DataGridView borrowedBooksDataGridView;
         private System.Windows.Forms.Button returnBookbtn;
         private System.Windows.Forms.Button BackBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rentalDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn returnDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fee;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn selectBookDataGridCheckbox;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn selectBookCheckbox;
     }
 }

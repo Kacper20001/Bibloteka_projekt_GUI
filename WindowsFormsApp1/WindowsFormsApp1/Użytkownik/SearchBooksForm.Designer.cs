@@ -31,15 +31,9 @@
             this.txtSrcBooks = new System.Windows.Forms.TextBox();
             this.SrcBooksBtn = new System.Windows.Forms.Button();
             this.booksDataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Availability = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BorrowCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SrcReturnBtn = new System.Windows.Forms.Button();
             this.Borrowbtn = new System.Windows.Forms.Button();
+            this.BorrowCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,54 +59,12 @@
             this.booksDataGridView.AllowUserToOrderColumns = true;
             this.booksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.booksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Title,
-            this.Author,
-            this.Year,
-            this.Description,
-            this.Availability,
             this.BorrowCheckbox});
             this.booksDataGridView.Location = new System.Drawing.Point(51, 106);
             this.booksDataGridView.Name = "booksDataGridView";
             this.booksDataGridView.Size = new System.Drawing.Size(856, 196);
             this.booksDataGridView.TabIndex = 2;
             this.booksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.booksDataGridView_CellContentClick);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            // 
-            // Author
-            // 
-            this.Author.HeaderText = "Author";
-            this.Author.Name = "Author";
-            // 
-            // Year
-            // 
-            this.Year.HeaderText = "Year";
-            this.Year.Name = "Year";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // Availability
-            // 
-            this.Availability.HeaderText = "Availability";
-            this.Availability.Name = "Availability";
-            // 
-            // BorrowCheckbox
-            // 
-            this.BorrowCheckbox.HeaderText = "Select";
-            this.BorrowCheckbox.Name = "BorrowCheckbox";
-            this.BorrowCheckbox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // SrcReturnBtn
             // 
@@ -133,6 +85,12 @@
             this.Borrowbtn.Text = "Borrow";
             this.Borrowbtn.UseVisualStyleBackColor = true;
             this.Borrowbtn.Click += new System.EventHandler(this.Borrowbtn_Click);
+            // 
+            // BorrowCheckbox
+            // 
+            this.BorrowCheckbox.HeaderText = "Select";
+            this.BorrowCheckbox.Name = "BorrowCheckbox";
+            this.BorrowCheckbox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // SearchBooksForm
             // 
@@ -159,13 +117,7 @@
         private System.Windows.Forms.Button SrcBooksBtn;
         private System.Windows.Forms.DataGridView booksDataGridView;
         private System.Windows.Forms.Button SrcReturnBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Availability;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn BorrowCheckbox;
         private System.Windows.Forms.Button Borrowbtn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn BorrowCheckbox;
     }
 }

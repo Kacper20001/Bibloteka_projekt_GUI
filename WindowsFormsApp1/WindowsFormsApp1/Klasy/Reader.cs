@@ -23,10 +23,10 @@ namespace WindowsFormsApp1
             Username = username;
             Password = password;
         }
-        public static Reader GetReader(string username, string passwordHash)
+        public static Reader GetReader(string username, string passwordHash, string connectionString)
         {
             Reader foundReader = null;
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Readers WHERE Username = @Username AND Password = @Password";
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -60,8 +60,8 @@ namespace WindowsFormsApp1
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
-                               " FROM Readers WHERE Id = @ReaderId";
+                string query = "SELECT FirstName, LastName, DateOfBirth, Email, Username, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
+                               " FROM Readers WHERE ReaderId = @ReaderId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ReaderId", readerId);
@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
                                 reader["Email"].ToString(),
                                 address,
                                 "", // Password
-                                ""  // Username
+                                reader["Username"].ToString()
                             );
                         }
                     }

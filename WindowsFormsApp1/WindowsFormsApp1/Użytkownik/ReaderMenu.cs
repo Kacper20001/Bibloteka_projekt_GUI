@@ -40,9 +40,9 @@ namespace WindowsFormsApp1
         private void LogOutBtn_Click(object sender, EventArgs e)
         {
             currentReaderId = 0;
-            this.Close();
-            Application.OpenForms.Cast<Form>().Where(form => form.Name != "StartForm").ToList().ForEach(form => form.Close());
-            
+            this.Hide();
+            StartForm startForm = new StartForm();
+            startForm.Show();
         }
 
         private void userManuAccount_Click(object sender, EventArgs e)

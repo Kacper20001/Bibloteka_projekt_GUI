@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class SearchBooksForm : Form
     {
-        private string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private int currentReaderId;
 
         public SearchBooksForm(int readerId)
@@ -47,11 +47,11 @@ namespace WindowsFormsApp1
                 bool isSelected = Convert.ToBoolean(row.Cells["BorrowCheckbox"].Value);
                 if (isSelected)
                 {
-                    int bookId = Convert.ToInt32(row.Cells["Id"].Value);
-                    Book.BorrowBook(currentReaderId, bookId, connectionString);
+                    int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
+                    Book.BorrowBook(currentReaderId, bookId);
                 }
             }
-            LoadBooks();
+            LoadBooks(connectionString);
         }
         public void LoadBooks(string searchTerm = "")
         {

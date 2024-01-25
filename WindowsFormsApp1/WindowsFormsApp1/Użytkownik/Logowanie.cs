@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private void logSubmit_Click(object sender, EventArgs e)
         {
             string username = logLogin.Text; 
@@ -27,18 +27,18 @@ namespace WindowsFormsApp1
             {
                 string passwordHash = HashPasswords.GetHash(sha256Hash, password);
                 //Reader reader = Reader.GetReader(username, passwordHash);
-                Reader reader = Reader.GetReader(username, password);
+                Reader reader = Reader.GetReader(username, password, connectionString);
 
                 if (reader != null)
                 {
-                    MessageBox.Show("Zalogowano pomyślnie.");
+                    MessageBox.Show("Logged in successfully.");
                     this.Hide();
                     ReaderMenu readerMenu = new ReaderMenu(reader.ReaderId);
                     readerMenu.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Błąd logowania. Sprawdź dane logowania.");
+                    MessageBox.Show("Login error. Please check your login credentials.");
                 }
             }
         }

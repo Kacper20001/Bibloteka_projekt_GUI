@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
 {
     public partial class ReaderAccountForms : Form
     {
-        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private int currentReaderId;
         public ReaderAccountForms(int readerId)
         {
@@ -43,17 +43,25 @@ namespace WindowsFormsApp1
         }
         private void UserInfoChangePassword_Click(object sender, EventArgs e)
         {
-            if (!ValidateNewPassword())
+            string currentPasswordHash;
+            string newPasswordHash;
+            string ConfirmNewPasswordHash;
+            currentPasswordHash = UserInfoPassword.Text;
+            newPasswordHash = UserInfoNewPassword.Text;
+            ConfirmNewPasswordHash = UserInfoConfirmNewPassord.Text;
+            if (!ValidateNewPassword(newPasswordHash, ConfirmNewPasswordHash))
             {
                 return;
             }
-            string currentPasswordHash;
-            string newPasswordHash;
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
+            
+            /*{using (SHA256 sha256Hash = SHA256.Create())
+            
                 currentPasswordHash = HashPasswords.GetHash(sha256Hash, UserInfoPassword.Text);
                 newPasswordHash = HashPasswords.GetHash(sha256Hash, UserInfoNewPassword.Text);
-            }
+            }*/   //hashowane
+
+            
+
             if (!IsCurrentPasswordValid(currentPasswordHash))
             {
                 MessageBox.Show("Obecne hasło jest niepoprawne.");
@@ -62,10 +70,11 @@ namespace WindowsFormsApp1
 
             UpdatePasswordInDatabase(newPasswordHash);
             MessageBox.Show("Hasło zostało zmienione.");
+
         }
-        private bool ValidateNewPassword()
+        private bool ValidateNewPassword(string newPasswordHash, string ConfirmNewPasswordHash)
         {
-            if (UserInfoNewPassword.Text != UserInfoConfirmNewPassord.Text)
+            if (newPasswordHash != ConfirmNewPasswordHash)
             {
                 MessageBox.Show("passwords are not the same");
                 return false;
@@ -81,7 +90,7 @@ namespace WindowsFormsApp1
         {
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT Password FROM Readers WHERE ID = @ReaderId";
+                string query = "SELECT Password FROM Readers WHERE ReaderId = @ReaderId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ReaderId", currentReaderId);
@@ -95,7 +104,7 @@ namespace WindowsFormsApp1
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE Id = @ReaderID";
+                string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE ReaderId = @ReaderID";
                 {
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
@@ -118,11 +127,11 @@ namespace WindowsFormsApp1
                 UserInfoDateofBirth.Text = reader.DateOfBirth.ToString("dd-MM-yyyy");
                 UserInfoEmail.Text = reader.Email;
                 UserInfoPhoneNumber.Text = reader.PhoneNumber;
-/*                UserInfoStreet.Text = reader.Address.Street;
+                UserInfoStreet.Text = reader.Address.Street;
                 UserInfoCity.Text = reader.Address.City;
                 UserInfoHouseNumber.Text = reader.Address.HouseNumber;
                 UserInfoPostalCode.Text = reader.Address.PostalCode;
-                UserInfoCountry.Text = reader.Address.Country;*/
+                UserInfoCountry.Text = reader.Address.Country;
             }
             else
             {

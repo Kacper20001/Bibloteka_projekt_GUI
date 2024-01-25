@@ -14,13 +14,13 @@ namespace WindowsFormsApp1
     public partial class ReaderBorrowedBooksForm : Form
     {
         private int currentReaderId;
-        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
 
         public ReaderBorrowedBooksForm(int readerId)
         {
             InitializeComponent();
             currentReaderId = readerId;
-            Book.LoadBorrowedBooks(currentReaderId);
+            LoadBoorowedBooksDataGrid(currentReaderId);
 
         }
 
@@ -40,16 +40,20 @@ namespace WindowsFormsApp1
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectBookCheckbox"].Value);
                 if (isSelected)
                 {
-                    int bookId = Convert.ToInt32(row.Cells["BookId"].Value);
+                    int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
                     Book.ReturnBook(bookId, connectionString);
                 }
             }
-            Book.LoadBorrowedBooks(currentReaderId);
+            LoadBoorowedBooksDataGrid(currentReaderId);
         }
 
         private void borrowedBooksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        public void LoadBoorowedBooksDataGrid(int readerId)
+        {
+            borrowedBooksDataGridView.DataSource = Book.LoadBorrowedBooks(readerId);
         }
     }
 }

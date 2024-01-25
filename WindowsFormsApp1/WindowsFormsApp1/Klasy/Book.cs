@@ -18,7 +18,6 @@ namespace WindowsFormsApp1
         public int Year { get; set; }
         public string Description { get; set; }
         public string Availability { get; set; }
-
         public Book(string title, string author, int year, string description, string availability)
         {
             //BookId = id;
@@ -28,23 +27,23 @@ namespace WindowsFormsApp1
             Description = description;
             Availability = availability;
         }
-        public static void BorrowBook(int readerId, int bookId, string connectionString)
+        public static void BorrowBook(int readerId, int bookId)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 connection.Open();
 
                 // Sprawdzenie dostępności książki i jej wypożyczenie
                 string borrowQuery = @"
             BEGIN TRANSACTION;
-            UPDATE Books SET Availability = 0 WHERE Id = @BookId AND Availability = 1;
+            UPDATE Books SET Availability = 0 WHERE BookID = @BookID AND Availability = 1;
             INSERT INTO Borrows (BookId, ReaderId, BorrowDate, ExpectedReturnDate) 
             VALUES (@BookId, @ReaderId, GETDATE(), DATEADD(day, 30, GETDATE()));
             COMMIT;";
 
                 using (SqlCommand command = new SqlCommand(borrowQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.Parameters.AddWithValue("@BookID", bookId);
                     command.Parameters.AddWithValue("@ReaderId", readerId);
                     command.ExecuteNonQuery();
                 }
@@ -52,7 +51,7 @@ namespace WindowsFormsApp1
         }
         public static Book GetBookById(int bookId)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query = "SELECT BookId, Title, Author, Year, Description FROM Books WHERE Id = @BookId";
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -80,7 +79,7 @@ namespace WindowsFormsApp1
         }
         public static DataTable LoadBooks(string searchTerm = "")
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query;
                 if (string.IsNullOrEmpty(searchTerm)){
@@ -106,7 +105,7 @@ namespace WindowsFormsApp1
 
         public static void EditBook(int id, string newTitle, string newAuthor, string newDescription, int newYear)  
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query = "Update @Title, @Author, @Year, @Description FROM Books Where Id = @BookId";
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -123,7 +122,7 @@ namespace WindowsFormsApp1
         }
         public static void AddBook(string title, string author, int year, string description) 
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query = "INSERT INTO Books(title, author, year, description, availability)" +
                                "VALUES(@title, @author, @year, @description, 1)";
@@ -142,7 +141,7 @@ namespace WindowsFormsApp1
 
         public static void DeleteBook(int id)
         {
-            using (SqlConnection  connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection  connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query = "DELETE FROM Books WHERE BookId = @id";
                 using(SqlCommand command = new SqlCommand(query, connection))
@@ -173,7 +172,7 @@ namespace WindowsFormsApp1
                 ELSE 0
             END AS OverdueDays
             FROM Borrows
-            WHERE BookId = @BookId AND ReturnDate IS NULL;";
+            WHERE BookId = @BookId";
 
                 using (SqlCommand checkCommand = new SqlCommand(checkOverdueQuery, connection))
                 {
@@ -188,9 +187,8 @@ namespace WindowsFormsApp1
                 }
 
                 string returnQuery = @"
-            UPDATE Borrows SET ExpectedReturnDate = GETDATE() 
-            WHERE BookId = @BookId AND ExpectedReturnDate IS NULL;
-            UPDATE Books SET Availability = 1 WHERE Id = @BookId;";
+                DELETE FROM Borrows WHERE BookId = @BookId;
+                UPDATE Books SET Availability = 1 WHERE BookId = @BookId;";
 
                 using (SqlCommand command = new SqlCommand(returnQuery, connection))
                 {
@@ -202,17 +200,17 @@ namespace WindowsFormsApp1
 
         public static DataTable LoadBorrowedBooks(int readerId)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query = @"
             SELECT b.BookId, bk.Title, bk.Author, b.BorrowDate, 
                    CASE 
-                       WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
+                       WHEN DATEDIFF(day, b.BorrowDate, b.ExpectedReturnDate) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
                        ELSE 0
                    END AS OverdueFee
             FROM Borrows b
-            INNER JOIN Books bk ON b.BookId = bk.Id
-            WHERE b.ReaderId = @ReaderId AND b.ReturnDate IS NULL";
+            INNER JOIN Books bk ON b.BookId = bk.BookID
+            WHERE b.ReaderId = @ReaderId";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -257,7 +255,7 @@ namespace WindowsFormsApp1
 
         public static DataTable LoadOverdueBooks()
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 string query = @"
                 SELECT 
@@ -287,7 +285,7 @@ namespace WindowsFormsApp1
 
         public static void ReturnOverdueBook(int bookId)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 connection.Open();
 
