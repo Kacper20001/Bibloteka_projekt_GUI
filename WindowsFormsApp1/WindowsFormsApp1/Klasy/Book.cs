@@ -49,11 +49,11 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        public static Book GetBookById(int bookId)
+        public static Book GetBookById(int bookId, string connectionString)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT BookId, Title, Author, Year, Description FROM Books WHERE Id = @BookId";
+                string query = "SELECT BookId, Title, Author, Year, Description, Availability FROM Books WHERE BookId = @BookId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@BookId", bookId);
@@ -67,10 +67,10 @@ namespace WindowsFormsApp1
                                 book["Author"].ToString(),
                                 Convert.ToInt32(book["Year"]),
                                 book["Description"].ToString(),
-                                book["Availability"].ToString())
-                            {
-                                BookId = Convert.ToInt32(book["BookId"])
-                            };
+                                book["Availability"].ToString());
+/*                            {
+                                BookId = Convert.ToInt32(book["BookID"])
+                            };*/
                         }
                     }
                 }
@@ -103,17 +103,18 @@ namespace WindowsFormsApp1
             }
         }
 
-        public static void EditBook(int id, string newTitle, string newAuthor, string newDescription, int newYear)  
+        public static void EditBook(string connectionString, int id, string newTitle, string newAuthor, string newDescription, int newYear)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "Update @Title, @Author, @Year, @Description FROM Books Where Id = @BookId";
+                string query = "UPDATE Books SET Title = @Title, Author = @Author, Year = @Year, Description = @Description WHERE BookId = @BookId";
+
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@BookId", id);
                     command.Parameters.AddWithValue("@Title", newTitle);
                     command.Parameters.AddWithValue("@Author", newAuthor);
-                    command.Parameters.AddWithValue("@Year", Convert.ToInt32(newYear));
+                    command.Parameters.AddWithValue("@Year", newYear);
                     command.Parameters.AddWithValue("@Description", newDescription);
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -232,15 +233,12 @@ namespace WindowsFormsApp1
                     b.BookId, 
                     b.ReaderId, 
                     b.BorrowDate, 
-                    DATEADD(day, 30, b.BorrowDate) AS ExpectedReturnDate,
-                    b.ReturnDate,
+                    b.ExpectedReturnDate,
                     CASE 
                         WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30 
                         ELSE 0 
                     END AS OverdueFee
-                FROM Borrows b
-                INNER JOIN Books bk ON b.BookId = bk.Id
-                WHERE b.ReturnDate IS NULL";
+                FROM Borrows b";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -264,14 +262,14 @@ namespace WindowsFormsApp1
                     bk.Title, 
                     bk.Author, 
                     b.BorrowDate, 
-                    DATEADD(day, 30, b.BorrowDate) AS ExpectedReturnDate, 
+                    b.ExpectedReturnDate, 
                     CASE 
                         WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30 
                         ELSE 0 
                     END AS OverdueFee
                 FROM Borrows b
-                INNER JOIN Books bk ON b.BookId = bk.Id
-                WHERE b.ReturnDate IS NULL AND DATEDIFF(day, b.BorrowDate, GETDATE()) > 30";
+                INNER JOIN Books bk ON b.BookId = bk.BookID
+                WHERE DATEDIFF(day, b.BorrowDate, GETDATE()) > 30";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

@@ -13,13 +13,13 @@ namespace WindowsFormsApp1
 {
     public partial class LibrarianBooks : Form
     {
-        private int currentReaderId;
-        private string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
-        public LibrarianBooks(int currentReaderId)
+        private int currentLibrarianId;
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
+        public LibrarianBooks(int currentLibrarianId)
         {
             InitializeComponent();
             LoadBooks();
-            this.currentReaderId = currentReaderId;
+            this.currentLibrarianId = currentLibrarianId;
         }
 
         private void BooksDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -40,34 +40,38 @@ namespace WindowsFormsApp1
         private void BackMenuBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LibrarianMenu librarianMenu = new LibrarianMenu(currentReaderId);
+            LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
             librarianMenu.Show();
         }
 
         private void AddBookBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AddBookForm addBookForm = new AddBookForm(currentReaderId); 
+            //this.Hide();
+            AddBookForm addBookForm = new AddBookForm(currentLibrarianId); 
             addBookForm.Show();
         }
 
         private void EditBookBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EditBookForm editBookForm = new EditBookForm(currentReaderId); 
+            EditBookForm editBookForm = new EditBookForm(currentLibrarianId); 
             editBookForm.Show(); 
         }
 
         private void DeleteBookBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DeleteBookForm deleteBookForm = new DeleteBookForm(currentReaderId); 
+            DeleteBookForm deleteBookForm = new DeleteBookForm(currentLibrarianId); 
             deleteBookForm.Show();
         }
 
         private void LibrarianBooks_Load(object sender, EventArgs e)
         {
 
+        }
+        public void LoadLibrarianBooks(string searchTerm = "")
+        {
+            BooksDataGrid.DataSource = Book.LoadBooks(searchTerm);
         }
     }
 }

@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.BooksDataGrid = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Availability = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrcBooksBtn = new System.Windows.Forms.Button();
             this.BackMenuBtn = new System.Windows.Forms.Button();
             this.txtSrcBooks = new System.Windows.Forms.TextBox();
@@ -47,48 +41,11 @@
             // BooksDataGrid
             // 
             this.BooksDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.BooksDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Title,
-            this.Author,
-            this.Year,
-            this.Description,
-            this.Availability});
             this.BooksDataGrid.Location = new System.Drawing.Point(52, 188);
             this.BooksDataGrid.Name = "BooksDataGrid";
             this.BooksDataGrid.Size = new System.Drawing.Size(643, 150);
             this.BooksDataGrid.TabIndex = 0;
             this.BooksDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BooksDataGrid_CellContentClick);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "title";
-            this.Title.Name = "Title";
-            // 
-            // Author
-            // 
-            this.Author.HeaderText = "Author";
-            this.Author.Name = "Author";
-            // 
-            // Year
-            // 
-            this.Year.HeaderText = "Year";
-            this.Year.Name = "Year";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // Availability
-            // 
-            this.Availability.HeaderText = "Availibility";
-            this.Availability.Name = "Availability";
             // 
             // SrcBooksBtn
             // 
@@ -171,12 +128,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView BooksDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Availability;
         private System.Windows.Forms.Button SrcBooksBtn;
         private System.Windows.Forms.Button BackMenuBtn;
         private System.Windows.Forms.TextBox txtSrcBooks;

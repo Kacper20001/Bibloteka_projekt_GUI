@@ -13,14 +13,14 @@ namespace WindowsFormsApp1.Bibliotekarz
     public partial class ReadersManagementView : Form
     {
         private int currentLibrarianId;
-        public string connectionString ="Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+        public string connectionString ="Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         public ReadersManagementView(int librarianId)
         {
             currentLibrarianId = librarianId;
             InitializeComponent();
-            LoadReaders(connectionString);
+            LoadReadersData(connectionString);
         }
-        public void LoadReaders(string connectionString, string searchTerm = "")
+        public void LoadReadersData(string connectionString, string searchTerm = "")
         {
             ReaderDataGrid.DataSource = Reader.LoadReaders(connectionString, searchTerm);
         }
@@ -28,7 +28,7 @@ namespace WindowsFormsApp1.Bibliotekarz
         private void SrcReaderBtn_Click(object sender, EventArgs e)
         {
             string searchTerm = SrcReaderstxt.Text;
-            LoadReaders(connectionString, searchTerm);
+            LoadReadersData(connectionString, searchTerm);
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -38,11 +38,11 @@ namespace WindowsFormsApp1.Bibliotekarz
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectCheckbox"].Value);
                 if (isSelected)
                 {
-                    int readerId = Convert.ToInt32(row.Cells["Id"].Value);
+                    int readerId = Convert.ToInt32(row.Cells["ReaderId"].Value);
                     Reader.DeleteReader(readerId, connectionString);
                 }
             }
-            LoadReaders(connectionString);
+            LoadReadersData(connectionString);
         }
 
         private void BackBtn_Click(object sender, EventArgs e)

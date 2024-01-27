@@ -12,19 +12,21 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 {
     public partial class EditBookForm : Form
     {
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private int currentLibrarianId;
         private int id;
         public EditBookForm(int currentLibrarianId)
         {
             InitializeComponent();
-            this.currentLibrarianId = id;
+            this.currentLibrarianId = currentLibrarianId;
         }
 
 
         private void FindBtn_Click(object sender, EventArgs e)
         {
-            id = int.Parse(IdTxt.Text);
-            Book bookToEdit = Book.GetBookById(id);
+            id = Convert.ToInt32(IdTxt.Text);
+            
+            Book bookToEdit = Book.GetBookById(Convert.ToInt32(id),connectionString);
             if (bookToEdit != null)
             {
                 TitleTxt.Text = bookToEdit.Title;
@@ -35,6 +37,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
             else
             {
                 MessageBox.Show("Id doesn't exist");
+                IdTxt.Text = "";
                 TitleTxt.Text = "";
                 AuthorTxt.Text = "";
                 YearTxt.Text = "";
@@ -44,7 +47,12 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            Book.EditBook(id, TitleTxt.Text, AuthorTxt.Text, DescriptionTxt.Text, Convert.ToInt32(YearTxt.Text.ToString()));
+            Book.EditBook(connectionString, id, TitleTxt.Text, AuthorTxt.Text, DescriptionTxt.Text, Convert.ToInt32(YearTxt.Text));
+            MessageBox.Show("Update successful");
+            TitleTxt.Text = "";
+            AuthorTxt.Text = "";
+            YearTxt.Text = "";
+            DescriptionTxt.Text = "";
         }
 
         private void BookListBtn_Click(object sender, EventArgs e)

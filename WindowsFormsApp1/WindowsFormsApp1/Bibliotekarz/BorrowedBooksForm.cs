@@ -13,13 +13,13 @@ namespace WindowsFormsApp1.Bibliotekarz
     public partial class BorrowedBooksForm : Form
     {
         private int currentLibrarianId;
-        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
 
         public BorrowedBooksForm(int librarianId)
         {
             InitializeComponent();
             currentLibrarianId = librarianId;
-            Book.LoadAllBorrowedBooks(connectionString);
+            LoadBorrowedBooksData();
         }
 
         private void BorrowedBooksForm_Load(object sender, EventArgs e)
@@ -41,11 +41,15 @@ namespace WindowsFormsApp1.Bibliotekarz
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectToReturn"].Value);
                 if(isSelected)
                 {
-                    int bookId = Convert.ToInt32(row.Cells["book_id"].Value);
+                    int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
                     Book.ReturnBook(bookId, connectionString);
                 }
             }
-            Book.LoadAllBorrowedBooks(connectionString);
+            LoadBorrowedBooksData();
+        }
+        private void LoadBorrowedBooksData()
+        {
+            DataGridBorrowed.DataSource = Book.LoadAllBorrowedBooks(connectionString);
         }
     }
 }

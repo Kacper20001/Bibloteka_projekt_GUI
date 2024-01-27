@@ -42,6 +42,7 @@
             this.LibrarianBtn.TabIndex = 0;
             this.LibrarianBtn.Text = "Librarian";
             this.LibrarianBtn.UseVisualStyleBackColor = true;
+            this.LibrarianBtn.Click += new System.EventHandler(this.LibrarianBtn_Click);
             // 
             // LoginBtn
             // 

@@ -29,16 +29,10 @@
         private void InitializeComponent()
         {
             this.DataGridDeleyedBook = new System.Windows.Forms.DataGridView();
-            this.BookId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReaderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TitleBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BorrowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OverdueFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SelectBookCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ReturnBookBtn = new System.Windows.Forms.Button();
             this.BackMenuBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.SelectBookCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridDeleyedBook)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,54 +40,11 @@
             // 
             this.DataGridDeleyedBook.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridDeleyedBook.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BookId,
-            this.ReaderID,
-            this.TitleBook,
-            this.Title,
-            this.BorrowDate,
-            this.OverdueFee,
             this.SelectBookCheck});
             this.DataGridDeleyedBook.Location = new System.Drawing.Point(37, 121);
             this.DataGridDeleyedBook.Name = "DataGridDeleyedBook";
             this.DataGridDeleyedBook.Size = new System.Drawing.Size(738, 150);
             this.DataGridDeleyedBook.TabIndex = 0;
-            // 
-            // BookId
-            // 
-            this.BookId.HeaderText = "BookId";
-            this.BookId.Name = "BookId";
-            // 
-            // ReaderID
-            // 
-            this.ReaderID.HeaderText = "ReaderID";
-            this.ReaderID.Name = "ReaderID";
-            // 
-            // TitleBook
-            // 
-            this.TitleBook.HeaderText = "Title";
-            this.TitleBook.Name = "TitleBook";
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Author";
-            this.Title.Name = "Title";
-            // 
-            // BorrowDate
-            // 
-            this.BorrowDate.HeaderText = "BorrowDAte";
-            this.BorrowDate.Name = "BorrowDate";
-            // 
-            // OverdueFee
-            // 
-            this.OverdueFee.HeaderText = "OverdueFee";
-            this.OverdueFee.Name = "OverdueFee";
-            // 
-            // SelectBookCheck
-            // 
-            this.SelectBookCheck.HeaderText = "Select";
-            this.SelectBookCheck.Name = "SelectBookCheck";
-            this.SelectBookCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SelectBookCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ReturnBookBtn
             // 
@@ -124,6 +75,13 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Deleyed Returns";
             // 
+            // SelectBookCheck
+            // 
+            this.SelectBookCheck.HeaderText = "Select";
+            this.SelectBookCheck.Name = "SelectBookCheck";
+            this.SelectBookCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SelectBookCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // DeleyedReturnsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,13 +105,7 @@
         private System.Windows.Forms.DataGridView DataGridDeleyedBook;
         private System.Windows.Forms.Button ReturnBookBtn;
         private System.Windows.Forms.Button BackMenuBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BookId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReaderID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TitleBook;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OverdueFee;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn SelectBookCheck;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SelectBookCheck;
     }
 }

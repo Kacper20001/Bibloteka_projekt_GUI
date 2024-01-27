@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         {
             int employeeNumber = Convert.ToInt32(EmployeeNumberTxt.Text);
             string password = PasswordTxt.Text;
-            using (SHA256 sha256Hash = SHA256.Create())
+            /*using (SHA256 sha256Hash = SHA256.Create())
             {
                 string passwordHash = HashPasswords.GetHash(sha256Hash, password);
                 Librarian librarian = Librarian.GetLibrarian(employeeNumber, passwordHash);
@@ -37,6 +37,22 @@ namespace WindowsFormsApp1
                 else
                 {
                     MessageBox.Show("Bład logowania. Sprawdź dane logowania");
+                }
+            }*/
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                Librarian librarian = Librarian.GetLibrarian(employeeNumber, password);
+
+                if(librarian != null)
+                {
+                    MessageBox.Show("Logged in successfully");
+                    this.Hide();
+                    LibrarianMenu librarianMenu = new LibrarianMenu(librarian.Id);
+                    librarianMenu.Show();
+                } 
+                else
+                {
+                    MessageBox.Show("Login error. Please check your login credentials.");
                 }
             }
 

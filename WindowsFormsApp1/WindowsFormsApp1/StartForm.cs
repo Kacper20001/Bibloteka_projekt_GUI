@@ -35,5 +35,12 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void LibrarianBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LibrarianLoginForm loginform = new LibrarianLoginForm();
+            loginform.Show();
+        }
     }
 }

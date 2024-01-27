@@ -13,7 +13,7 @@ namespace WindowsFormsApp1.Bibliotekarz
     public partial class DeleyedReturnsForm : Form
     {
         private int currentLibrarianId;
-        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security=True";
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         public DeleyedReturnsForm(int librarianId)
         {
             currentLibrarianId = librarianId;

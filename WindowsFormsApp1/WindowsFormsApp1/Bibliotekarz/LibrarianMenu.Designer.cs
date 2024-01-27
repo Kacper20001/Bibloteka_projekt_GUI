@@ -106,6 +106,7 @@
             this.ReadersManagementBtn.TabIndex = 6;
             this.ReadersManagementBtn.Text = "Readers Management";
             this.ReadersManagementBtn.UseVisualStyleBackColor = true;
+            this.ReadersManagementBtn.Click += new System.EventHandler(this.ReadersManagementBtn_Click);
             // 
             // AddLibrarianBtn
             // 
@@ -115,6 +116,7 @@
             this.AddLibrarianBtn.TabIndex = 7;
             this.AddLibrarianBtn.Text = "Add New Librarian";
             this.AddLibrarianBtn.UseVisualStyleBackColor = true;
+            this.AddLibrarianBtn.Click += new System.EventHandler(this.AddLibrarianBtn_Click);
             // 
             // LibrarainInfoBtn
             // 

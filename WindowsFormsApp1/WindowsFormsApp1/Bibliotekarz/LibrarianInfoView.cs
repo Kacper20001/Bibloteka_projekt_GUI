@@ -15,7 +15,7 @@ namespace WindowsFormsApp1.Bibliotekarz
     public partial class LibrarianInfoView : Form
     {
         private int currentLibrarianId;
-        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
 
         public LibrarianInfoView(int librarianId)
         {
@@ -33,7 +33,7 @@ namespace WindowsFormsApp1.Bibliotekarz
             var librarian = Librarian.GetLibrarianById(currentLibrarianId, connectionString);
             if (librarian != null)
             {
-                EmployeeLoginTxt.Text = librarian.EmployeeLogin.ToString();
+                EmployeeLoginTxt.Text = librarian.EmployeeNumber.ToString();
                 FirstNameTxt.Text = librarian.FirstName;
                 LastNameTxt.Text = librarian.LastName;
                 DateOfBirthTxt.Text = librarian.DateOfBirth.ToString("dd-MM-yyyy");
@@ -57,7 +57,53 @@ namespace WindowsFormsApp1.Bibliotekarz
             LibrarianMenu librarian = new LibrarianMenu(currentLibrarianId);
             librarian.Show();
         }
-        private void UserInfoChangePassword_Click(object sender, EventArgs e)
+    
+        private bool ValidateNewPassword()
+        {
+            if (NewPasswordTxt.Text != ConfirmNewPasswordTxt.Text)
+            {
+                MessageBox.Show("passwords are not the same");
+                return false;
+            }
+            if (NewPasswordTxt.Text.Length < 6)
+            {
+                MessageBox.Show("Password is too short.");
+                return false;
+            }
+            return true;
+        }
+        private bool IsCurrentPasswordValid(string currentPasswordHash)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT Password FROM Librarians WHERE EmployeeID = @LibrarianId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LibrarianId", currentLibrarianId);
+                    connection.Open();
+                    string storedPasswordHash = command.ExecuteScalar() as string;
+                    return storedPasswordHash == currentPasswordHash;
+                }
+            }
+        }
+        private void UpdatePasswordInDatabase(string newPasswordHash)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string updateQuery = "UPDATE Librarians SET Password = @NewPassword WHERE EmployeeId = @LibrarianID";
+                {
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@NewPassword", newPasswordHash);
+                        command.Parameters.AddWithValue("@LibrarianId", currentLibrarianId);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+       /* private void ChangePasswordBtn_Click(object sender, EventArgs e)
         {
             if (!ValidateNewPassword())
             {
@@ -78,50 +124,22 @@ namespace WindowsFormsApp1.Bibliotekarz
 
             UpdatePasswordInDatabase(newPasswordHash);
             MessageBox.Show("Password has been changed.");
-        }
-        private bool ValidateNewPassword()
+        }*/ // ta  jest z szyfrowankiem 
+        private void ChangePasswordBtn_Click(object sender, EventArgs e)
         {
-            if (NewPasswordTxt.Text != ConfirmNewPasswordTxt.Text)
+            if (!ValidateNewPassword())
             {
-                MessageBox.Show("passwords are not the same");
-                return false;
+                return;
             }
-            if (NewPasswordTxt.Text.Length < 6)
+       
+            if (!IsCurrentPasswordValid(PasswordTxt.Text))
             {
-                MessageBox.Show("Password is too short.");
-                return false;
+                MessageBox.Show("The current password is incorrect.");
+                return;
             }
-            return true;
-        }
-        private bool IsCurrentPasswordValid(string currentPasswordHash)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT Password FROM Librarians WHERE ID = @LibrarianId";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@LibrarianId", currentLibrarianId);
-                    connection.Open();
-                    string storedPasswordHash = command.ExecuteScalar() as string;
-                    return storedPasswordHash == currentPasswordHash;
-                }
-            }
-        }
-        private void UpdatePasswordInDatabase(string newPasswordHash)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string updateQuery = "UPDATE Librarians SET Password = @NewPassword WHERE Id = @LibrarianID";
-                {
-                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
-                    {
-                        command.Parameters.AddWithValue("@NewPassword", newPasswordHash);
-                        command.Parameters.AddWithValue("@LibrarianId", currentLibrarianId);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
+
+            UpdatePasswordInDatabase(NewPasswordTxt.Text);
+            MessageBox.Show("Password has been changed.");
         }
     }
 }

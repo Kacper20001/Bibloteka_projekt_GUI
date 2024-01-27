@@ -306,6 +306,7 @@
             this.BackToStartBtn.TabIndex = 61;
             this.BackToStartBtn.Text = "Back to Start";
             this.BackToStartBtn.UseVisualStyleBackColor = true;
+            this.BackToStartBtn.Click += new System.EventHandler(this.BackToStartBtn_Click);
             // 
             // isterLibrarianForm
             // 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using System.Transactions;
 
 namespace WindowsFormsApp1
 {
@@ -100,13 +101,13 @@ namespace WindowsFormsApp1
                 string query;
                 if (string.IsNullOrEmpty(searchTerm))
                 {
-                    query = "SELECT ReaderId, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
-                               "FROM Readers";
+                    query = @"SELECT ReaderId, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country
+                               FROM Readers";
                 }
                 else
                 {
-                    query = "SELECT ReaderId, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country" +
-                               "FROM Readers WHERE FirstName LIKE @SearchTerm OR @LastName LIKE @SearchTerm OR @ReaderId LIKE @SearchTerm";
+                    query = @"SELECT ReaderId, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country 
+                               FROM Readers WHERE FirstName LIKE @SearchTerm OR @LastName LIKE @SearchTerm OR @ReaderId LIKE @SearchTerm";
                 }
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -125,12 +126,30 @@ namespace WindowsFormsApp1
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Readers WHERE Readerid = @id";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                connection.Open(); 
+
+                // Ustawienie książek jako dostępne
+                string updateBooksQuery = "UPDATE Books SET Availability = 1 WHERE BookId IN (SELECT BookId FROM Borrows WHERE ReaderId = @ReaderId)";
+                using (SqlCommand updateBooksCommand = new SqlCommand(updateBooksQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@id", id);
-                    connection.Open();
-                    int affectedRows = command.ExecuteNonQuery();
+                    updateBooksCommand.Parameters.AddWithValue("@ReaderId", id);
+                    updateBooksCommand.ExecuteNonQuery();
+                }
+
+                // Usunięcie wypożyczeń czytelnika
+                string deleteBorrowsQuery = "DELETE FROM Borrows WHERE ReaderId = @ReaderId";
+                using (SqlCommand deleteBorrowsCommand = new SqlCommand(deleteBorrowsQuery, connection))
+                {
+                    deleteBorrowsCommand.Parameters.AddWithValue("@ReaderId", id);
+                    deleteBorrowsCommand.ExecuteNonQuery();
+                }
+
+                // Usunięcie czytelnika
+                string deleteReaderQuery = "DELETE FROM Readers WHERE ReaderId = @ReaderId";
+                using (SqlCommand deleteReaderCommand = new SqlCommand(deleteReaderQuery, connection))
+                {
+                    deleteReaderCommand.Parameters.AddWithValue("@ReaderId", id);
+                    int affectedRows = deleteReaderCommand.ExecuteNonQuery();
                     if (affectedRows == 0)
                     {
                         MessageBox.Show("No Reader found with the given ID.");
@@ -140,8 +159,11 @@ namespace WindowsFormsApp1
                         MessageBox.Show("Reader deleted successfully.");
                     }
                 }
+
+                connection.Close(); // Zamknięcie połączenia
             }
         }
+
 
     }
 }

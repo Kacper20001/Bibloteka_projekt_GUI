@@ -51,7 +51,7 @@ namespace WindowsFormsApp1
                     Book.BorrowBook(currentReaderId, bookId);
                 }
             }
-            LoadBooks(connectionString);
+            LoadBooks();
         }
         public void LoadBooks(string searchTerm = "")
         {

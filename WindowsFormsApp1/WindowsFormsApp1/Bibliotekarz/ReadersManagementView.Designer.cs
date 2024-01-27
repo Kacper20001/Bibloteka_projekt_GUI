@@ -33,17 +33,6 @@
             this.SrcReaderstxt = new System.Windows.Forms.TextBox();
             this.ReaderDataGrid = new System.Windows.Forms.DataGridView();
             this.DeleteBtn = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateOfBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Street = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HouseNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PostalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelectCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ReaderDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -79,19 +68,8 @@
             // 
             this.ReaderDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ReaderDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.FirstName,
-            this.LastName,
-            this.DateOfBirth,
-            this.Email,
-            this.PhoneNumber,
-            this.Street,
-            this.City,
-            this.HouseNumber,
-            this.PostalCode,
-            this.Country,
             this.SelectCheckbox});
-            this.ReaderDataGrid.Location = new System.Drawing.Point(2, 118);
+            this.ReaderDataGrid.Location = new System.Drawing.Point(12, 118);
             this.ReaderDataGrid.Name = "ReaderDataGrid";
             this.ReaderDataGrid.Size = new System.Drawing.Size(1224, 150);
             this.ReaderDataGrid.TabIndex = 8;
@@ -105,61 +83,6 @@
             this.DeleteBtn.Text = "Delete Reader";
             this.DeleteBtn.UseVisualStyleBackColor = true;
             this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "FirstName";
-            this.FirstName.Name = "FirstName";
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "LastName";
-            this.LastName.Name = "LastName";
-            // 
-            // DateOfBirth
-            // 
-            this.DateOfBirth.HeaderText = "DateOfBirth";
-            this.DateOfBirth.Name = "DateOfBirth";
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.HeaderText = "PhoneNumber";
-            this.PhoneNumber.Name = "PhoneNumber";
-            // 
-            // Street
-            // 
-            this.Street.HeaderText = "Street";
-            this.Street.Name = "Street";
-            // 
-            // City
-            // 
-            this.City.HeaderText = "City";
-            this.City.Name = "City";
-            // 
-            // HouseNumber
-            // 
-            this.HouseNumber.HeaderText = "HouseNumber";
-            this.HouseNumber.Name = "HouseNumber";
-            // 
-            // PostalCode
-            // 
-            this.PostalCode.HeaderText = "PostalCode";
-            this.PostalCode.Name = "PostalCode";
-            // 
-            // Country
-            // 
-            this.Country.HeaderText = "Country";
-            this.Country.Name = "Country";
             // 
             // SelectCheckbox
             // 
@@ -190,17 +113,6 @@
         private System.Windows.Forms.TextBox SrcReaderstxt;
         private System.Windows.Forms.DataGridView ReaderDataGrid;
         private System.Windows.Forms.Button DeleteBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateOfBirth;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Street;
-        private System.Windows.Forms.DataGridViewTextBoxColumn City;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HouseNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PostalCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Country;
         private System.Windows.Forms.DataGridViewCheckBoxColumn SelectCheckbox;
     }
 }

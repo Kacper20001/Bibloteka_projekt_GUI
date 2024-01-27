@@ -14,11 +14,13 @@ namespace WindowsFormsApp1.Bibliotekarz
 {
     public partial class isterLibrarianForm : Form
     {
-        public isterLibrarianForm()
+        private int currentLibrarianId;
+        public isterLibrarianForm(int librarianId)
         {
+            currentLibrarianId = librarianId;
             InitializeComponent();
         }
-        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;InitialCatalog=LibraryDB;Integrated Security = True";
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
 
         private void SubmitBtn_Click(object sender, EventArgs e)
         {
@@ -39,7 +41,7 @@ namespace WindowsFormsApp1.Bibliotekarz
 
             StringBuilder sb = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
+            /*if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
                 sb.AppendLine("Hasło jest wymagane i musi mieć co najmniej 6 znaków.");
 
             if (password != confirmPassword)
@@ -52,29 +54,43 @@ namespace WindowsFormsApp1.Bibliotekarz
             {
                 MessageBox.Show(sb.ToString(), "Błędy walidacji", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-            else
+            }*/
+            /*else
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
-                    string passwordHash = HashPasswords.GetHash(sha256Hash, password);
+                    string passwordHash = HashPasswords.GetHash(sha256Hash, password);*/
 
+                  /*  Address address = new Address(street, houseNumber, postalCode, city, country);
+                    Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);*/
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);
-                    SaveLibrarianInDatabese(librarian);
-                }
-            }
+                    SaveLibrarianInDatabase(librarian);
+              /*  }
+            }*/
         }
-        private void SaveLibrarianInDatabese(Librarian librarian)
+        private void SaveLibrarianInDatabase(Librarian librarian)
         {
-            //string insertDataQuery = "INSERT INTO Librarian (Id, EmploeeLogin, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) " + $"VALUES ('{librarian.Id}' ,'{librarian.EmployeeLogin}', '{librarian.Password}', '{librarian.FirstName}', '{librarian.LastName}', '{librarian.DateOfBirth}', '{librarian.Email}', '{librarian.PhoneNumber}', '{librarian.Address.Street}', '{librarian.Address.City}', '{librarian.Address.HouseNumber}', '{librarian.Address.PostalCode}', '{librarian.Address.Country}')";
-            string insertDataQuery = "INSERT INTO Librarian (Id, EmploeeLogin, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber) " + $"VALUES ('{librarian.Id}' ,'{librarian.EmployeeLogin}', '{librarian.Password}', '{librarian.FirstName}', '{librarian.LastName}', '{librarian.DateOfBirth}', '{librarian.Email}', '{librarian.PhoneNumber}'";
+            string insertDataQuery = "INSERT INTO Librarians (EmployeeNumber, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) VALUES (@EmployeeNumber, @Password, @FirstName, @LastName, @DateOfBirth, @Email, @PhoneNumber, @Street, @City, @HouseNumber, @PostalCode, @Country)";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
             {
                 connection.Open();
                 using (SqlCommand insertDataCommand = new SqlCommand(insertDataQuery, connection))
                 {
+                    insertDataCommand.Parameters.AddWithValue("@EmployeeNumber", librarian.EmployeeNumber);
+                    insertDataCommand.Parameters.AddWithValue("@Password", librarian.Password);
+                    insertDataCommand.Parameters.AddWithValue("@FirstName", librarian.FirstName);
+                    insertDataCommand.Parameters.AddWithValue("@LastName", librarian.LastName);
+                    insertDataCommand.Parameters.AddWithValue("@DateOfBirth", librarian.DateOfBirth);
+                    insertDataCommand.Parameters.AddWithValue("@Email", librarian.Email);
+                    insertDataCommand.Parameters.AddWithValue("@PhoneNumber", librarian.PhoneNumber);
+                    insertDataCommand.Parameters.AddWithValue("@Street", librarian.Address.Street);
+                    insertDataCommand.Parameters.AddWithValue("@City", librarian.Address.City);
+                    insertDataCommand.Parameters.AddWithValue("@HouseNumber", librarian.Address.HouseNumber);
+                    insertDataCommand.Parameters.AddWithValue("@PostalCode", librarian.Address.PostalCode);
+                    insertDataCommand.Parameters.AddWithValue("@Country", librarian.Address.Country);
+
                     try
                     {
                         insertDataCommand.ExecuteNonQuery();
@@ -89,7 +105,6 @@ namespace WindowsFormsApp1.Bibliotekarz
                         MessageBox.Show($"Błąd przy dodawaniu danych: {ex.Message}");
                     }
                 }
-
             }
         }
 
@@ -108,6 +123,13 @@ namespace WindowsFormsApp1.Bibliotekarz
             HouseNumberTxt.Text = "";
             PostalCodeTxt.Text = "";
             CountryTxt.Text = "";
+        }
+
+        private void BackToStartBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
+            librarianMenu.Show();
         }
     }
 }

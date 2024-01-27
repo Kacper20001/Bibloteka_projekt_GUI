@@ -78,6 +78,7 @@
             this.ChangePasswordBtn.TabIndex = 72;
             this.ChangePasswordBtn.Text = "Change Password";
             this.ChangePasswordBtn.UseVisualStyleBackColor = true;
+            this.ChangePasswordBtn.Click += new System.EventHandler(this.ChangePasswordBtn_Click);
             // 
             // ConfirmNewPasswordTxt
             // 
