@@ -8,11 +8,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1
 {
     public partial class LibrarianLoginForm : Form
     {
+        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         public LibrarianLoginForm()
         {
             InitializeComponent();
@@ -20,12 +23,13 @@ namespace WindowsFormsApp1
 
         private void SubmitLogin_Click(object sender, EventArgs e)
         {
+            ILibrarianHandle librarianHandle = new LibrarianHandle();
             int employeeNumber = Convert.ToInt32(EmployeeNumberTxt.Text);
             string password = PasswordTxt.Text;
             /*using (SHA256 sha256Hash = SHA256.Create())
             {
                 string passwordHash = HashPasswords.GetHash(sha256Hash, password);
-                Librarian librarian = Librarian.GetLibrarian(employeeNumber, passwordHash);
+                Librarian librarian = librarianHandle.GetLibrarian(employeeNumber, passwordHash);
 
                 if(librarian != null)
                 {
@@ -41,7 +45,7 @@ namespace WindowsFormsApp1
             }*/
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                Librarian librarian = Librarian.GetLibrarian(employeeNumber, password);
+                Librarian librarian = librarianHandle.GetLibrarian(employeeNumber, password, connectionString);
 
                 if(librarian != null)
                 {

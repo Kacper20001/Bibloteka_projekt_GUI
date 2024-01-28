@@ -14,8 +14,6 @@ namespace WindowsFormsApp1
     public partial class LibrarianMenu : Form
     {
         private int currentLibrarianId;
-        string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
-
         public LibrarianMenu(int librarianId)
         {
             currentLibrarianId = librarianId;
@@ -82,6 +80,13 @@ namespace WindowsFormsApp1
             this.Hide();
             isterLibrarianForm isterLibrarianForm = new isterLibrarianForm(currentLibrarianId);
             isterLibrarianForm.Show();
+        }
+
+        private void LibrariansListBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LibrarianListForm librarianList = new LibrarianListForm(currentLibrarianId);
+            librarianList.Show();
         }
     }
 }

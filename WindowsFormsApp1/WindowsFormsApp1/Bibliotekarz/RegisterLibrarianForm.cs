@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz
 {
@@ -61,53 +63,19 @@ namespace WindowsFormsApp1.Bibliotekarz
                 {
                     string passwordHash = HashPasswords.GetHash(sha256Hash, password);*/
 
-                  /*  Address address = new Address(street, houseNumber, postalCode, city, country);
-                    Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);*/
+            /*  Address address = new Address(street, houseNumber, postalCode, city, country);
+              Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);*/
+                    ILibrarianHandle librarianHandle = new LibrarianHandle();
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);
-                    SaveLibrarianInDatabase(librarian);
-              /*  }
-            }*/
+                    librarianHandle.SaveLibrarianInDatabase(librarian,connectionString);
+                    ClearBtn_Click(this, EventArgs.Empty);
+                    /*this.Hide();
+                    StartForm startForm = new StartForm();
+                    startForm.Show();*/
+            /*  }
+          }*/
         }
-        private void SaveLibrarianInDatabase(Librarian librarian)
-        {
-            string insertDataQuery = "INSERT INTO Librarians (EmployeeNumber, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) VALUES (@EmployeeNumber, @Password, @FirstName, @LastName, @DateOfBirth, @Email, @PhoneNumber, @Street, @City, @HouseNumber, @PostalCode, @Country)";
-
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
-            {
-                connection.Open();
-                using (SqlCommand insertDataCommand = new SqlCommand(insertDataQuery, connection))
-                {
-                    insertDataCommand.Parameters.AddWithValue("@EmployeeNumber", librarian.EmployeeNumber);
-                    insertDataCommand.Parameters.AddWithValue("@Password", librarian.Password);
-                    insertDataCommand.Parameters.AddWithValue("@FirstName", librarian.FirstName);
-                    insertDataCommand.Parameters.AddWithValue("@LastName", librarian.LastName);
-                    insertDataCommand.Parameters.AddWithValue("@DateOfBirth", librarian.DateOfBirth);
-                    insertDataCommand.Parameters.AddWithValue("@Email", librarian.Email);
-                    insertDataCommand.Parameters.AddWithValue("@PhoneNumber", librarian.PhoneNumber);
-                    insertDataCommand.Parameters.AddWithValue("@Street", librarian.Address.Street);
-                    insertDataCommand.Parameters.AddWithValue("@City", librarian.Address.City);
-                    insertDataCommand.Parameters.AddWithValue("@HouseNumber", librarian.Address.HouseNumber);
-                    insertDataCommand.Parameters.AddWithValue("@PostalCode", librarian.Address.PostalCode);
-                    insertDataCommand.Parameters.AddWithValue("@Country", librarian.Address.Country);
-
-                    try
-                    {
-                        insertDataCommand.ExecuteNonQuery();
-                        MessageBox.Show("Pomyślnie zarejestrowano");
-                        ClearBtn_Click(this, EventArgs.Empty);
-                        this.Hide();
-                        StartForm startForm = new StartForm();
-                        startForm.Show();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Błąd przy dodawaniu danych: {ex.Message}");
-                    }
-                }
-            }
-        }
-
         private void ClearBtn_Click(object sender, EventArgs e)
         {
             LoginTxt.Text = "";

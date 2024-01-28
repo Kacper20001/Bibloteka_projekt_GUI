@@ -208,6 +208,12 @@
     <Compile Include="Bibliotekarz\LibrarianInfoView.Designer.cs">
       <DependentUpon>LibrarianInfoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bibliotekarz\LibrarianListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\LibrarianListForm.Designer.cs">
+      <DependentUpon>LibrarianListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bibliotekarz\ReadersManagementView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,7 @@
     <Compile Include="Interfejsy\IBook.cs" />
     <Compile Include="Interfejsy\IBookHandle.cs" />
     <Compile Include="Interfejsy\IBorrowBookHandle.cs" />
+    <Compile Include="Interfejsy\ILibrarianHandle.cs" />
     <Compile Include="Interfejsy\IOverdueBook.cs" />
     <Compile Include="Interfejsy\IPerson.cs" />
     <Compile Include="Interfejsy\IReaderHandle.cs" />
@@ -238,6 +245,7 @@
     <Compile Include="Klasy\BookHandle.cs" />
     <Compile Include="Klasy\BorrowBookHandle.cs" />
     <Compile Include="Klasy\HandlePassword.cs" />
+    <Compile Include="Klasy\LibrarianHandle.cs" />
     <Compile Include="Klasy\OverdueBookHandle.cs" />
     <Compile Include="Klasy\ReaderHandle.cs" />
     <Compile Include="Użytkownik\Form1.cs">
@@ -326,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\LibrarianInfoView.resx">
       <DependentUpon>LibrarianInfoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\LibrarianListForm.resx">
+      <DependentUpon>LibrarianListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\ReadersManagementView.resx">
       <DependentUpon>ReadersManagementView.cs</DependentUpon>

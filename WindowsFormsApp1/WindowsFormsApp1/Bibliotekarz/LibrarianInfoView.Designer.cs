@@ -58,6 +58,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.DeleteAccountBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BackToMenubtn
@@ -304,11 +306,33 @@
             this.label7.TabIndex = 44;
             this.label7.Text = "Date of birth";
             // 
+            // UpdateBtn
+            // 
+            this.UpdateBtn.Location = new System.Drawing.Point(235, 398);
+            this.UpdateBtn.Name = "UpdateBtn";
+            this.UpdateBtn.Size = new System.Drawing.Size(75, 23);
+            this.UpdateBtn.TabIndex = 74;
+            this.UpdateBtn.Text = "Update";
+            this.UpdateBtn.UseVisualStyleBackColor = true;
+            this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
+            // 
+            // DeleteAccountBtn
+            // 
+            this.DeleteAccountBtn.Location = new System.Drawing.Point(524, 378);
+            this.DeleteAccountBtn.Name = "DeleteAccountBtn";
+            this.DeleteAccountBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteAccountBtn.TabIndex = 75;
+            this.DeleteAccountBtn.Text = "Delete Account";
+            this.DeleteAccountBtn.UseVisualStyleBackColor = true;
+            this.DeleteAccountBtn.Click += new System.EventHandler(this.DeleteAccountBtn_Click);
+            // 
             // LibrarianInfoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteAccountBtn);
+            this.Controls.Add(this.UpdateBtn);
             this.Controls.Add(this.BackToMenubtn);
             this.Controls.Add(this.ChangePasswordBtn);
             this.Controls.Add(this.ConfirmNewPasswordTxt);
@@ -379,5 +403,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button UpdateBtn;
+        private System.Windows.Forms.Button DeleteAccountBtn;
     }
 }

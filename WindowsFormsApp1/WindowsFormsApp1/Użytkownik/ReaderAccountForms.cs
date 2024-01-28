@@ -71,7 +71,9 @@ namespace WindowsFormsApp1
 
             UpdatePasswordInDatabase(newPasswordHash);
             MessageBox.Show("Hasło zostało zmienione.");
-
+            UserInfoPassword.Text = "";
+            UserInfoNewPassword.Text = "";
+            UserInfoConfirmNewPassord.Text = "";
         }
         private bool ValidateNewPassword(string newPasswordHash, string ConfirmNewPasswordHash)
         {

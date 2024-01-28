@@ -37,6 +37,7 @@
             this.ReadersManagementBtn = new System.Windows.Forms.Button();
             this.AddLibrarianBtn = new System.Windows.Forms.Button();
             this.LibrarainInfoBtn = new System.Windows.Forms.Button();
+            this.LibrariansListBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -128,11 +129,22 @@
             this.LibrarainInfoBtn.UseVisualStyleBackColor = true;
             this.LibrarainInfoBtn.Click += new System.EventHandler(this.LibrarainInfoBtn_Click);
             // 
+            // LibrariansListBtn
+            // 
+            this.LibrariansListBtn.Location = new System.Drawing.Point(52, 318);
+            this.LibrariansListBtn.Name = "LibrariansListBtn";
+            this.LibrariansListBtn.Size = new System.Drawing.Size(123, 92);
+            this.LibrariansListBtn.TabIndex = 9;
+            this.LibrariansListBtn.Text = "Librarians List";
+            this.LibrariansListBtn.UseVisualStyleBackColor = true;
+            this.LibrariansListBtn.Click += new System.EventHandler(this.LibrariansListBtn_Click);
+            // 
             // LibrarianMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LibrariansListBtn);
             this.Controls.Add(this.LibrarainInfoBtn);
             this.Controls.Add(this.AddLibrarianBtn);
             this.Controls.Add(this.ReadersManagementBtn);
@@ -161,5 +173,6 @@
         private System.Windows.Forms.Button ReadersManagementBtn;
         private System.Windows.Forms.Button AddLibrarianBtn;
         private System.Windows.Forms.Button LibrarainInfoBtn;
+        private System.Windows.Forms.Button LibrariansListBtn;
     }
 }
