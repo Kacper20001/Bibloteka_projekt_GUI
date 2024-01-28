@@ -61,51 +61,6 @@ namespace WindowsFormsApp1.Bibliotekarz
             LibrarianMenu librarian = new LibrarianMenu(currentLibrarianId);
             librarian.Show();
         }
-    
-        private bool ValidateNewPassword()
-        {
-            if (NewPasswordTxt.Text != ConfirmNewPasswordTxt.Text)
-            {
-                MessageBox.Show("passwords are not the same");
-                return false;
-            }
-            if (NewPasswordTxt.Text.Length < 6)
-            {
-                MessageBox.Show("Password is too short.");
-                return false;
-            }
-            return true;
-        }
-        private bool IsCurrentPasswordValid(string currentPasswordHash)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT Password FROM Librarians WHERE EmployeeID = @LibrarianId";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@LibrarianId", currentLibrarianId);
-                    connection.Open();
-                    string storedPasswordHash = command.ExecuteScalar() as string;
-                    return storedPasswordHash == currentPasswordHash;
-                }
-            }
-        }
-        private void UpdatePasswordInDatabase(string newPasswordHash)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string updateQuery = "UPDATE Librarians SET Password = @NewPassword WHERE EmployeeId = @LibrarianID";
-                {
-                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
-                    {
-                        command.Parameters.AddWithValue("@NewPassword", newPasswordHash);
-                        command.Parameters.AddWithValue("@LibrarianId", currentLibrarianId);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
 
        /* private void ChangePasswordBtn_Click(object sender, EventArgs e)
         {
@@ -128,21 +83,22 @@ namespace WindowsFormsApp1.Bibliotekarz
 
             UpdatePasswordInDatabase(newPasswordHash);
             MessageBox.Show("Password has been changed.");
-        }*/ // ta  jest z szyfrowankiem 
+        }*/ // ta  jest z szyfrowankiem zrobic tak jak na dole z obsluzeniem 
         private void ChangePasswordBtn_Click(object sender, EventArgs e)
         {
-            if (!ValidateNewPassword())
+            if (!HandlePassword.ValidateNewPassword(NewPasswordTxt.Text, ConfirmNewPasswordTxt.Text))
             {
                 return;
             }
-       
-            if (!IsCurrentPasswordValid(PasswordTxt.Text))
+            string query = "SELECT Password FROM Librarians WHERE EmployeeID = @Id";
+            if (!HandlePassword.IsCurrentPasswordValid(query, currentLibrarianId, PasswordTxt.Text, connectionString))
             {
                 MessageBox.Show("The current password is incorrect.");
                 return;
             }
+            string updateQuery = "UPDATE Librarians SET Password = @NewPassword WHERE EmployeeId = @Id";
 
-            UpdatePasswordInDatabase(NewPasswordTxt.Text);
+            HandlePassword.UpdatePasswordInDatabase(updateQuery, currentLibrarianId, NewPasswordTxt.Text, connectionString);
             MessageBox.Show("Password has been changed.");
             PasswordTxt.Text = "";
             NewPasswordTxt.Text = "";

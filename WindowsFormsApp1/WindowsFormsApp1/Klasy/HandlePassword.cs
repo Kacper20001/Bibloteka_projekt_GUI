@@ -11,15 +11,8 @@ namespace WindowsFormsApp1.Klasy
 {
     internal class HandlePassword
     {
-        private string connectionString;
-        private int currentId;
-
-        public HandlePassword( string connectionString, int currentId )
-        {
-            this.connectionString = connectionString;
-            this.currentId = currentId;
-        }
-        public bool ValidateNewPassword(string newPassword, string confirmNewPassword)
+              
+        public static bool ValidateNewPassword(string newPassword, string confirmNewPassword)
         {
             if (newPassword != confirmNewPassword)
             {
@@ -34,14 +27,14 @@ namespace WindowsFormsApp1.Klasy
             return true;
         }
 
-        public bool IsCurrentPasswordValid(string currentPasswordHash)
+        public static bool IsCurrentPasswordValid(string query, int currentId, string currentPasswordHash, string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT Password FROM Readers WHERE ID = @Id";
+                //string query = "SELECT Password FROM Readers WHERE ID = @Id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@RId", currentId);
+                    command.Parameters.AddWithValue("@Id", currentId);   //Pamiętać, przy tworzeniu zapytania o użyciu "@Id"
                     connection.Open();
                     string storedPasswordHash = command.ExecuteScalar() as string;
                     return storedPasswordHash == currentPasswordHash;
@@ -49,16 +42,16 @@ namespace WindowsFormsApp1.Klasy
             }
         }
 
-        public void UpdatePasswordInDatabase(string newPasswordHash)
+        public static void UpdatePasswordInDatabase(string updateQuery, int currentId, string newPasswordHash, string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE Id = @ID";
+                //string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE Id = @ID";
                 {
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@NewPassword", newPasswordHash);
-                        command.Parameters.AddWithValue("@Id", currentId);
+                        command.Parameters.AddWithValue("@NewPassword", newPasswordHash); //Pamiętać przy tworzeiu zaoytania o użyciu "@NewPassword"
+                        command.Parameters.AddWithValue("@Id", currentId); //Pamiętać przy tworzeiu zaoytania o użyciu "@Id"
                         connection.Open();
                         command.ExecuteNonQuery();
                     }

@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\WindowsFormsApp1",
-    "\\WindowsFormsApp1\\WindowsFormsApp1"
+    "\\WindowsFormsApp1\\WindowsFormsApp1",
+    "\\WindowsFormsApp1\\WindowsFormsApp1\\Bibliotekarz"
   ],
-  "SelectedNode": "\\WindowsFormsApp1\\WindowsFormsApp1\\WindowsFormsApp1.csproj",
+  "SelectedNode": "\\WindowsFormsApp1\\WindowsFormsApp1\\Bibliotekarz\\BookManagementView.cs",
   "PreviewInSolutionExplorer": false
 }

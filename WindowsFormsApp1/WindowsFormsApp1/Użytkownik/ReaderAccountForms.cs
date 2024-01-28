@@ -50,75 +50,32 @@ namespace WindowsFormsApp1
             currentPasswordHash = UserInfoPassword.Text;
             newPasswordHash = UserInfoNewPassword.Text;
             ConfirmNewPasswordHash = UserInfoConfirmNewPassord.Text;
-            if (!ValidateNewPassword(newPasswordHash, ConfirmNewPasswordHash))
+            if (!HandlePassword.ValidateNewPassword(newPasswordHash, ConfirmNewPasswordHash))
             {
                 return;
             }
-            
+
             /*{using (SHA256 sha256Hash = SHA256.Create())
             
                 currentPasswordHash = HashPasswords.GetHash(sha256Hash, UserInfoPassword.Text);
                 newPasswordHash = HashPasswords.GetHash(sha256Hash, UserInfoNewPassword.Text);
             }*/   //hashowane
 
-            
 
-            if (!IsCurrentPasswordValid(currentPasswordHash))
+            string query = "SELECT Password FROM Readers WHERE ReaderId = @Id";
+            if (!HandlePassword.IsCurrentPasswordValid(query, currentReaderId, currentPasswordHash, connectionString))
             {
                 MessageBox.Show("Obecne hasło jest niepoprawne.");
                 return;
             }
-
-            UpdatePasswordInDatabase(newPasswordHash);
+            string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE ReaderId = @Id";
+            HandlePassword.UpdatePasswordInDatabase(updateQuery, currentReaderId, newPasswordHash, connectionString);
             MessageBox.Show("Hasło zostało zmienione.");
             UserInfoPassword.Text = "";
             UserInfoNewPassword.Text = "";
             UserInfoConfirmNewPassord.Text = "";
         }
-        private bool ValidateNewPassword(string newPasswordHash, string ConfirmNewPasswordHash)
-        {
-            if (newPasswordHash != ConfirmNewPasswordHash)
-            {
-                MessageBox.Show("passwords are not the same");
-                return false;
-            }
-            if (UserInfoNewPassword.Text.Length < 6)
-            {
-                MessageBox.Show("Password is too short.");
-                return false;
-            }
-            return true;
-        }
-        private bool IsCurrentPasswordValid(string currentPasswordHash)
-        {
-            using(SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT Password FROM Readers WHERE ReaderId = @ReaderId";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ReaderId", currentReaderId);
-                    connection.Open();
-                    string storedPasswordHash = command.ExecuteScalar() as string;
-                    return storedPasswordHash == currentPasswordHash;
-                }
-            }
-        }
-        private void UpdatePasswordInDatabase(string newPasswordHash)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE ReaderId = @ReaderID";
-                {
-                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
-                    {
-                        command.Parameters.AddWithValue("@NewPassword", newPasswordHash);
-                        command.Parameters.AddWithValue("@ReaderId", currentReaderId);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
+
         private void LoadReaderData()
         {
             IReaderHandle readerHandle = new ReaderHandle();
