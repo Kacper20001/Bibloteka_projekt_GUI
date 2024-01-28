@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
 
         private void SubmitLogin_Click(object sender, EventArgs e)
         {
-            ILibrarianHandle librarianHandle = new LibrarianHandle();
+            ILibrarianHandle librarianHandle = new LibrarianHandle(connectionString);
             int employeeNumber = Convert.ToInt32(EmployeeNumberTxt.Text);
             string password = PasswordTxt.Text;
             /*using (SHA256 sha256Hash = SHA256.Create())
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             }*/
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                Librarian librarian = librarianHandle.GetLibrarian(employeeNumber, password, connectionString);
+                Librarian librarian = librarianHandle.GetLibrarian(employeeNumber, password);
 
                 if(librarian != null)
                 {

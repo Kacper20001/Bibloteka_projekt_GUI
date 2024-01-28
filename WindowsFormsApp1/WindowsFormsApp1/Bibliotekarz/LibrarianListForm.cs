@@ -39,8 +39,8 @@ namespace WindowsFormsApp1.Bibliotekarz
         }
         public void LoadLibrariansData(string connectionString, string searchTerm = "")
         {
-            ILibrarianHandle librarianHandle = new LibrarianHandle();
-            LibrariansDataGrid.DataSource = librarianHandle.LoadLibrarians(connectionString, searchTerm);
+            ILibrarianHandle librarianHandle = new LibrarianHandle(connectionString);
+            LibrariansDataGrid.DataSource = librarianHandle.LoadLibrarians(searchTerm);
         }
     }
 }

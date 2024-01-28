@@ -65,10 +65,10 @@ namespace WindowsFormsApp1.Bibliotekarz
 
             /*  Address address = new Address(street, houseNumber, postalCode, city, country);
               Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);*/
-                    ILibrarianHandle librarianHandle = new LibrarianHandle();
+                    ILibrarianHandle librarianHandle = new LibrarianHandle(connectionString);
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     Librarian librarian = new Librarian(password, firstName, lastName, dateOfBirth, phoneNumber, email, address, employeeNumber);
-                    librarianHandle.SaveLibrarianInDatabase(librarian,connectionString);
+                    librarianHandle.SaveLibrarianInDatabase(librarian);
                     ClearBtn_Click(this, EventArgs.Empty);
                     /*this.Hide();
                     StartForm startForm = new StartForm();

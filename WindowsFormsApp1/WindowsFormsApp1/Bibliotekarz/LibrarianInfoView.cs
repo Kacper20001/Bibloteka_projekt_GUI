@@ -35,8 +35,8 @@ namespace WindowsFormsApp1.Bibliotekarz
         }
         private void LoadLibrarianData()
         {
-            ILibrarianHandle librarianHandle = new LibrarianHandle();
-            var librarian = librarianHandle.GetLibrarianById(currentLibrarianId, connectionString);
+            ILibrarianHandle librarianHandle = new LibrarianHandle(connectionString);
+            var librarian = librarianHandle.GetLibrarianById(currentLibrarianId);
             if (librarian != null)
             {
                 EmployeeLoginTxt.Text = librarian.EmployeeNumber.ToString();
@@ -109,16 +109,16 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            ILibrarianHandle librarianHandle = new LibrarianHandle();
-            librarianHandle.EditLibrarian(connectionString, currentLibrarianId, LastNameTxt.Text, PhoneNumberTxt.Text, StreetTxt.Text, HouseNumberTxt.Text, PostalCodeTxt.Text, CityTxt.Text, CountryTxt.Text);
+            ILibrarianHandle librarianHandle = new LibrarianHandle(connectionString);
+            librarianHandle.EditLibrarian(currentLibrarianId, LastNameTxt.Text, PhoneNumberTxt.Text, StreetTxt.Text, HouseNumberTxt.Text, PostalCodeTxt.Text, CityTxt.Text, CountryTxt.Text);
             MessageBox.Show("Update successful");
             LoadLibrarianData();
         }
 
         private void DeleteAccountBtn_Click(object sender, EventArgs e)
         {
-            ILibrarianHandle librarianHandle = new LibrarianHandle();
-            librarianHandle.DeleteLibrarian(currentLibrarianId, connectionString);
+            ILibrarianHandle librarianHandle = new LibrarianHandle(connectionString);
+            librarianHandle.DeleteLibrarian(currentLibrarianId);
             currentLibrarianId = 0;
             this.Hide();
             StartForm startForm = new StartForm();
