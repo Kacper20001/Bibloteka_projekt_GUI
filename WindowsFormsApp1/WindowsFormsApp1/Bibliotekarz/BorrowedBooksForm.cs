@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void ReturnBooksBtn_Click(object sender, EventArgs e)
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
 
             foreach (DataGridViewRow row in DataGridBorrowed.Rows)
             {
@@ -46,14 +46,15 @@ namespace WindowsFormsApp1.Bibliotekarz
                 if(isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
-                    bookHandle.ReturnBook(bookId, connectionString);
+                    bookHandle.ReturnBook(bookId);
                 }
             }
             LoadBorrowedBooksData();
         }
         private void LoadBorrowedBooksData()
         {
-            BorrowBookHandle bookHandle = new BorrowBookHandle();
+            //BorrowBookHandle bookHandle = new BorrowBookHandle();
+            BorrowBookHandle bookHandle = new BorrowBookHandle(connectionString);
             DataGridBorrowed.DataSource = bookHandle.LoadAllBorrowedBooks(connectionString);
         }
     }

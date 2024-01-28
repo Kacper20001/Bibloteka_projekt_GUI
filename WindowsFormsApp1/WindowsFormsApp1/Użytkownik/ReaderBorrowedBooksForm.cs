@@ -37,14 +37,14 @@ namespace WindowsFormsApp1
 
         private void returnBookbtn_Click(object sender, EventArgs e)
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             foreach (DataGridViewRow row in borrowedBooksDataGridView.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectBookCheckbox"].Value);
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
-                    bookHandle.ReturnBook(bookId, connectionString);
+                    bookHandle.ReturnBook(bookId);
                 }
             }
             LoadBoorowedBooksDataGrid(currentReaderId);
@@ -56,7 +56,8 @@ namespace WindowsFormsApp1
         }
         public void LoadBoorowedBooksDataGrid(int readerId)
         {
-            IBorrowBookHandle bookHandle = new BorrowBookHandle();
+            //IBorrowBookHandle bookHandle = new BorrowBookHandle();
+            IBorrowBookHandle bookHandle = new BorrowBookHandle(connectionString);
             borrowedBooksDataGridView.DataSource = bookHandle.LoadBorrowedBooks(readerId);
         }
     }

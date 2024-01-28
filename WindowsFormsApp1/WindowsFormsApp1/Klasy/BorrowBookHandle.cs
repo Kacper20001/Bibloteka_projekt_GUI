@@ -11,12 +11,14 @@ namespace WindowsFormsApp1.Klasy
 {
     internal class BorrowBookHandle : IBorrowBookHandle
     {
-        public  void BorrowBook(int readerId, int bookId)
-        {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
-            {
-                connection.Open();
+        private readonly DatabaseHelper dbHelper;
 
+        public BorrowBookHandle(string connectionString)
+        {
+            dbHelper = new DatabaseHelper(connectionString);
+        }
+        public void BorrowBook(int readerId, int bookId)
+        {
                 // Sprawdzenie dostępności książki i jej wypożyczenie
                 string borrowQuery = @"
             BEGIN TRANSACTION;
@@ -25,44 +27,32 @@ namespace WindowsFormsApp1.Klasy
             VALUES (@BookId, @ReaderId, GETDATE(), DATEADD(day, 30, GETDATE()));
             COMMIT;";
 
-                using (SqlCommand command = new SqlCommand(borrowQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@BookID", bookId);
-                    command.Parameters.AddWithValue("@ReaderId", readerId);
-                    command.ExecuteNonQuery();
-                }
-            }
+            SqlParameter[] parameters = {
+                new SqlParameter("@BookID", bookId),
+                new SqlParameter("@ReaderId", readerId)
+            };
+
+            dbHelper.ExecuteNonQuery(borrowQuery, parameters);
         }
 
-        public  DataTable LoadBorrowedBooks(int readerId)
+        public DataTable LoadBorrowedBooks(int readerId)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
-            {
                 string query = @"
-            SELECT b.BookId, bk.Title, bk.Author, b.BorrowDate, 
-                   CASE 
-                       WHEN DATEDIFF(day, b.BorrowDate, b.ExpectedReturnDate) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
-                       ELSE 0
-                   END AS OverdueFee
-            FROM Borrows b
-            INNER JOIN Books bk ON b.BookId = bk.BookID
-            WHERE b.ReaderId = @ReaderId";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ReaderId", readerId);
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    return dataTable;
-                }
-
-            }
+             SELECT b.BookId, bk.Title, bk.Author, b.BorrowDate, 
+                    CASE 
+                        WHEN DATEDIFF(day, b.BorrowDate, b.ExpectedReturnDate) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30
+                        ELSE 0
+                    END AS OverdueFee
+             FROM Borrows b
+             INNER JOIN Books bk ON b.BookId = bk.BookID
+             WHERE b.ReaderId = @ReaderId";
+            SqlParameter[] parameters = {
+                new SqlParameter("@ReaderId", readerId)
+            };
+            return dbHelper.ExecuteQuery(query, parameters);
         }
         public  DataTable LoadAllBorrowedBooks(string connectionString)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
                 string query = @"
                 SELECT 
                     b.BookId, 
@@ -75,14 +65,8 @@ namespace WindowsFormsApp1.Klasy
                     END AS OverdueFee
                 FROM Borrows b";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    return dataTable;
-                }
-            }
+            return dbHelper.ExecuteQuery(query);
         }
     }
+    
 }

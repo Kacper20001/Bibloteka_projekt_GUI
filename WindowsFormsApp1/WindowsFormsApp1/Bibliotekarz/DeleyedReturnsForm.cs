@@ -30,14 +30,14 @@ namespace WindowsFormsApp1.Bibliotekarz
         private void ReturnBookBtn_Click(object sender, EventArgs e)
         {
             IOverdueBook overdueBook = new OverdueBookHandle();
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             foreach (DataGridViewRow row in DataGridDeleyedBook.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectBookCheck"].Value);
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookId"].Value);
-                    bookHandle.ReturnBook(bookId, connectionString);
+                    bookHandle.ReturnBook(bookId);
                 }
             }
             overdueBook.LoadOverdueBooks();

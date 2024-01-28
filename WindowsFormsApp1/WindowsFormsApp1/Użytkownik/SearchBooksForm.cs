@@ -50,7 +50,8 @@ namespace WindowsFormsApp1
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
-                    IBorrowBookHandle bookHandle = new BorrowBookHandle();
+                    //IBorrowBookHandle bookHandle = new BorrowBookHandle();
+                    IBorrowBookHandle bookHandle = new BorrowBookHandle(connectionString);
                     bookHandle.BorrowBook(currentReaderId, bookId);
                 }
             }
@@ -58,7 +59,7 @@ namespace WindowsFormsApp1
         }
         public void LoadBooks(string searchTerm = "")
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             booksDataGridView.DataSource = bookHandle.LoadBooks(searchTerm);
         }
         private void SearchBooksForm_Load(object sender, EventArgs e)

@@ -27,9 +27,9 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
         private void FindBtn_Click(object sender, EventArgs e)
         {
             id = Convert.ToInt32(IdTxt.Text);
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
 
-            Book bookToEdit = bookHandle.GetBookById(Convert.ToInt32(id),connectionString); //tutaj
+            Book bookToEdit = bookHandle.GetBookById(Convert.ToInt32(id)); //tutaj
             if (bookToEdit != null)
             {
                 TitleTxt.Text = bookToEdit.Title;
@@ -50,8 +50,8 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            IBookHandle bookHandle = new BookHandle();
-            bookHandle.EditBook(connectionString, id, TitleTxt.Text, AuthorTxt.Text, DescriptionTxt.Text, Convert.ToInt32(YearTxt.Text));
+            IBookHandle bookHandle = new BookHandle(connectionString);
+            bookHandle.EditBook(id, TitleTxt.Text, AuthorTxt.Text, DescriptionTxt.Text, Convert.ToInt32(YearTxt.Text));
             MessageBox.Show("Update successful");
             TitleTxt.Text = "";
             AuthorTxt.Text = "";

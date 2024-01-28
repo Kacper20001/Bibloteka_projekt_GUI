@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
         }
         public void LoadBooks(string searchTerm="")
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             BooksDataGrid.DataSource = bookHandle.LoadBooks(searchTerm);
         }
 
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
         }
         public void LoadLibrarianBooks(string searchTerm = "")
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             BooksDataGrid.DataSource = bookHandle.LoadBooks(searchTerm);
         }
     }

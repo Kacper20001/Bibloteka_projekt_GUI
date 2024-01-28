@@ -14,6 +14,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 {
     public partial class DeleteBookForm : Form
     {
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private int currentLibraryId;
         public DeleteBookForm(int id)
         {
@@ -37,7 +38,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             try
             {
                 int id = Convert.ToInt32(IdTxt.Text);

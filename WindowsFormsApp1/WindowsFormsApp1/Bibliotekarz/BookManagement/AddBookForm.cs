@@ -14,6 +14,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 {
     public partial class AddBookForm : Form
     {
+        public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private int currentLibrarianId;
         private int id;
         public AddBookForm(int id)
@@ -24,7 +25,7 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void AddNewBookBtn_Click(object sender, EventArgs e)
         {
-            IBookHandle bookHandle = new BookHandle();
+            IBookHandle bookHandle = new BookHandle(connectionString);
             string title = TitleTxt.Text;
             string author = AuthorTxt.Text; 
             int year = Convert.ToInt32(YearTxt.Text);   
