@@ -18,14 +18,18 @@ namespace WindowsFormsApp1
     {
         string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private int currentReaderId;
+        private HandlePassword handlePassword;
+
         public ReaderAccountForms(int readerId)
         {
             InitializeComponent();
             currentReaderId = readerId;
             LoadReaderData();
+            handlePassword = new HandlePassword(connectionString); 
+
         }
 
-        
+
         private void ReaderAccountForms_Load(object sender, EventArgs e)
         {
 
@@ -63,13 +67,13 @@ namespace WindowsFormsApp1
 
 
             string query = "SELECT Password FROM Readers WHERE ReaderId = @Id";
-            if (!HandlePassword.IsCurrentPasswordValid(query, currentReaderId, currentPasswordHash, connectionString))
+            if (!handlePassword.IsCurrentPasswordValid(query, currentReaderId, currentPasswordHash))
             {
                 MessageBox.Show("Obecne hasło jest niepoprawne.");
                 return;
             }
             string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE ReaderId = @Id";
-            HandlePassword.UpdatePasswordInDatabase(updateQuery, currentReaderId, newPasswordHash, connectionString);
+            handlePassword.UpdatePasswordInDatabase(updateQuery, currentReaderId, newPasswordHash);
             MessageBox.Show("Hasło zostało zmienione.");
             UserInfoPassword.Text = "";
             UserInfoNewPassword.Text = "";

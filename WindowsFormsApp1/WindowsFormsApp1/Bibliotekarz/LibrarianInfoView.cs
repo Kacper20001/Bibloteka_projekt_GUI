@@ -17,6 +17,7 @@ namespace WindowsFormsApp1.Bibliotekarz
 {
     public partial class LibrarianInfoView : Form
     {
+        private HandlePassword handlePassword;
         private int currentLibrarianId;
         string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
 
@@ -24,6 +25,7 @@ namespace WindowsFormsApp1.Bibliotekarz
         {
             InitializeComponent();
             currentLibrarianId = librarianId;
+            handlePassword = new HandlePassword(connectionString); 
             LoadLibrarianData();
         }
 
@@ -91,14 +93,14 @@ namespace WindowsFormsApp1.Bibliotekarz
                 return;
             }
             string query = "SELECT Password FROM Librarians WHERE EmployeeID = @Id";
-            if (!HandlePassword.IsCurrentPasswordValid(query, currentLibrarianId, PasswordTxt.Text, connectionString))
+            if (!handlePassword.IsCurrentPasswordValid(query, currentLibrarianId, PasswordTxt.Text)) 
             {
                 MessageBox.Show("The current password is incorrect.");
                 return;
             }
             string updateQuery = "UPDATE Librarians SET Password = @NewPassword WHERE EmployeeId = @Id";
 
-            HandlePassword.UpdatePasswordInDatabase(updateQuery, currentLibrarianId, NewPasswordTxt.Text, connectionString);
+            handlePassword.UpdatePasswordInDatabase(updateQuery, currentLibrarianId, NewPasswordTxt.Text);
             MessageBox.Show("Password has been changed.");
             PasswordTxt.Text = "";
             NewPasswordTxt.Text = "";
