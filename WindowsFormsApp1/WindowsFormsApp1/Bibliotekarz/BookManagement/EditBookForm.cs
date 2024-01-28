@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 {
@@ -25,8 +27,9 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
         private void FindBtn_Click(object sender, EventArgs e)
         {
             id = Convert.ToInt32(IdTxt.Text);
-            
-            Book bookToEdit = Book.GetBookById(Convert.ToInt32(id),connectionString);
+            IBookHandle bookHandle = new BookHandle();
+
+            Book bookToEdit = bookHandle.GetBookById(Convert.ToInt32(id),connectionString); //tutaj
             if (bookToEdit != null)
             {
                 TitleTxt.Text = bookToEdit.Title;
@@ -47,7 +50,8 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            Book.EditBook(connectionString, id, TitleTxt.Text, AuthorTxt.Text, DescriptionTxt.Text, Convert.ToInt32(YearTxt.Text));
+            IBookHandle bookHandle = new BookHandle();
+            bookHandle.EditBook(connectionString, id, TitleTxt.Text, AuthorTxt.Text, DescriptionTxt.Text, Convert.ToInt32(YearTxt.Text));
             MessageBox.Show("Update successful");
             TitleTxt.Text = "";
             AuthorTxt.Text = "";

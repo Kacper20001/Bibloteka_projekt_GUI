@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using WindowsFormsApp1.Klasy;
+using WindowsFormsApp1.Interfejsy;
 
 namespace WindowsFormsApp1
 {
@@ -48,14 +50,16 @@ namespace WindowsFormsApp1
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
-                    Book.BorrowBook(currentReaderId, bookId);
+                    IBorrowBookHandle bookHandle = new BorrowBookHandle();
+                    bookHandle.BorrowBook(currentReaderId, bookId);
                 }
             }
             LoadBooks();
         }
         public void LoadBooks(string searchTerm = "")
         {
-            booksDataGridView.DataSource = Book.LoadBooks(searchTerm);
+            IBookHandle bookHandle = new BookHandle();
+            booksDataGridView.DataSource = bookHandle.LoadBooks(searchTerm);
         }
         private void SearchBooksForm_Load(object sender, EventArgs e)
         {

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Bibliotekarz.BookManagement;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1
 {
@@ -28,7 +30,8 @@ namespace WindowsFormsApp1
         }
         public void LoadBooks(string searchTerm="")
         {
-            BooksDataGrid.DataSource = Book.LoadBooks(searchTerm);
+            IBookHandle bookHandle = new BookHandle();
+            BooksDataGrid.DataSource = bookHandle.LoadBooks(searchTerm);
         }
 
         private void SrcBooksBtn_Click(object sender, EventArgs e)
@@ -71,7 +74,8 @@ namespace WindowsFormsApp1
         }
         public void LoadLibrarianBooks(string searchTerm = "")
         {
-            BooksDataGrid.DataSource = Book.LoadBooks(searchTerm);
+            IBookHandle bookHandle = new BookHandle();
+            BooksDataGrid.DataSource = bookHandle.LoadBooks(searchTerm);
         }
     }
 }

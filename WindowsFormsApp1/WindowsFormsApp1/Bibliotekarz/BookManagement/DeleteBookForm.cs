@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 {
@@ -35,10 +37,11 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
+            IBookHandle bookHandle = new BookHandle();
             try
             {
                 int id = Convert.ToInt32(IdTxt.Text);
-                Book.DeleteBook(id);
+                bookHandle.DeleteBook(id);
             }
             catch (FormatException)
             {

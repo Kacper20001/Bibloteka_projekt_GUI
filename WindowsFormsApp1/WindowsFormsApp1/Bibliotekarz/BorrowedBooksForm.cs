@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz
 {
@@ -36,20 +38,23 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void ReturnBooksBtn_Click(object sender, EventArgs e)
         {
+            IBookHandle bookHandle = new BookHandle();
+
             foreach (DataGridViewRow row in DataGridBorrowed.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectToReturn"].Value);
                 if(isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
-                    Book.ReturnBook(bookId, connectionString);
+                    bookHandle.ReturnBook(bookId, connectionString);
                 }
             }
             LoadBorrowedBooksData();
         }
         private void LoadBorrowedBooksData()
         {
-            DataGridBorrowed.DataSource = Book.LoadAllBorrowedBooks(connectionString);
+            BorrowBookHandle bookHandle = new BorrowBookHandle();
+            DataGridBorrowed.DataSource = bookHandle.LoadAllBorrowedBooks(connectionString);
         }
     }
 }

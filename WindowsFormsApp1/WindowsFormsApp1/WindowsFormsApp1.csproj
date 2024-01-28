@@ -220,6 +220,11 @@
     <Compile Include="Bibliotekarz\RegisterLibrarianForm.Designer.cs">
       <DependentUpon>RegisterLibrarianForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfejsy\IAddress.cs" />
+    <Compile Include="Interfejsy\IBook.cs" />
+    <Compile Include="Interfejsy\IBookHandle.cs" />
+    <Compile Include="Interfejsy\IBorrowBookHandle.cs" />
+    <Compile Include="Interfejsy\IOverdueBook.cs" />
     <Compile Include="Klasy\Address.cs" />
     <Compile Include="Klasy\Book.cs" />
     <Compile Include="Bibliotekarz\BookManagementView.cs">
@@ -228,7 +233,10 @@
     <Compile Include="Bibliotekarz\BookManagementView.Designer.cs">
       <DependentUpon>BookManagementView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Klasy\BookHandle.cs" />
+    <Compile Include="Klasy\BorrowBookHandle.cs" />
     <Compile Include="Klasy\HandlePassword.cs" />
+    <Compile Include="Klasy\OverdueBookHandle.cs" />
     <Compile Include="Użytkownik\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

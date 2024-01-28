@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz
 {
@@ -22,20 +24,23 @@ namespace WindowsFormsApp1.Bibliotekarz
         }
         private void LoadOverdueBooksData()
         {
-            DataGridDeleyedBook.DataSource = Book.LoadOverdueBooks();
+            IOverdueBook overdueBook = new OverdueBookHandle();
+            DataGridDeleyedBook.DataSource = overdueBook.LoadOverdueBooks();
         }
         private void ReturnBookBtn_Click(object sender, EventArgs e)
         {
+            IOverdueBook overdueBook = new OverdueBookHandle();
+            IBookHandle bookHandle = new BookHandle();
             foreach (DataGridViewRow row in DataGridDeleyedBook.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectBookCheck"].Value);
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookId"].Value);
-                    Book.ReturnBook(bookId, connectionString);
+                    bookHandle.ReturnBook(bookId, connectionString);
                 }
             }
-            Book.LoadOverdueBooks();
+            overdueBook.LoadOverdueBooks();
         }
 
         private void BackMenuBtn_Click(object sender, EventArgs e)

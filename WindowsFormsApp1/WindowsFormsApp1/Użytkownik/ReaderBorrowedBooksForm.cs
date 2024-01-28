@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using WindowsFormsApp1.Klasy;
+using WindowsFormsApp1.Interfejsy;
 
 namespace WindowsFormsApp1
 {
@@ -35,13 +37,14 @@ namespace WindowsFormsApp1
 
         private void returnBookbtn_Click(object sender, EventArgs e)
         {
+            IBookHandle bookHandle = new BookHandle();
             foreach (DataGridViewRow row in borrowedBooksDataGridView.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectBookCheckbox"].Value);
                 if (isSelected)
                 {
                     int bookId = Convert.ToInt32(row.Cells["BookID"].Value);
-                    Book.ReturnBook(bookId, connectionString);
+                    bookHandle.ReturnBook(bookId, connectionString);
                 }
             }
             LoadBoorowedBooksDataGrid(currentReaderId);
@@ -53,7 +56,8 @@ namespace WindowsFormsApp1
         }
         public void LoadBoorowedBooksDataGrid(int readerId)
         {
-            borrowedBooksDataGridView.DataSource = Book.LoadBorrowedBooks(readerId);
+            IBorrowBookHandle bookHandle = new BorrowBookHandle();
+            borrowedBooksDataGridView.DataSource = bookHandle.LoadBorrowedBooks(readerId);
         }
     }
 }

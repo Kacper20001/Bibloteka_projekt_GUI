@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 {
@@ -22,12 +24,12 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
 
         private void AddNewBookBtn_Click(object sender, EventArgs e)
         {
+            IBookHandle bookHandle = new BookHandle();
             string title = TitleTxt.Text;
             string author = AuthorTxt.Text; 
             int year = Convert.ToInt32(YearTxt.Text);   
             string description = DescriptionTxt.Text;
-
-            Book.AddBook(title, author, year, description);
+            bookHandle.AddBook(title, author, year, description);
             MessageBox.Show("Dodano nową książkę");
 
             TitleTxt.Text = "";
