@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1.Bibliotekarz
 {
@@ -22,7 +24,8 @@ namespace WindowsFormsApp1.Bibliotekarz
         }
         public void LoadReadersData(string connectionString, string searchTerm = "")
         {
-            ReaderDataGrid.DataSource = Reader.LoadReaders(connectionString, searchTerm);
+            IReaderHandle readerHandle = new ReaderHandle();
+            ReaderDataGrid.DataSource = readerHandle.LoadReaders(connectionString, searchTerm);
         }
 
         private void SrcReaderBtn_Click(object sender, EventArgs e)
@@ -33,13 +36,14 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
+            IReaderHandle readerHandle = new ReaderHandle();
             foreach (DataGridViewRow row in ReaderDataGrid.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectCheckbox"].Value);
                 if (isSelected)
                 {
                     int readerId = Convert.ToInt32(row.Cells["ReaderId"].Value);
-                    Reader.DeleteReader(readerId, connectionString);
+                    readerHandle.DeleteReader(readerId, connectionString);
                 }
             }
             LoadReadersData(connectionString);

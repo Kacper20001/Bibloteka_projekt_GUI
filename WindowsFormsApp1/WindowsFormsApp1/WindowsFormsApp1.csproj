@@ -225,6 +225,8 @@
     <Compile Include="Interfejsy\IBookHandle.cs" />
     <Compile Include="Interfejsy\IBorrowBookHandle.cs" />
     <Compile Include="Interfejsy\IOverdueBook.cs" />
+    <Compile Include="Interfejsy\IPerson.cs" />
+    <Compile Include="Interfejsy\IReaderHandle.cs" />
     <Compile Include="Klasy\Address.cs" />
     <Compile Include="Klasy\Book.cs" />
     <Compile Include="Bibliotekarz\BookManagementView.cs">
@@ -237,6 +239,7 @@
     <Compile Include="Klasy\BorrowBookHandle.cs" />
     <Compile Include="Klasy\HandlePassword.cs" />
     <Compile Include="Klasy\OverdueBookHandle.cs" />
+    <Compile Include="Klasy\ReaderHandle.cs" />
     <Compile Include="Użytkownik\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

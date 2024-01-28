@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
                 {
                     MessageBox.Show("Logged in successfully");
                     this.Hide();
-                    LibrarianMenu librarianMenu = new LibrarianMenu(librarian.Id);
+                    LibrarianMenu librarianMenu = new LibrarianMenu(librarian.LibrarianId);
                     librarianMenu.Show();
                 } 
                 else

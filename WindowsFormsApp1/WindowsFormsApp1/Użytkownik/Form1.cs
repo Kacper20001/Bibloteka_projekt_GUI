@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Net;
+using WindowsFormsApp1.Interfejsy;
+using WindowsFormsApp1.Klasy;
 
 namespace WindowsFormsApp1
 {
@@ -75,11 +77,15 @@ namespace WindowsFormsApp1
                     /*using (SHA256 sha256Hash = SHA256.Create())
                     {
                         string passwordHash = HashPasswords.GetHash(sha256Hash, password);*/
-
+                    IReaderHandle readerHandle = new ReaderHandle();
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     //Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, passwordHash, username);
                     Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, password, username);
-                    SaveReaderInDatabese(reader);
+                    readerHandle.SaveReaderInDatabese(reader, connectionString);
+                    regClear_Click(this, EventArgs.Empty);
+                    this.Hide();
+                    Logowanie logowanie = new Logowanie();
+                    logowanie.Show();
                     /* }*/
                 }
                 catch (SqlException sqlEx)
@@ -92,7 +98,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        private void SaveReaderInDatabese(Reader reader)
+        /*private void SaveReaderInDatabese(Reader reader)
         {
             string insertDataQuery = "INSERT INTO dbo.Readers (Username, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) VALUES (@Username, @Password, @FirstName, @LastName, @DateOfBirth, @Email, @PhoneNumber, @Street, @City, @HouseNumber, @PostalCode, @Country)";
 
@@ -131,7 +137,7 @@ namespace WindowsFormsApp1
                 }
 
             }
-        }
+        }*/
 
         private void regClear_Click(object sender, EventArgs e)
         {

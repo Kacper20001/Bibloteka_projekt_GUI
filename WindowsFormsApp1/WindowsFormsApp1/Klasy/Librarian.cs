@@ -9,8 +9,8 @@ namespace WindowsFormsApp1
 {
     internal class Librarian : Person
     {
-        public int Id { get; private set; }
-        private static int nextId = 1;
+        public int LibrarianId { get; private set; }
+        //private static int nextId = 1;
 
         public int EmployeeNumber { get; set; }
         public DateTime EmploymentDate { get; set; }
@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
             : base(firstName, lastName, dateOfBirth, address, email, phoneNumber)
         {
             EmployeeNumber = employeeNumber;
-            Id = nextId++;
+            //Id = nextId++;
             Password = passoword;
         }
         public static Librarian GetLibrarian(int employeeNumber, string password)

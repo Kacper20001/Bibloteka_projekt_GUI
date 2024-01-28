@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using WindowsFormsApp1.Klasy;
+using WindowsFormsApp1.Interfejsy;
 
 namespace WindowsFormsApp1
 {
@@ -118,7 +119,8 @@ namespace WindowsFormsApp1
         }
         private void LoadReaderData()
         {
-            var reader = Reader.GetReaderById(currentReaderId, connectionString);
+            IReaderHandle readerHandle = new ReaderHandle();
+            var reader = readerHandle.GetReaderById(currentReaderId, connectionString);
             if (reader != null)
             {
                 UserInfoFirstName.Text = reader.FirstName;
@@ -139,5 +141,12 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void UpdateBtn_Click(object sender, EventArgs e)
+        {
+            IReaderHandle readerHandle = new ReaderHandle();
+            readerHandle.EditReader(connectionString, currentReaderId, UserInfoLastName.Text, UserInfoPhoneNumber.Text, UserInfoStreet.Text, UserInfoHouseNumber.Text, UserInfoPostalCode.Text, UserInfoCity.Text, UserInfoCountry.Text);
+            MessageBox.Show("Update successful");
+            LoadReaderData();
+        }
     }
 }

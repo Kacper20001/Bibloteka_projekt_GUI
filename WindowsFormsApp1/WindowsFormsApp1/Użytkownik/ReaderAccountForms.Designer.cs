@@ -58,6 +58,7 @@
             this.UserInfoConfirmNewPassord = new System.Windows.Forms.TextBox();
             this.UserInfoChangePassword = new System.Windows.Forms.Button();
             this.Backbtn = new System.Windows.Forms.Button();
+            this.UpdateBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label14
@@ -305,9 +306,20 @@
             this.Backbtn.UseVisualStyleBackColor = true;
             this.Backbtn.Click += new System.EventHandler(this.Backbtn_Click);
             // 
+            // UpdateBtn
+            // 
+            this.UpdateBtn.Location = new System.Drawing.Point(101, 371);
+            this.UpdateBtn.Name = "UpdateBtn";
+            this.UpdateBtn.Size = new System.Drawing.Size(94, 23);
+            this.UpdateBtn.TabIndex = 44;
+            this.UpdateBtn.Text = "Update Data";
+            this.UpdateBtn.UseVisualStyleBackColor = true;
+            this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
+            // 
             // ReaderAccountForms
             // 
             this.ClientSize = new System.Drawing.Size(563, 494);
+            this.Controls.Add(this.UpdateBtn);
             this.Controls.Add(this.Backbtn);
             this.Controls.Add(this.UserInfoChangePassword);
             this.Controls.Add(this.UserInfoConfirmNewPassord);
@@ -383,5 +395,6 @@
         private System.Windows.Forms.TextBox UserInfoConfirmNewPassord;
         private System.Windows.Forms.Button UserInfoChangePassword;
         private System.Windows.Forms.Button Backbtn;
+        private System.Windows.Forms.Button UpdateBtn;
     }
 }
