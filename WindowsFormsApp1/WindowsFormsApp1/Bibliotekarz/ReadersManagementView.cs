@@ -24,8 +24,8 @@ namespace WindowsFormsApp1.Bibliotekarz
         }
         public void LoadReadersData(string connectionString, string searchTerm = "")
         {
-            IReaderHandle readerHandle = new ReaderHandle();
-            ReaderDataGrid.DataSource = readerHandle.LoadReaders(connectionString, searchTerm);
+            IReaderHandle readerHandle = new ReaderHandle(connectionString);
+            ReaderDataGrid.DataSource = readerHandle.LoadReaders(searchTerm);
         }
 
         private void SrcReaderBtn_Click(object sender, EventArgs e)
@@ -36,14 +36,14 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            IReaderHandle readerHandle = new ReaderHandle();
+            IReaderHandle readerHandle = new ReaderHandle(connectionString);
             foreach (DataGridViewRow row in ReaderDataGrid.Rows)
             {
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectCheckbox"].Value);
                 if (isSelected)
                 {
                     int readerId = Convert.ToInt32(row.Cells["ReaderId"].Value);
-                    readerHandle.DeleteReader(readerId, connectionString);
+                    readerHandle.DeleteReader(readerId);
                 }
             }
             LoadReadersData(connectionString);

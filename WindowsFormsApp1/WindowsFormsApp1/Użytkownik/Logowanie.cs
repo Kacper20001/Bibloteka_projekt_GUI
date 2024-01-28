@@ -23,14 +23,14 @@ namespace WindowsFormsApp1
         string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
         private void logSubmit_Click(object sender, EventArgs e)
         {
-            IReaderHandle readerHandle = new ReaderHandle();
+            IReaderHandle readerHandle = new ReaderHandle(connectionString);
             string username = logLogin.Text; 
             string password = logPassword.Text;
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 string passwordHash = HashPasswords.GetHash(sha256Hash, password);
                 //Reader reader = Reader.GetReaders(username, passwordHash);
-                Reader reader = readerHandle.GetReaders(username, password, connectionString);
+                Reader reader = readerHandle.GetReaders(username, password);
 
                 if (reader != null)
                 {

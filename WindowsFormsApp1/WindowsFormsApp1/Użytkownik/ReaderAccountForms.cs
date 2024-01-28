@@ -82,8 +82,8 @@ namespace WindowsFormsApp1
 
         private void LoadReaderData()
         {
-            IReaderHandle readerHandle = new ReaderHandle();
-            var reader = readerHandle.GetReaderById(currentReaderId, connectionString);
+            IReaderHandle readerHandle = new ReaderHandle(connectionString);
+            var reader = readerHandle.GetReaderById(currentReaderId);
             if (reader != null)
             {
                 UserInfoFirstName.Text = reader.FirstName;
@@ -106,8 +106,8 @@ namespace WindowsFormsApp1
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            IReaderHandle readerHandle = new ReaderHandle();
-            readerHandle.EditReader(connectionString, currentReaderId, UserInfoLastName.Text, UserInfoPhoneNumber.Text, UserInfoStreet.Text, UserInfoHouseNumber.Text, UserInfoPostalCode.Text, UserInfoCity.Text, UserInfoCountry.Text);
+            IReaderHandle readerHandle = new ReaderHandle(connectionString);
+            readerHandle.EditReader(currentReaderId, UserInfoLastName.Text, UserInfoPhoneNumber.Text, UserInfoStreet.Text, UserInfoHouseNumber.Text, UserInfoPostalCode.Text, UserInfoCity.Text, UserInfoCountry.Text);
             MessageBox.Show("Update successful");
             LoadReaderData();
         }

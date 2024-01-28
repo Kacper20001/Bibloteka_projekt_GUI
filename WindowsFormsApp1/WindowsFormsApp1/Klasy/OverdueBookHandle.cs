@@ -11,11 +11,15 @@ namespace WindowsFormsApp1.Klasy
 {
     internal class OverdueBookHandle  : IOverdueBook
     {
-        public  DataTable LoadOverdueBooks()
+        private readonly DatabaseHelper dbHelper;
+
+        public OverdueBookHandle(string connectionString)
         {
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False"))
-            {
-                string query = @"
+            dbHelper = new DatabaseHelper(connectionString);
+        }
+        public DataTable LoadOverdueBooks()
+        {
+            string query = @"
                 SELECT 
                     b.BookId, 
                     b.ReaderId, 
@@ -31,14 +35,7 @@ namespace WindowsFormsApp1.Klasy
                 INNER JOIN Books bk ON b.BookId = bk.BookID
                 WHERE DATEDIFF(day, b.BorrowDate, GETDATE()) > 30";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    return dataTable;
-                }
-            }
+            return dbHelper.ExecuteQuery(query);
         }
     }
 }

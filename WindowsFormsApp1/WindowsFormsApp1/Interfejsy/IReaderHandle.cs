@@ -9,11 +9,11 @@ namespace WindowsFormsApp1.Interfejsy
 {
     internal interface IReaderHandle
     {
-        Reader GetReaders(string username, string passwordHash, string connectionString);
-        Reader GetReaderById(int readerId, string connectionString);
-        DataTable LoadReaders(string connectionString, string searchTerm = "");
-        void DeleteReader(int id, string connectionString);
-        void SaveReaderInDatabese(Reader reader, string connectionString);
-        void EditReader(string connectionString, int ReaderId, string LastName, string PhoneNumber, string Street, string HouseNumber, string PostalCode, string City, string Country);
+        Reader GetReaders(string username, string passwordHash);
+        Reader GetReaderById(int readerId);
+        DataTable LoadReaders( string searchTerm = "");
+        void DeleteReader(int id);
+        void SaveReaderInDatabase(Reader reader);
+        void EditReader(int ReaderId, string LastName, string PhoneNumber, string Street, string HouseNumber, string PostalCode, string City, string Country);
     }
 }

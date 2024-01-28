@@ -24,12 +24,12 @@ namespace WindowsFormsApp1.Bibliotekarz
         }
         private void LoadOverdueBooksData()
         {
-            IOverdueBook overdueBook = new OverdueBookHandle();
+            IOverdueBook overdueBook = new OverdueBookHandle(connectionString);
             DataGridDeleyedBook.DataSource = overdueBook.LoadOverdueBooks();
         }
         private void ReturnBookBtn_Click(object sender, EventArgs e)
         {
-            IOverdueBook overdueBook = new OverdueBookHandle();
+            IOverdueBook overdueBook = new OverdueBookHandle(connectionString);
             IBookHandle bookHandle = new BookHandle(connectionString);
             foreach (DataGridViewRow row in DataGridDeleyedBook.Rows)
             {

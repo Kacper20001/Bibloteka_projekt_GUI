@@ -77,11 +77,11 @@ namespace WindowsFormsApp1
                     /*using (SHA256 sha256Hash = SHA256.Create())
                     {
                         string passwordHash = HashPasswords.GetHash(sha256Hash, password);*/
-                    IReaderHandle readerHandle = new ReaderHandle();
+                    IReaderHandle readerHandle = new ReaderHandle(connectionString);
                     Address address = new Address(street, houseNumber, postalCode, city, country);
                     //Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, passwordHash, username);
                     Reader reader = new Reader(firstName, lastName, dateOfBirth, phoneNumber, email, address, password, username);
-                    readerHandle.SaveReaderInDatabese(reader, connectionString);
+                    readerHandle.SaveReaderInDatabase(reader);
                     regClear_Click(this, EventArgs.Empty);
                     this.Hide();
                     Logowanie logowanie = new Logowanie();
