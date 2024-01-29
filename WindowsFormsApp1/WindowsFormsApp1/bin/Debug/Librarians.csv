@@ -1,0 +1,4 @@
+EmployeeId,EmployeeNumber,Password,FirstName,LastName,DateOfBirth,PhoneNumber,Email,Street,City,HouseNumber,PostalCode,Country
+1,789,1234Kacperek,Kacper,d,26.12.2023 00:00:00,789789789,asdasd@om.pl,sadfsdfa,Rzeszow,789,5984,dasdasd
+2,745,Marcin,hiasdsduio,uidfagsduif,27.01.2024 00:00:00,54564546,asdfas@sd.pl,werqwe,asfdq,ederawrqwe,564,weqqw3qwerqwrr
+3,7,s,k,k,28.01.2024 00:00:00,4,k,k,k,k,k,k

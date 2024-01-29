@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
     public partial class LibrarianMenu : Form
     {
         private int currentLibrarianId;
+
         public LibrarianMenu(int librarianId)
         {
             currentLibrarianId = librarianId;
@@ -87,6 +88,13 @@ namespace WindowsFormsApp1
             this.Hide();
             LibrarianListForm librarianList = new LibrarianListForm(currentLibrarianId);
             librarianList.Show();
+        }
+
+        private void DataBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DataForm dataForm = new DataForm(currentLibrarianId);
+            dataForm.Show();
         }
     }
 }

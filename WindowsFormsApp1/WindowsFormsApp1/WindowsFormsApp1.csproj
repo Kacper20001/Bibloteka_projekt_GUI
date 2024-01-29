@@ -196,6 +196,12 @@
     <Compile Include="Bibliotekarz\BorrowedBooksForm.Designer.cs">
       <DependentUpon>BorrowedBooksForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bibliotekarz\DataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekarz\DataForm.Designer.cs">
+      <DependentUpon>DataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bibliotekarz\DeleyedReturnsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,7 @@
     <Compile Include="Klasy\BookHandle.cs" />
     <Compile Include="Klasy\BorrowBookHandle.cs" />
     <Compile Include="Klasy\DatabaseHelper.cs" />
+    <Compile Include="Klasy\DataExportToCSV.cs" />
     <Compile Include="Klasy\HandlePassword.cs" />
     <Compile Include="Klasy\LibrarianHandle.cs" />
     <Compile Include="Klasy\OverdueBookHandle.cs" />
@@ -329,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\BorrowedBooksForm.resx">
       <DependentUpon>BorrowedBooksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bibliotekarz\DataForm.resx">
+      <DependentUpon>DataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bibliotekarz\DeleyedReturnsForm.resx">
       <DependentUpon>DeleyedReturnsForm.cs</DependentUpon>

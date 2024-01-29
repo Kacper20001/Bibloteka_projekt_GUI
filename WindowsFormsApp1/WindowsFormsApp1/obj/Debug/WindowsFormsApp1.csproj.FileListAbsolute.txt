@@ -101,3 +101,4 @@ C:\Users\Admin\source\repos\Bibloteka_projekt_GUI\WindowsFormsApp1\WindowsFormsA
 C:\Users\Admin\source\repos\Bibloteka_projekt_GUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.SearchBooksForm.resources
 C:\Users\Admin\source\repos\Bibloteka_projekt_GUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.StartForm.resources
 C:\Users\Admin\source\repos\Bibloteka_projekt_GUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Bibliotekarz.LibrarianListForm.resources
+C:\Users\Admin\source\repos\Bibloteka_projekt_GUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Bibliotekarz.DataForm.resources

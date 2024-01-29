@@ -38,6 +38,7 @@
             this.AddLibrarianBtn = new System.Windows.Forms.Button();
             this.LibrarainInfoBtn = new System.Windows.Forms.Button();
             this.LibrariansListBtn = new System.Windows.Forms.Button();
+            this.DataBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -139,11 +140,22 @@
             this.LibrariansListBtn.UseVisualStyleBackColor = true;
             this.LibrariansListBtn.Click += new System.EventHandler(this.LibrariansListBtn_Click);
             // 
+            // DataBtn
+            // 
+            this.DataBtn.Location = new System.Drawing.Point(225, 318);
+            this.DataBtn.Name = "DataBtn";
+            this.DataBtn.Size = new System.Drawing.Size(116, 92);
+            this.DataBtn.TabIndex = 10;
+            this.DataBtn.Text = "Data Management";
+            this.DataBtn.UseVisualStyleBackColor = true;
+            this.DataBtn.Click += new System.EventHandler(this.DataBtn_Click);
+            // 
             // LibrarianMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DataBtn);
             this.Controls.Add(this.LibrariansListBtn);
             this.Controls.Add(this.LibrarainInfoBtn);
             this.Controls.Add(this.AddLibrarianBtn);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Button AddLibrarianBtn;
         private System.Windows.Forms.Button LibrarainInfoBtn;
         private System.Windows.Forms.Button LibrariansListBtn;
+        private System.Windows.Forms.Button DataBtn;
     }
 }
