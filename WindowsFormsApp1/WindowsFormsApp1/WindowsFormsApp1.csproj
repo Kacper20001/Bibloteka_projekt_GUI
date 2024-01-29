@@ -253,6 +253,7 @@
     <Compile Include="Klasy\DatabaseHelper.cs" />
     <Compile Include="Klasy\DataExportToCSV.cs" />
     <Compile Include="Klasy\HandlePassword.cs" />
+    <Compile Include="Klasy\ImportFromCSV.cs" />
     <Compile Include="Klasy\LibrarianHandle.cs" />
     <Compile Include="Klasy\OverdueBookHandle.cs" />
     <Compile Include="Klasy\ReaderHandle.cs" />

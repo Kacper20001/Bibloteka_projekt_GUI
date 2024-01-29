@@ -41,6 +41,7 @@
             this.ImportBtn.TabIndex = 0;
             this.ImportBtn.Text = "ImportCSV";
             this.ImportBtn.UseVisualStyleBackColor = true;
+            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
             // 
             // ExportBtn
             // 

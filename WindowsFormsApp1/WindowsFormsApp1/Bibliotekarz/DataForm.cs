@@ -15,6 +15,7 @@ namespace WindowsFormsApp1.Bibliotekarz
     {
         private int currentLibrarianId;
         public string connectionString = "Data Source=DESKTOP-3QM33ET\\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Encrypt=False";
+        string[] tables = { "Books", "Librarians", "Readers", "BorrowedBooks" };
 
         public DataForm(int librarianId)
         {
@@ -31,11 +32,25 @@ namespace WindowsFormsApp1.Bibliotekarz
 
         private void ExportBtn_Click(object sender, EventArgs e)
         {
-            string[] tables = { "Books","Librarians", "Readers", "BorrowedBooks" };
             DataExportToCSV exporter = new DataExportToCSV(connectionString);
             exporter.ExportData(tables);
 
             MessageBox.Show("Eksport danych zakończony.");
+
+        }
+
+        private void ImportBtn_Click(object sender, EventArgs e)
+        {
+            ImportFromCSV importer = new ImportFromCSV(connectionString);
+            try
+            {
+                importer.ImportData(tables);
+                MessageBox.Show("Data imported successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
 
         }
     }

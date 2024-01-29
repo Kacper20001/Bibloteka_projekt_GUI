@@ -47,10 +47,15 @@ namespace WindowsFormsApp1.Klasy
                 {
                     if (parameters != null)
                     {
-                        command.Parameters.AddRange(parameters);
+                        foreach (var param in parameters)
+                        {
+                            command.Parameters.Add(((ICloneable)param).Clone());
+                        }
                     }
 
-                    return command.ExecuteNonQuery();
+                    int result = command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    return result;
                 }
             }
         }
