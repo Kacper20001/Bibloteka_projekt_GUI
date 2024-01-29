@@ -60,5 +60,10 @@ namespace WindowsFormsApp1
             IBorrowBookHandle bookHandle = new BorrowBookHandle(connectionString);
             borrowedBooksDataGridView.DataSource = bookHandle.LoadBorrowedBooks(readerId);
         }
+
+        private void ReaderBorrowedBooksForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

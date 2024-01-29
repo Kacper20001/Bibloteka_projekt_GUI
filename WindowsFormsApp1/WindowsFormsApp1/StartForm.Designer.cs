@@ -36,53 +36,70 @@
             // 
             // LibrarianBtn
             // 
-            this.LibrarianBtn.Location = new System.Drawing.Point(180, 320);
+            this.LibrarianBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.LibrarianBtn.ForeColor = System.Drawing.Color.White;
+            this.LibrarianBtn.Location = new System.Drawing.Point(298, 393);
+            this.LibrarianBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LibrarianBtn.Name = "LibrarianBtn";
-            this.LibrarianBtn.Size = new System.Drawing.Size(64, 23);
+            this.LibrarianBtn.Size = new System.Drawing.Size(85, 30);
             this.LibrarianBtn.TabIndex = 0;
             this.LibrarianBtn.Text = "Librarian";
-            this.LibrarianBtn.UseVisualStyleBackColor = true;
+            this.LibrarianBtn.UseVisualStyleBackColor = false;
             this.LibrarianBtn.Click += new System.EventHandler(this.LibrarianBtn_Click);
             // 
             // LoginBtn
             // 
-            this.LoginBtn.Location = new System.Drawing.Point(69, 102);
+            this.LoginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.LoginBtn.ForeColor = System.Drawing.Color.White;
+            this.LoginBtn.Location = new System.Drawing.Point(141, 165);
+            this.LoginBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LoginBtn.Name = "LoginBtn";
-            this.LoginBtn.Size = new System.Drawing.Size(138, 50);
+            this.LoginBtn.Size = new System.Drawing.Size(147, 46);
             this.LoginBtn.TabIndex = 1;
             this.LoginBtn.Text = "Login";
-            this.LoginBtn.UseVisualStyleBackColor = true;
+            this.LoginBtn.UseVisualStyleBackColor = false;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 39);
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(59, 55);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 13);
+            this.label1.Size = new System.Drawing.Size(306, 32);
             this.label1.TabIndex = 2;
             this.label1.Text = "Welcome to SmartLibrary";
             // 
             // RegisterBtn
             // 
-            this.RegisterBtn.Location = new System.Drawing.Point(69, 158);
+            this.RegisterBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.RegisterBtn.ForeColor = System.Drawing.Color.White;
+            this.RegisterBtn.Location = new System.Drawing.Point(141, 235);
+            this.RegisterBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RegisterBtn.Name = "RegisterBtn";
-            this.RegisterBtn.Size = new System.Drawing.Size(138, 50);
+            this.RegisterBtn.Size = new System.Drawing.Size(147, 46);
             this.RegisterBtn.TabIndex = 3;
             this.RegisterBtn.Text = "Register";
-            this.RegisterBtn.UseVisualStyleBackColor = true;
+            this.RegisterBtn.UseVisualStyleBackColor = false;
             this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
             // 
             // StartForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 411);
+            this.BackColor = System.Drawing.Color.Lavender;
+            this.ClientSize = new System.Drawing.Size(396, 436);
             this.Controls.Add(this.RegisterBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginBtn);
             this.Controls.Add(this.LibrarianBtn);
+            this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StartForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartForm";
             this.Load += new System.EventHandler(this.StartForm_Load);
             this.ResumeLayout(false);

@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     internal class Reader : Person
     {
         public int ReaderId { get; set; }
-        public string Password { get; set; }
+        public string Password  { get; set; }
         public string Username { get; set; }
 
         public Reader(string firstName, string lastName, DateTime dateOfBirth, string phoneNumber, string email, Address address, string password, string username)

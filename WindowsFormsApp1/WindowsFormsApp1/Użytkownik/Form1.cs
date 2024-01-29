@@ -176,5 +176,70 @@ namespace WindowsFormsApp1
             StartForm startForm = new StartForm();
             startForm.Show();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regPostalCode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regFirstName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regConfPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regLastName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regCountry_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regCity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regHouseNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regStreet_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regPhoneNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void regEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

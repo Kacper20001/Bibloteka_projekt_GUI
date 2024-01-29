@@ -111,5 +111,10 @@ namespace WindowsFormsApp1
             MessageBox.Show("Update successful");
             LoadReaderData();
         }
+
+        private void UserInfoFirstName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
