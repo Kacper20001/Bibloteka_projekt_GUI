@@ -20,6 +20,17 @@ namespace WindowsFormsApp1
         public string Availability { get; set; }
         public Book(string title, string author, int year, string description, string availability)
         {
+            if (string.IsNullOrEmpty(title))
+                throw new ArgumentException("Title cannot be empty or null", nameof(title));
+
+            if (string.IsNullOrEmpty(author))
+                throw new ArgumentException("Author cannot be empty or null", nameof(author));
+
+            if (year <= 0)
+                throw new ArgumentException("Year must be a positive number", nameof(year));
+
+            if (year > DateTime.Now.Year)
+                throw new ArgumentException("The year cannot be later than the current year ", nameof(year));
             Title = title;
             Author = author;
             Year = year;

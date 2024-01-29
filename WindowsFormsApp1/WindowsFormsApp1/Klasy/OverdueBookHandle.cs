@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using WindowsFormsApp1.Interfejsy;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1.Klasy
 {
@@ -19,23 +20,31 @@ namespace WindowsFormsApp1.Klasy
         }
         public DataTable LoadOverdueBooks()
         {
-            string query = @"
-                SELECT 
-                    b.BookId, 
-                    b.ReaderId, 
-                    bk.Title, 
-                    bk.Author, 
-                    b.BorrowDate, 
-                    b.ExpectedReturnDate, 
-                    CASE 
-                        WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30 
-                        ELSE 0 
-                    END AS OverdueFee
-                FROM Borrows b
-                INNER JOIN Books bk ON b.BookId = bk.BookID
-                WHERE DATEDIFF(day, b.BorrowDate, GETDATE()) > 30";
+            try
+            {
+                string query = @"
+                    SELECT 
+                        b.BookId, 
+                        b.ReaderId, 
+                        bk.Title, 
+                        bk.Author, 
+                        b.BorrowDate, 
+                        b.ExpectedReturnDate, 
+                        CASE 
+                            WHEN DATEDIFF(day, b.BorrowDate, GETDATE()) > 30 THEN DATEDIFF(day, b.BorrowDate, GETDATE()) - 30 
+                            ELSE 0 
+                        END AS OverdueFee
+                    FROM Borrows b
+                    INNER JOIN Books bk ON b.BookId = bk.BookID
+                    WHERE DATEDIFF(day, b.BorrowDate, GETDATE()) > 30";
 
-            return dbHelper.ExecuteQuery(query);
+                return dbHelper.ExecuteQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+                return null; 
+            }
         }
     }
 }

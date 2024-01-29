@@ -20,6 +20,9 @@ namespace WindowsFormsApp1.Klasy
         }
         public Librarian GetLibrarian(int employeeNumber, string password)
         {
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be null or empty.", nameof(password));
+
             string query = "SELECT * FROM Librarians WHERE EmployeeNumber = @EmployeeNumber AND Password = @Password";
             SqlParameter[] parameters = {
                 new SqlParameter("@EmployeeNumber", employeeNumber),
@@ -31,13 +34,14 @@ namespace WindowsFormsApp1.Klasy
             if (librarianTable.Rows.Count > 0)
             {
                 DataRow row = librarianTable.Rows[0];
+                // Ensure that the column names match those in your database
                 return new Librarian(
-                    row["password"].ToString(),
-                    row["firstName"].ToString(),
-                    row["lastName"].ToString(),
-                    Convert.ToDateTime(row["dateOfBirth"]),
-                    row["phoneNumber"].ToString(),
-                    row["email"].ToString(),
+                    row["Password"].ToString(), // Assuming "Password" is a column in your Librarians table
+                    row["FirstName"].ToString(),
+                    row["LastName"].ToString(),
+                    Convert.ToDateTime(row["DateOfBirth"]),
+                    row["PhoneNumber"].ToString(),
+                    row["Email"].ToString(),
                     new Address(
                         row["Street"].ToString(),
                         row["HouseNumber"].ToString(),
@@ -46,13 +50,18 @@ namespace WindowsFormsApp1.Klasy
                         row["Country"].ToString()),
                     Convert.ToInt32(row["EmployeeNumber"])
                 )
-                { LibrarianId = Convert.ToInt32(row["EmployeeId"]) };
+                { LibrarianId = Convert.ToInt32(row["EmployeeId"]) }; 
             }
 
-            return null;
+            return null; // Consider throwing an exception or handling the "not found" case more explicitly
         }
         public Librarian GetLibrarianById(int librarianId)
         {
+            if (librarianId <= 0)
+            {
+                MessageBox.Show("LibrarianId must be a positive number.");
+                return null;
+            }
             string query = @"SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country, EmployeeNumber
                              FROM Librarians WHERE EmployeeId = @LibrarianId";
             SqlParameter[] parameters = { new SqlParameter("@LibrarianId", librarianId) };
@@ -87,6 +96,11 @@ namespace WindowsFormsApp1.Klasy
         }
         public void DeleteLibrarian(int id)
         {
+            if (id <= 0)
+            {
+                MessageBox.Show("LibrarianId must be a positive number.");
+                return;
+            }
             string deleteLibrarianQuery = "DELETE FROM Librarians WHERE EmployeeId = @LibrarianId";
             SqlParameter[] parameters = { new SqlParameter("@LibrarianId", id) };
 
@@ -103,6 +117,11 @@ namespace WindowsFormsApp1.Klasy
         }
         public void SaveLibrarianInDatabase(Librarian librarian)
         {
+            if (librarian.EmployeeNumber <= 0)
+            {
+                MessageBox.Show("EmployeeNumber must be a positive number.");
+                return;
+            }
             string insertDataQuery = "INSERT INTO Librarians (EmployeeNumber, Password, FirstName, LastName, DateOfBirth, Email, PhoneNumber, Street, City, HouseNumber, PostalCode, Country) VALUES (@EmployeeNumber, @Password, @FirstName, @LastName, @DateOfBirth, @Email, @PhoneNumber, @Street, @City, @HouseNumber, @PostalCode, @Country)";
             SqlParameter[] parameters = {
                 new SqlParameter("@EmployeeNumber", librarian.EmployeeNumber),
@@ -124,6 +143,11 @@ namespace WindowsFormsApp1.Klasy
         }
         public void EditLibrarian(int librarianId, string lastName, string phoneNumber, string street, string houseNumber, string postalCode, string city, string country)
         {
+            if (librarianId <= 0)
+            {
+                MessageBox.Show("LibrarianId must be a positive number.");
+                return;
+            }
             string query = @"UPDATE Librarians 
                              SET LastName = @LastName, PhoneNumber = @PhoneNumber, Street = @Street, HouseNumber = @HouseNumber, PostalCode = @PostalCode, City = @City, Country = @Country
                              WHERE EmployeeId = @LibrarianId";

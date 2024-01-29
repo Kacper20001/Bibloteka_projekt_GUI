@@ -30,7 +30,7 @@ namespace WindowsFormsApp1.Klasy
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Wystąpił błąd: " + ex.Message);
+                    Console.WriteLine("An error occurred: " + ex.Message);
                 }
             }
         }

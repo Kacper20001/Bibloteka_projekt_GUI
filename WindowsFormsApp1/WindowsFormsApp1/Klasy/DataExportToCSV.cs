@@ -18,7 +18,9 @@ namespace WindowsFormsApp1.Klasy
         }
         public void ExportData(string[] tables)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (tables == null || tables.Length == 0) throw new ArgumentException("Tables array cannot be null or empty.", nameof(tables));
+
+            using (var connection = new SqlConnection(connectionString))
             {
                 try
                 {
@@ -31,7 +33,7 @@ namespace WindowsFormsApp1.Klasy
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Wystąpił błąd: " + ex.Message);
+                    throw new Exception($"Error while exporting data: {ex.Message}", ex);
                 }
             }
         }

@@ -35,23 +35,45 @@ namespace WindowsFormsApp1.Klasy
 
         public bool IsCurrentPasswordValid(string query, int currentId, string currentPasswordHash)
         {
-            //string query = "SELECT Password FROM Readers WHERE ID = @Id";
-            SqlParameter[] parameters = { new SqlParameter("@Id", currentId) }; //Pamiętać, przy tworzeniu zapytania o użyciu "@Id"
+            try
+            {
+                //string query = "SELECT Password FROM Readers WHERE ID = @Id";
+                SqlParameter[] parameters = { new SqlParameter("@Id", currentId) }; //Pamiętać, przy tworzeniu zapytania o użyciu "@Id"
             object result = dbHelper.ExecuteScalar(query, parameters);
-
-            string storedPasswordHash = result as string;
-            return storedPasswordHash == currentPasswordHash;
+                if (result != null) {
+                    string storedPasswordHash = result as string;
+                    return storedPasswordHash == currentPasswordHash;
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while checking the current password: {ex.Message}");
+                return false;
+            }
         }
 
         public void UpdatePasswordInDatabase(string updateQuery, int currentId, string newPasswordHash)
         {
-            //string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE Id = @ID";
-            SqlParameter[] parameters = {
+            try
+            {
+                //string updateQuery = "UPDATE Readers SET Password = @NewPassword WHERE Id = @ID";
+                SqlParameter[] parameters = {
                 new SqlParameter("@NewPassword", newPasswordHash), //Pamiętać przy tworzeiu zaoytania o użyciu "@NewPassword"
                 new SqlParameter("@Id", currentId)
             }; //Pamiętać przy tworzeiu zaoytania o użyciu "@Id"
 
             dbHelper.ExecuteNonQuery(updateQuery, parameters);
+                MessageBox.Show("Password updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating the password: {ex.Message}");
+            }
         }
     }
 }
