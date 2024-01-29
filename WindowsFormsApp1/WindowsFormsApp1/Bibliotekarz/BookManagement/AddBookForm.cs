@@ -46,5 +46,15 @@ namespace WindowsFormsApp1.Bibliotekarz.BookManagement
             LibrarianMenu librarianMenu = new LibrarianMenu(currentLibrarianId);
             librarianMenu.Show();
         }
+
+        private void AddBookForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

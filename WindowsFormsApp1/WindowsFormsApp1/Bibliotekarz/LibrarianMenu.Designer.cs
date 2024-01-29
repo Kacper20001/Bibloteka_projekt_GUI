@@ -44,117 +44,151 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 45);
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(191, 50);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(189, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "Librarian Menu";
             // 
             // BooksBtn
             // 
-            this.BooksBtn.Location = new System.Drawing.Point(47, 155);
+            this.BooksBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.BooksBtn.ForeColor = System.Drawing.Color.White;
+            this.BooksBtn.Location = new System.Drawing.Point(64, 143);
+            this.BooksBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BooksBtn.Name = "BooksBtn";
-            this.BooksBtn.Size = new System.Drawing.Size(81, 96);
+            this.BooksBtn.Size = new System.Drawing.Size(100, 90);
             this.BooksBtn.TabIndex = 1;
             this.BooksBtn.Text = "Books";
-            this.BooksBtn.UseVisualStyleBackColor = true;
+            this.BooksBtn.UseVisualStyleBackColor = false;
             this.BooksBtn.Click += new System.EventHandler(this.BooksBtn_Click);
             // 
             // BookManagementBtn
             // 
-            this.BookManagementBtn.Location = new System.Drawing.Point(157, 155);
+            this.BookManagementBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.BookManagementBtn.ForeColor = System.Drawing.Color.White;
+            this.BookManagementBtn.Location = new System.Drawing.Point(172, 143);
+            this.BookManagementBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BookManagementBtn.Name = "BookManagementBtn";
-            this.BookManagementBtn.Size = new System.Drawing.Size(81, 96);
+            this.BookManagementBtn.Size = new System.Drawing.Size(100, 90);
             this.BookManagementBtn.TabIndex = 2;
             this.BookManagementBtn.Text = "Book Management";
-            this.BookManagementBtn.UseVisualStyleBackColor = true;
+            this.BookManagementBtn.UseVisualStyleBackColor = false;
             this.BookManagementBtn.Click += new System.EventHandler(this.BookManagementBtn_Click);
             // 
             // borrowedBooksBtn
             // 
-            this.borrowedBooksBtn.Location = new System.Drawing.Point(277, 155);
+            this.borrowedBooksBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.borrowedBooksBtn.ForeColor = System.Drawing.Color.White;
+            this.borrowedBooksBtn.Location = new System.Drawing.Point(280, 143);
+            this.borrowedBooksBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.borrowedBooksBtn.Name = "borrowedBooksBtn";
-            this.borrowedBooksBtn.Size = new System.Drawing.Size(81, 96);
+            this.borrowedBooksBtn.Size = new System.Drawing.Size(100, 90);
             this.borrowedBooksBtn.TabIndex = 3;
             this.borrowedBooksBtn.Text = "Borrowed Books";
-            this.borrowedBooksBtn.UseVisualStyleBackColor = true;
+            this.borrowedBooksBtn.UseVisualStyleBackColor = false;
             this.borrowedBooksBtn.Click += new System.EventHandler(this.borrowedBooksBtn_Click);
             // 
             // DeleyedReturnsBtn
             // 
-            this.DeleyedReturnsBtn.Location = new System.Drawing.Point(384, 155);
+            this.DeleyedReturnsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.DeleyedReturnsBtn.ForeColor = System.Drawing.Color.White;
+            this.DeleyedReturnsBtn.Location = new System.Drawing.Point(388, 143);
+            this.DeleyedReturnsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DeleyedReturnsBtn.Name = "DeleyedReturnsBtn";
-            this.DeleyedReturnsBtn.Size = new System.Drawing.Size(81, 96);
+            this.DeleyedReturnsBtn.Size = new System.Drawing.Size(100, 90);
             this.DeleyedReturnsBtn.TabIndex = 4;
             this.DeleyedReturnsBtn.Text = "Deleyed Returns";
-            this.DeleyedReturnsBtn.UseVisualStyleBackColor = true;
+            this.DeleyedReturnsBtn.UseVisualStyleBackColor = false;
             this.DeleyedReturnsBtn.Click += new System.EventHandler(this.DeleyedReturnsBtn_Click);
             // 
             // LogOutBtn
             // 
-            this.LogOutBtn.Location = new System.Drawing.Point(630, 12);
+            this.LogOutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.LogOutBtn.ForeColor = System.Drawing.Color.White;
+            this.LogOutBtn.Location = new System.Drawing.Point(496, 47);
+            this.LogOutBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogOutBtn.Name = "LogOutBtn";
-            this.LogOutBtn.Size = new System.Drawing.Size(135, 46);
+            this.LogOutBtn.Size = new System.Drawing.Size(111, 35);
             this.LogOutBtn.TabIndex = 5;
             this.LogOutBtn.Text = "Log out";
-            this.LogOutBtn.UseVisualStyleBackColor = true;
+            this.LogOutBtn.UseVisualStyleBackColor = false;
             this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
             // 
             // ReadersManagementBtn
             // 
-            this.ReadersManagementBtn.Location = new System.Drawing.Point(498, 155);
+            this.ReadersManagementBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ReadersManagementBtn.ForeColor = System.Drawing.Color.White;
+            this.ReadersManagementBtn.Location = new System.Drawing.Point(388, 241);
+            this.ReadersManagementBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ReadersManagementBtn.Name = "ReadersManagementBtn";
-            this.ReadersManagementBtn.Size = new System.Drawing.Size(81, 96);
+            this.ReadersManagementBtn.Size = new System.Drawing.Size(100, 90);
             this.ReadersManagementBtn.TabIndex = 6;
             this.ReadersManagementBtn.Text = "Readers Management";
-            this.ReadersManagementBtn.UseVisualStyleBackColor = true;
+            this.ReadersManagementBtn.UseVisualStyleBackColor = false;
             this.ReadersManagementBtn.Click += new System.EventHandler(this.ReadersManagementBtn_Click);
             // 
             // AddLibrarianBtn
             // 
-            this.AddLibrarianBtn.Location = new System.Drawing.Point(595, 155);
+            this.AddLibrarianBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.AddLibrarianBtn.ForeColor = System.Drawing.Color.White;
+            this.AddLibrarianBtn.Location = new System.Drawing.Point(64, 241);
+            this.AddLibrarianBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddLibrarianBtn.Name = "AddLibrarianBtn";
-            this.AddLibrarianBtn.Size = new System.Drawing.Size(81, 96);
+            this.AddLibrarianBtn.Size = new System.Drawing.Size(100, 90);
             this.AddLibrarianBtn.TabIndex = 7;
             this.AddLibrarianBtn.Text = "Add New Librarian";
-            this.AddLibrarianBtn.UseVisualStyleBackColor = true;
+            this.AddLibrarianBtn.UseVisualStyleBackColor = false;
             this.AddLibrarianBtn.Click += new System.EventHandler(this.AddLibrarianBtn_Click);
             // 
             // LibrarainInfoBtn
             // 
-            this.LibrarainInfoBtn.Location = new System.Drawing.Point(693, 155);
+            this.LibrarainInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.LibrarainInfoBtn.ForeColor = System.Drawing.Color.White;
+            this.LibrarainInfoBtn.Location = new System.Drawing.Point(172, 241);
+            this.LibrarainInfoBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LibrarainInfoBtn.Name = "LibrarainInfoBtn";
-            this.LibrarainInfoBtn.Size = new System.Drawing.Size(81, 96);
+            this.LibrarainInfoBtn.Size = new System.Drawing.Size(100, 90);
             this.LibrarainInfoBtn.TabIndex = 8;
             this.LibrarainInfoBtn.Text = "Your Info";
-            this.LibrarainInfoBtn.UseVisualStyleBackColor = true;
+            this.LibrarainInfoBtn.UseVisualStyleBackColor = false;
             this.LibrarainInfoBtn.Click += new System.EventHandler(this.LibrarainInfoBtn_Click);
             // 
             // LibrariansListBtn
             // 
-            this.LibrariansListBtn.Location = new System.Drawing.Point(52, 318);
+            this.LibrariansListBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.LibrariansListBtn.ForeColor = System.Drawing.Color.White;
+            this.LibrariansListBtn.Location = new System.Drawing.Point(280, 241);
+            this.LibrariansListBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LibrariansListBtn.Name = "LibrariansListBtn";
-            this.LibrariansListBtn.Size = new System.Drawing.Size(123, 92);
+            this.LibrariansListBtn.Size = new System.Drawing.Size(100, 90);
             this.LibrariansListBtn.TabIndex = 9;
             this.LibrariansListBtn.Text = "Librarians List";
-            this.LibrariansListBtn.UseVisualStyleBackColor = true;
+            this.LibrariansListBtn.UseVisualStyleBackColor = false;
             this.LibrariansListBtn.Click += new System.EventHandler(this.LibrariansListBtn_Click);
             // 
             // DataBtn
             // 
-            this.DataBtn.Location = new System.Drawing.Point(225, 318);
+            this.DataBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.DataBtn.ForeColor = System.Drawing.Color.White;
+            this.DataBtn.Location = new System.Drawing.Point(496, 192);
+            this.DataBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataBtn.Name = "DataBtn";
-            this.DataBtn.Size = new System.Drawing.Size(116, 92);
+            this.DataBtn.Size = new System.Drawing.Size(100, 90);
             this.DataBtn.TabIndex = 10;
             this.DataBtn.Text = "Data Management";
-            this.DataBtn.UseVisualStyleBackColor = true;
+            this.DataBtn.UseVisualStyleBackColor = false;
             this.DataBtn.Click += new System.EventHandler(this.DataBtn_Click);
             // 
             // LibrarianMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Lavender;
+            this.ClientSize = new System.Drawing.Size(681, 399);
             this.Controls.Add(this.DataBtn);
             this.Controls.Add(this.LibrariansListBtn);
             this.Controls.Add(this.LibrarainInfoBtn);
@@ -166,6 +200,9 @@
             this.Controls.Add(this.BookManagementBtn);
             this.Controls.Add(this.BooksBtn);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.White;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LibrarianMenu";
             this.Text = "LibrarianMenu";
             this.Load += new System.EventHandler(this.LibrarianMenu_Load);

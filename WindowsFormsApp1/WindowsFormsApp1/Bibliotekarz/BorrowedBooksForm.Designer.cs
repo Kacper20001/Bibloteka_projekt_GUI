@@ -30,65 +30,79 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.DataGridBorrowed = new System.Windows.Forms.DataGridView();
+            this.SelectToReturn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.BackToMenuBtn = new System.Windows.Forms.Button();
             this.ReturnBooksBtn = new System.Windows.Forms.Button();
-            this.SelectToReturn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridBorrowed)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 9);
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(124, 60);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 13);
+            this.label1.Size = new System.Drawing.Size(460, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "List of books that are currently on loan.";
+            this.label1.Text = "List of books that are currently on loan";
             // 
             // DataGridBorrowed
             // 
+            this.DataGridBorrowed.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
             this.DataGridBorrowed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridBorrowed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SelectToReturn});
-            this.DataGridBorrowed.Location = new System.Drawing.Point(12, 59);
+            this.DataGridBorrowed.Location = new System.Drawing.Point(65, 171);
+            this.DataGridBorrowed.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.DataGridBorrowed.Name = "DataGridBorrowed";
-            this.DataGridBorrowed.Size = new System.Drawing.Size(626, 204);
+            this.DataGridBorrowed.Size = new System.Drawing.Size(763, 252);
             this.DataGridBorrowed.TabIndex = 1;
-            // 
-            // BackToMenuBtn
-            // 
-            this.BackToMenuBtn.Location = new System.Drawing.Point(685, 29);
-            this.BackToMenuBtn.Name = "BackToMenuBtn";
-            this.BackToMenuBtn.Size = new System.Drawing.Size(93, 27);
-            this.BackToMenuBtn.TabIndex = 2;
-            this.BackToMenuBtn.Text = "Back To Menu ";
-            this.BackToMenuBtn.UseVisualStyleBackColor = true;
-            this.BackToMenuBtn.Click += new System.EventHandler(this.BackToMenuBtn_Click);
-            // 
-            // ReturnBooksBtn
-            // 
-            this.ReturnBooksBtn.Location = new System.Drawing.Point(685, 76);
-            this.ReturnBooksBtn.Name = "ReturnBooksBtn";
-            this.ReturnBooksBtn.Size = new System.Drawing.Size(93, 29);
-            this.ReturnBooksBtn.TabIndex = 3;
-            this.ReturnBooksBtn.Text = "Return books";
-            this.ReturnBooksBtn.UseVisualStyleBackColor = true;
-            this.ReturnBooksBtn.Click += new System.EventHandler(this.ReturnBooksBtn_Click);
             // 
             // SelectToReturn
             // 
             this.SelectToReturn.HeaderText = "Select";
             this.SelectToReturn.Name = "SelectToReturn";
             // 
+            // BackToMenuBtn
+            // 
+            this.BackToMenuBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.BackToMenuBtn.ForeColor = System.Drawing.Color.White;
+            this.BackToMenuBtn.Location = new System.Drawing.Point(696, 71);
+            this.BackToMenuBtn.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.BackToMenuBtn.Name = "BackToMenuBtn";
+            this.BackToMenuBtn.Size = new System.Drawing.Size(132, 30);
+            this.BackToMenuBtn.TabIndex = 2;
+            this.BackToMenuBtn.Text = "Back To Menu ";
+            this.BackToMenuBtn.UseVisualStyleBackColor = false;
+            this.BackToMenuBtn.Click += new System.EventHandler(this.BackToMenuBtn_Click);
+            // 
+            // ReturnBooksBtn
+            // 
+            this.ReturnBooksBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ReturnBooksBtn.ForeColor = System.Drawing.Color.White;
+            this.ReturnBooksBtn.Location = new System.Drawing.Point(65, 128);
+            this.ReturnBooksBtn.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ReturnBooksBtn.Name = "ReturnBooksBtn";
+            this.ReturnBooksBtn.Size = new System.Drawing.Size(132, 33);
+            this.ReturnBooksBtn.TabIndex = 3;
+            this.ReturnBooksBtn.Text = "Return books";
+            this.ReturnBooksBtn.UseVisualStyleBackColor = false;
+            this.ReturnBooksBtn.Click += new System.EventHandler(this.ReturnBooksBtn_Click);
+            // 
             // BorrowedBooksForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Lavender;
+            this.ClientSize = new System.Drawing.Size(883, 479);
             this.Controls.Add(this.ReturnBooksBtn);
             this.Controls.Add(this.BackToMenuBtn);
             this.Controls.Add(this.DataGridBorrowed);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "BorrowedBooksForm";
             this.Text = "BorrowedBooksForm";
             this.Load += new System.EventHandler(this.BorrowedBooksForm_Load);
